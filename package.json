@@ -1,0 +1,33 @@
+{
+  "name": "aurelia-by-examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --skipLibCheck"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigopon/aurelia-by-examples.git"
+  },
+  "keywords": [],
+  "author": "bigopon <bigopon.777@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bigopon/aurelia-by-examples/issues"
+  },
+  "homepage": "https://github.com/bigopon/aurelia-by-examples#readme",
+  "dependencies": {
+    "@aurelia/kernel": "^2.0.0-alpha.4",
+    "@aurelia/metadata": "^2.0.0-alpha.4",
+    "@aurelia/platform": "^2.0.0-alpha.4",
+    "@aurelia/platform-browser": "^2.0.0-alpha.4",
+    "@aurelia/runtime": "^2.0.0-alpha.4",
+    "@aurelia/runtime-html": "^2.0.0-alpha.4"
+  },
+  "devDependencies": {
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4"
+  }
+}
