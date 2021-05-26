@@ -6,6 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aurelia by examples</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1/codemirror.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1/mode/xml/xml.min.js"></script>
   <script type="importmap">
     {
       "imports": {
@@ -15,11 +19,15 @@
         "@aurelia/platform": "https://unpkg.com/@aurelia/platform@dev/dist/bundle/index.js",
         "@aurelia/platform-browser": "https://unpkg.com/@aurelia/platform-browser@dev/dist/bundle/index.js",
         "@aurelia/metadata": "https://unpkg.com/@aurelia/metadata@dev/dist/bundle/index.js",
-        "tslib": "https://unpkg.com/tslib/tslib.es6.js"
+        "tslib": "https://unpkg.com/tslib/tslib.es6.js",
+        "codemirror": "https://unpkg.com/codemirror@5.61.1/lib/codemirror.js"
       }
     }
   </script>
   <script type="module" src="./index.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+  </style>
 </head>
 
 <body>

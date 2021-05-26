@@ -5,17 +5,17 @@ let ResultViewer = class ResultViewer {
     constructor() {
         this.code = '';
         this.template = '';
-        this.file = { path: '', content: '', destroy: () => { } };
+        this.file = { path: '', content: '', dispose: () => { } };
         this.refreshId = 0;
     }
     attached() {
         this.refresh(generateFile(this.code, this.template));
     }
     detached() {
-        this.file.destroy();
+        this.file.dispose();
     }
     refresh(file) {
-        this.file.destroy();
+        this.file.dispose();
         this.file = file;
         this.iframe.src = file.path;
     }
@@ -40,7 +40,7 @@ __decorate([
 ResultViewer = __decorate([
     customElement({
         name: 'result-viewer',
-        template: `<iframe ref=iframe style="width: 100%; height: 100%; border: 0;">`
+        template: `<template style="display: block"><iframe ref=iframe style="width: 100%; height: 100%; border: 0;">`
     })
 ], ResultViewer);
 export { ResultViewer };
@@ -51,7 +51,7 @@ function generateFile(code, template) {
     return {
         path,
         content: html,
-        destroy: () => { URL.revokeObjectURL(path); }
+        dispose: () => { URL.revokeObjectURL(path); }
     };
 }
 function generateHtml(code, template) {

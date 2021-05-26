@@ -3,7 +3,7 @@ import { bindable, customElement } from "@aurelia/runtime-html";
 
 @customElement({
   name: 'result-viewer',
-  template: `<iframe ref=iframe style="width: 100%; height: 100%; border: 0;">`
+  template: `<template style="display: block"><iframe ref=iframe style="width: 100%; height: 100%; border: 0;">`
 })
 export class ResultViewer {
 
@@ -11,18 +11,18 @@ export class ResultViewer {
   @bindable template: string = '';
 
   readonly iframe!: HTMLIFrameElement;
-  private file: IFile = { path: '', content: '', destroy: () => {} };
+  private file: IFile = { path: '', content: '', dispose: () => {} };
 
   attached() {
     this.refresh(generateFile(this.code, this.template));
   }
 
   detached() {
-    this.file.destroy();
+    this.file.dispose();
   }
 
   refresh(file: IFile) {
-    this.file.destroy();
+    this.file.dispose();
     this.file = file;
     this.iframe.src = file.path;
   }
@@ -41,9 +41,9 @@ export class ResultViewer {
 }
 
 interface IFile {
-  path: string;
-  content: string;
-  destroy: () => void;
+  readonly path: string;
+  readonly content: string;
+  dispose(): void;
 }
 
 interface IParsedScript {
@@ -58,7 +58,7 @@ function generateFile(code: string, template: string): IFile {
   return {
     path,
     content: html,
-    destroy: () => { URL.revokeObjectURL(path); }
+    dispose: () => { URL.revokeObjectURL(path); }
   };
 }
 

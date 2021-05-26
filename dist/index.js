@@ -1,6 +1,7 @@
 import { DI, Registration } from "@aurelia/kernel";
 import { StandardConfiguration as SC, Aurelia, BrowserPlatform, IPlatform, CustomElement } from "@aurelia/runtime-html";
 import { ResultViewer } from './components/result-viewer.js';
+import { InlineComponentEditor } from './components/component-editor.js';
 const PLATFORM = BrowserPlatform.getOrCreate(globalThis);
 const ct = DI.createContainer().register(Registration.instance(IPlatform, PLATFORM), SC);
 const au = new Aurelia(ct);
@@ -9,11 +10,10 @@ au.app({
     component: CustomElement.define({
         name: 'app',
         template: [
-            '<textarea style="width: 100%; height: 300px; rezie: no-resize;" value.bind="code"></textarea>',
-            '<textarea style="width: 100%; height: 300px; rezie: no-resize;" value.bind="template"></textarea>',
+            '<inline-editor code.bind="code" template.bind="template" style="height: 300px"></inline-editor>',
             '<result-viewer code.bind="code" template.bind="template"></result-viewer>',
         ].join('\n'),
-        dependencies: [ResultViewer]
+        dependencies: [InlineComponentEditor, ResultViewer],
     }, class App {
         constructor() {
             this.code = [
