@@ -7,7 +7,7 @@ declare global {
 
 @customElement({
   name: 'text-editor',
-  template: '<template ref=host style="display: block; width: 100%;">'
+  template: '<template ref=host style="display: block;">'
 })
 export class TextEditor {
 

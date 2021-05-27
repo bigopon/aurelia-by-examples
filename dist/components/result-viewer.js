@@ -70,10 +70,12 @@ function addBootScript(script) {
         lines: script.lines.concat([
             'import { DI as __DI, Registration as __R } from "@aurelia/kernel";',
             'import { StandardConfiguration as __SC, Aurelia as __Au, IPlatform as __IP } from "@aurelia/runtime-html";',
-            "import { BrowserPlatform as __BP } from '@aurelia/platform-browser'",
-            'window.PLATFORM = __BP.getOrCreate(globalThis);',
-            'const __ct = __DI.createContainer().register(__R.instance(__IP, PLATFORM), __SC);',
-            `new __Au(__ct).app({ host: document.body, component: ${script.mainClass} }).start();`,
+            "import { BrowserPlatform as __BP } from '@aurelia/platform-browser';",
+            '(() => {',
+            'const PLATFORM = window.PLATFORM = __BP.getOrCreate(globalThis);',
+            'const ct = __DI.createContainer().register(__R.instance(__IP, PLATFORM), __SC);',
+            `new __Au(ct).app({ host: document.body, component: ${script.mainClass} }).start();`,
+            '})();'
         ]),
         mainClass: script.mainClass
     };

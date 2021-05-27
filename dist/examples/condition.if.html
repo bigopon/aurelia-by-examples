@@ -1,0 +1,10 @@
+<label>
+  <input type="checkbox" checked.bind="visible">
+  <span if.bind="visible">Now you see me 🤡</span>
+  <span else>Now you don't</span>
+</label>
+<script>
+export class App {
+  visible = true;
+}
+</script>

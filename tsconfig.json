@@ -2,7 +2,7 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "importHelpers": true,
-    "lib": ["ES2015", "ES2019.Array", "dom"],
+    "lib": ["ES2015", "ES2019.Array", "dom", "ES2019.String", "ES2020.String"],
     "moduleResolution": "node",
     "strict": true,
     "suppressImplicitAnyIndexErrors": true,

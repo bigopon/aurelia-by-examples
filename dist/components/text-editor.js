@@ -35,7 +35,7 @@ __decorate([
 TextEditor = __decorate([
     customElement({
         name: 'text-editor',
-        template: '<template ref=host style="display: block; width: 100%;">'
+        template: '<template ref=host style="display: block;">'
     })
 ], TextEditor);
 export { TextEditor };
