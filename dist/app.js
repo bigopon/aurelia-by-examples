@@ -233,6 +233,13 @@ App = __decorate([
 <header>
   <a href="#/"><img id="logo" src="./images/aulogo.svg" alt="Aurelia logo" /></a>
   <span>by examples</span>
+  <i style="flex-grow: 1"></i>
+  <a href="https://github.com/bigopon/aurelia-by-examples" target="_blank" rel="noopener"
+    style="justify-self: flex-end; display: flex; align-items: center;"
+  >
+    <svg width="32" height="32" style="margin-right: 0.5rem"><use href="#icon-gh" /></svg>
+    Contribute examples
+  </a>
 </header>
 <div style="display: flex;">
   <ul class="side-nav" style="flex-shrink: 0; align-self: flex-start;">
