@@ -1,0 +1,28 @@
+<p>Select an action:</p>
+<label>
+  <input type="radio" name="action" value="mask" checked.bind="selectedAction">
+  Mask
+</label>
+<label>
+  <input type="radio" name="action" value="sanitizer" checked.bind="selectedAction">
+  Sanitizer
+</label>
+<label>
+  <input type="radio" name="action" value="wash" checked.bind="selectedAction">
+  Wash hand carefully (20s)
+</label>
+<label>
+  <input type="radio" name="action" value="all" checked.bind="selectedAction">
+  All of the above
+</label>
+<p switch.bind="selectedAction">
+  <span case="mask">You are more protected from aerosol particles, and others are protected from you.</span>
+  <span case="sanitizer">You are making sure viruses won't be spreaded easily.</span>
+  <span case="wash">You are helping eliminate the virus.</span>
+  <span case="all">You are protecting yourself and people around you. You rock!</span>
+</p>
+<script>
+export class App {
+  
+}
+</script>
