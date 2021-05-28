@@ -1,0 +1,18 @@
+<h4>Products</h4>
+<label><input type="checkbox" checked.bind="motherboard"> Motherboard</label>
+<label><input type="checkbox" checked.bind="cpu"> CPU</label>
+<label><input type="checkbox" checked.bind="memory"> Memory</label>
+
+<p>
+  motherboard = ${motherboard}<br>
+  cpu = ${cpu}<br>
+  memory = ${memory}<br>
+</p>
+<script>
+export class App {
+  motherboard = false;
+  cpu = false;
+  memory = false;
+}
+</script>
+<style>h4 { margin: 0}</style>

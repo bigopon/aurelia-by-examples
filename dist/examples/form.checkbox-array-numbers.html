@@ -1,0 +1,20 @@
+<h4>Products</h4>
+<label repeat.for="product of products">
+  <input type="checkbox" model.bind="product.id" checked.bind="selectedProductIds">
+  ${product.id} - ${product.name}
+</label>
+<br>
+Selected product IDs: ${selectedProductIds}
+
+<script>
+export class App {
+  products = [
+    { id: 0, name: 'Motherboard' },
+    { id: 1, name: 'CPU' },
+    { id: 2, name: 'Memory' },
+  ];
+
+  selectedProductIds = [];
+}
+</script>
+<style>h4 { margin: 0}</style>

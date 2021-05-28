@@ -28,9 +28,9 @@ let App = class App {
             },
             // handling form
             {
-                id: 'form-handling',
+                id: 'form-text',
                 type: 'heading',
-                title: 'Form handling',
+                title: 'Form text input handling',
                 desc: 'It is not uncommon that at some point, your application will contain some form elements that ' +
                     'provide the ability to allow user input. Whether they be select dropdowns, text inputs or buttons, ' +
                     'Aurelia makes working with forms intuitive.',
@@ -114,6 +114,42 @@ export class App {
                     template: '<textarea value.bind="message"></textarea><br>\n${message}',
                     styles: ['textarea{width: 300px; height: 100px; resize: none;}'],
                 }
+            },
+            {
+                id: 'form-checkboxes',
+                type: 'heading',
+                title: 'Form checkboxes handling',
+                desc: 'Aurelia supports two-way binding a variety of data-types to checkbox input elements..',
+            },
+            {
+                id: 'form-checkbox-booleans',
+                type: 'link',
+                indent: 1,
+                title: 'Checkbox - Booleans',
+                desc: `Bind a boolean property to an input element's checked attribute using checked.bind="myBooleanProperty"`,
+                link: 'examples/form.checkbox-booleans.html',
+            },
+            {
+                id: 'form-checkbox-array-numbers',
+                type: 'link',
+                indent: 1,
+                title: 'Checkbox - Array of numbers',
+                desc: `A set of checkbox elements is a multiple selection interface. ` +
+                    `If you have an array that serves as the "selected items" list, ` +
+                    `you can bind the array to each input's checked attribute. ` +
+                    `The binding system will track the input's checked status, adding the input's value to the array ` +
+                    `when the input is checked and removing the input's value from the array when the input is unchecked`,
+                link: 'examples/form.checkbox-array-numbers.html',
+            },
+            {
+                id: 'form-checkbox-array-objects',
+                type: 'link',
+                indent: 1,
+                title: 'Checkbox - Array of objects',
+                desc: `Numbers aren't the only type of value you can store in a "selected items" array. ` +
+                    `The binding system supports all types, including objects. ` +
+                    `Here's an example that adds and removes "product" objects from a "selectedProducts" array using the checkbox data-binding.`,
+                link: 'examples/form.checkbox-array-objects.html',
             },
             // conditional rendering
             {
