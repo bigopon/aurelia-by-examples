@@ -90,10 +90,10 @@ class ExampleLoader {
         const scriptStartIdx = code.indexOf('<script>');
         const scriptEndIdx = code.indexOf('</script>');
         const script = Math.max(scriptStartIdx, scriptEndIdx, -1) > -1
-            ? code.substring(scriptStartIdx, scriptEndIdx).trimStart()
+            ? code.substring(scriptStartIdx + 8, scriptEndIdx).trimStart()
             : 'export class App {}';
         const template = code.substring(0, scriptStartIdx).trim();
-        const styleCode = code.substr(scriptEndIdx);
+        const styleCode = code.substr(scriptEndIdx + 9);
         const styles = [];
         const styleParser = document.createElement('div');
         styleParser.innerHTML = `<template>${styleCode}</template>`;
