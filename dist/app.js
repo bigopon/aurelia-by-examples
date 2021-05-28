@@ -11,7 +11,7 @@ let App = class App {
                 type: 'heading',
                 title: 'Aurelia examples',
                 desc: 'Aurelia is a frontend JavaScript framework that is simple, powerful and unobtrusive.\n' +
-                    'It stays out of your way with a plain binding & observation system and an expressive & extensible templating.\n' +
+                    'It stays out of your way with a plain binding & observation system and an intuitive, expressive & extensible templating system.\n' +
                     'Let\'s dive into Aurelia via hundred of examples.',
             },
             {
@@ -36,10 +36,10 @@ let App = class App {
                     'Aurelia makes working with forms intuitive.',
             },
             {
-                id: 'text-input',
+                id: 'form-input',
                 type: 'inline',
                 indent: 1,
-                title: 'input text',
+                title: 'Input text',
                 desc: 'A common element seen in forms is text <input>. Aurelia supports this via "value.bind"',
                 code: {
                     script: 'export class App {\n  message = "Hello world!";\n}',
@@ -48,10 +48,10 @@ let App = class App {
                 }
             },
             {
-                id: 'text-input',
+                id: 'form-number-input',
                 type: 'inline',
                 indent: 1,
-                title: 'input number',
+                title: 'Input number',
                 desc: 'Two way binding with a number <input/>, as string',
                 code: {
                     script: 'export class App {\n  count = 0;\n}',
@@ -60,10 +60,35 @@ let App = class App {
                 }
             },
             {
-                id: 'text-input',
+                id: 'form-number-input-value-converter',
                 type: 'inline',
                 indent: 1,
-                title: 'input number + valueAsNumber',
+                title: 'Input number + value converter',
+                desc: 'Two way binding with a number <input/>, with the help of "| number" value converter expression to turn string into number',
+                code: {
+                    script: `import { ValueConverter } from "@aurelia/runtime";
+
+export class App {
+  static get dependencies() {
+    return [
+      ValueConverter.define("number", class ToNumber {
+        fromView(v) { return Number(v); }
+        toView(v) { return Number(v); }
+      })
+    ];
+  }
+
+  count = 0;
+}`,
+                    template: '<input type="number" value.bind="count | number" /><br>\ntype: ${typeof count} -- value: ${count}',
+                    styles: [],
+                }
+            },
+            {
+                id: 'form-number-input-value-as-number',
+                type: 'inline',
+                indent: 1,
+                title: 'Input number + valueAsNumber',
                 desc: 'Two way binding with number <input/>, via "valueAsNumber" property, to reduce boiler plate converting string to number',
                 code: {
                     script: 'export class App {\n  a = 0;\n  b = 0;\n}',
@@ -74,6 +99,20 @@ let App = class App {
                         '${a} + ${b} = ${a + b}'
                     ].join('<br>\n'),
                     styles: [],
+                }
+            },
+            {
+                id: 'form-textarea',
+                type: 'inline',
+                indent: 1,
+                title: 'Textarea',
+                desc: 'A textarea element is just like any other form element. ' +
+                    'It allows you to bind to its value and by default "value.bind" will be two-way binding ' +
+                    '(meaning changes in the view will flow to the view-model, and changes in the view-model will flow to the view).',
+                code: {
+                    script: 'export class App {\n  message = "Hello world!";\n}',
+                    template: '<textarea value.bind="message"></textarea><br>\n${message}',
+                    styles: ['textarea{width: 300px; height: 100px; resize: none;}'],
                 }
             },
             // conditional rendering
@@ -134,7 +173,7 @@ App = __decorate([
         name: 'app',
         template: html `
 <header>
-  <a href="#/"><img id="logo" src="./images/aulogo.svg" /></a>
+  <a href="#/"><img id="logo" src="./images/aulogo.svg" alt="Aurelia logo" /></a>
   <span>by examples</span>
 </header>
 <div style="display: flex;">

@@ -42,7 +42,7 @@ header { display: flex; align-items: center; height: 3rem; padding: 0 0.75rem; b
 main { padding: 0 8px; }
   main section { padding: 0.75rem; background-color: var(--bg-grey-xlight); border-radius: 1rem; }
   main section.section-heading { border-radius: 0.25rem; background: var(--bg-au-gradient); color: var(--bg-white); text-shadow: 0px 0px 4px rgb(0 0 0 / 70%); }
-  main section.section-heading p { white-space: pre; }
+    main section p { white-space: pre-wrap; }
   main h2 { margin: 0 0 1rem; font-size: 2.25rem; }
   main h3 { margin: 0 0 calc(1rem / 2); }
   main section + main section { margin-top: 2.5rem; }

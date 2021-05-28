@@ -34,7 +34,11 @@ ExampleViewer = __decorate([
     <template if.bind="shouldRender" promise.bind="example | resolve">
       <template then.from-view="$data">
         <inline-editor code.bind="$data.code.script" template.bind="$data.code.template" style="height: 300px;"></inline-editor>
-        <result-viewer code.bind="$data.code.script" template.bind="$data.code.template"></result-viewer>
+        <result-viewer
+          title.bind="$data.title"
+          code.bind="$data.code.script"
+          template.bind="$data.code.template"
+          styles.bind="$data.code.styles"></result-viewer>
       </template>
       <span catch.from-view="$err">There's an error loading the example \${example.id}. Maybe try reloading.</span>
     </template>
@@ -69,7 +73,7 @@ class ExampleLoader {
             return this.loadingExample[link];
         }
         return this.loadingExample[link]
-            = fetch(link)
+            = fetch(link + '?t=' + Math.random())
                 .then(r => r.ok ? r.text() : (() => { throw new Error('Unable to fetch example code'); })())
                 .then(text => {
                 const code = this.parseExample(text);

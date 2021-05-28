@@ -3,13 +3,15 @@ import { camelCase } from "@aurelia/kernel";
 import { bindable, customElement } from "@aurelia/runtime-html";
 let ResultViewer = class ResultViewer {
     constructor() {
+        this.title = '';
         this.code = '';
         this.template = '';
+        this.styles = [];
         this.file = { path: '', content: '', dispose: () => { } };
         this.refreshId = 0;
     }
     attached() {
-        this.refresh(generateFile(this.code, this.template));
+        this.refresh(generateFile(this.code, this.template, this.styles));
     }
     detached() {
         this.file.dispose();
@@ -23,7 +25,7 @@ let ResultViewer = class ResultViewer {
         clearTimeout(this.refreshId);
         this.refreshId = setTimeout(() => {
             try {
-                this.refresh(generateFile(this.code, this.template));
+                this.refresh(generateFile(this.code, this.template, this.styles));
             }
             catch (ex) {
                 console.info(ex);
@@ -33,19 +35,25 @@ let ResultViewer = class ResultViewer {
 };
 __decorate([
     bindable
+], ResultViewer.prototype, "title", void 0);
+__decorate([
+    bindable
 ], ResultViewer.prototype, "code", void 0);
 __decorate([
     bindable
 ], ResultViewer.prototype, "template", void 0);
+__decorate([
+    bindable
+], ResultViewer.prototype, "styles", void 0);
 ResultViewer = __decorate([
     customElement({
         name: 'result-viewer',
-        template: `<template style="display: block"><iframe ref=iframe style="width: 100%; height: 100%; border: 0;">`
+        template: `<template style="display: block"><iframe ref=iframe title.bind="title" style="width: 100%; height: 100%; border: 0;">`
     })
 ], ResultViewer);
 export { ResultViewer };
-function generateFile(code, template) {
-    const html = generateHtml(code, template);
+function generateFile(code, template, styles) {
+    const html = generateHtml(code, template, styles);
     const blob = new Blob([html], { type: 'text/html' });
     const path = URL.createObjectURL(blob);
     return {
@@ -54,7 +62,7 @@ function generateFile(code, template) {
         dispose: () => { URL.revokeObjectURL(path); }
     };
 }
-function generateHtml(code, template) {
+function generateHtml(code, template, styles) {
     const lines = code ? code.split('\n') : [];
     const pkgs = lines.map(l => getImportedPackage(l)).filter(Boolean);
     const script = lines.length > 0 ? addBootScript(ensureCustomElement(lines, template)) : { lines: [], mainClass: '' };
@@ -62,6 +70,7 @@ function generateHtml(code, template) {
         `<script type="importmap">${createImportMap(pkgs)}</script>` +
         `<script type="module">${script.lines.join('\n')}</script>` +
         '<style>html,body {margin: 0; padding-top: 4px;}html {font-family: Helvetica, sans-serif;}</style>' +
+        `<style>${styles.join('\n')}</style>` +
         `</head><body>` +
         `</body></html>`;
 }
@@ -103,11 +112,11 @@ function ensureCustomElement(lines, template) {
 }
 function createImportMap(packages) {
     return JSON.stringify({
-        imports: packages
+        imports: Object.assign(packages
             .reduce((all, pkg) => {
             all[pkg] = `https://unpkg.com/${isAureliaPkg(pkg) ? `${pkg}@dev` : pkg}`;
             return all;
-        }, {
+        }, {}), {
             "@aurelia/kernel": "https://unpkg.com/@aurelia/kernel@dev/dist/bundle/index.js",
             "@aurelia/runtime": "https://unpkg.com/@aurelia/runtime@dev/dist/bundle/index.js",
             "@aurelia/runtime-html": "https://unpkg.com/@aurelia/runtime-html@dev/dist/bundle/index.js",

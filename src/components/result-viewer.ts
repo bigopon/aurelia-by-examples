@@ -3,18 +3,20 @@ import { bindable, customElement } from "@aurelia/runtime-html";
 
 @customElement({
   name: 'result-viewer',
-  template: `<template style="display: block"><iframe ref=iframe style="width: 100%; height: 100%; border: 0;">`
+  template: `<template style="display: block"><iframe ref=iframe title.bind="title" style="width: 100%; height: 100%; border: 0;">`
 })
 export class ResultViewer {
 
+  @bindable title: string = '';
   @bindable code: string = '';
   @bindable template: string = '';
+  @bindable styles: string[] = [];
 
   readonly iframe!: HTMLIFrameElement;
   private file: IFile = { path: '', content: '', dispose: () => {} };
 
   attached() {
-    this.refresh(generateFile(this.code, this.template));
+    this.refresh(generateFile(this.code, this.template, this.styles));
   }
 
   detached() {
@@ -32,7 +34,7 @@ export class ResultViewer {
     clearTimeout(this.refreshId);
     this.refreshId = setTimeout(() => {
       try {
-        this.refresh(generateFile(this.code, this.template));
+        this.refresh(generateFile(this.code, this.template, this.styles));
       } catch (ex) {
         console.info(ex);
       }
@@ -51,8 +53,8 @@ interface IParsedScript {
   mainClass: string;
 }
 
-function generateFile(code: string, template: string): IFile {
-  const html = generateHtml(code, template);
+function generateFile(code: string, template: string, styles: string[]): IFile {
+  const html = generateHtml(code, template, styles);
   const blob = new Blob([html], { type: 'text/html' });
   const path = URL.createObjectURL(blob);
   return {
@@ -62,7 +64,7 @@ function generateFile(code: string, template: string): IFile {
   };
 }
 
-function generateHtml(code: string, template: string) {
+function generateHtml(code: string, template: string, styles: string[]) {
   const lines = code ? code.split('\n') : [];
   const pkgs = lines.map(l => getImportedPackage(l)).filter(Boolean) as string[];
   const script: IParsedScript = lines.length > 0 ? addBootScript(ensureCustomElement(lines, template)) : { lines: [], mainClass: '' };
@@ -70,6 +72,7 @@ function generateHtml(code: string, template: string) {
     `<script type="importmap">${createImportMap(pkgs)}</script>` +
     `<script type="module">${script.lines.join('\n')}</script>` +
     '<style>html,body {margin: 0; padding-top: 4px;}html {font-family: Helvetica, sans-serif;}</style>' +
+    `<style>${styles.join('\n')}</style>` +
   `</head><body>` +
   `</body></html>`;
 }
@@ -114,11 +117,11 @@ function ensureCustomElement(lines: string[], template: string) {
 
 function createImportMap(packages: string[]) {
   return JSON.stringify({
-    imports: packages
+    imports: Object.assign(packages
       .reduce((all, pkg) => {
         all[pkg] = `https://unpkg.com/${isAureliaPkg(pkg) ? `${pkg}@dev`: pkg}`;
         return all;
-      }, {
+      }, {}), {
         "@aurelia/kernel": "https://unpkg.com/@aurelia/kernel@dev/dist/bundle/index.js",
         "@aurelia/runtime": "https://unpkg.com/@aurelia/runtime@dev/dist/bundle/index.js",
         "@aurelia/runtime-html": "https://unpkg.com/@aurelia/runtime-html@dev/dist/bundle/index.js",
