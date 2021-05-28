@@ -87,52 +87,21 @@ class ExampleLoader {
             });
     }
     parseExample(code) {
-        const parser = document.createElement('div');
-        parser.innerHTML = `<template>${code}</template>`;
-        const _template = parser.firstElementChild;
-        let script;
-        let styles = [];
-        let template = document.createElement('template');
-        let node = _template.content.firstChild;
-        while (node !== null) {
-            let next = node.nextSibling;
-            switch (node.nodeName) {
-                case 'SCRIPT': {
-                    if (script) {
-                        throw new Error('Invalid component 2 script blocks encounted.');
-                    }
-                    script = node.textContent ?? '';
-                    node.remove();
-                    break;
-                }
-                case 'STYLE': {
-                    if (node.textContent) {
-                        styles.push(node.textContent);
-                        node.remove();
-                    }
-                    break;
-                }
-                default: {
-                    template.content.appendChild(node);
-                    break;
-                }
+        const scriptStartIdx = code.indexOf('<script>');
+        const scriptEndIdx = code.indexOf('</script>');
+        const script = Math.max(scriptStartIdx, scriptEndIdx, -1) > -1
+            ? code.substring(scriptStartIdx, scriptEndIdx).trimStart()
+            : 'export class App {}';
+        const template = code.substring(0, scriptStartIdx).trim();
+        const styleCode = code.substr(scriptEndIdx);
+        const styles = [];
+        const styleParser = document.createElement('div');
+        styleParser.innerHTML = `<template>${styleCode}</template>`;
+        Array.from(styleParser.firstChild.content.children).forEach(c => {
+            if (c.tagName === 'STYLE') {
+                styles.push(c.textContent || '');
             }
-            node = next;
-        }
-        if (template.content.childNodes.length === 1
-            && template.content.firstChild?.nodeName === 'TEMPLATE'
-            && template.content.firstChild.content.childNodes.length) {
-            template = template.content.firstChild;
-        }
-        if (!script) {
-            script = 'export class App {\n}';
-        }
-        return {
-            script: script.trimStart(),
-            template: Array
-                .from(template.content.childNodes)
-                .reduce((code, node) => code + (node.nodeType === 1 ? node.outerHTML : node.textContent), ''),
-            styles
-        };
+        });
+        return { script, template, styles };
     }
 }

@@ -193,7 +193,7 @@ export class App {
       id: 'form-checkbox-booleans',
       type: 'link',
       indent: 1,
-      title: 'Checkbox - Booleans',
+      title: 'Checkbox + booleans',
       desc: `Bind a boolean property to an input element's checked attribute using checked.bind="myBooleanProperty"`,
       link: 'examples/form.checkbox-booleans.html',
     },
@@ -201,7 +201,7 @@ export class App {
       id: 'form-checkbox-array-numbers',
       type: 'link',
       indent: 1,
-      title: 'Checkbox - Array of numbers',
+      title: 'Checkbox + number array',
       desc: `A set of checkbox elements is a multiple selection interface. ` +
         `If you have an array that serves as the "selected items" list, ` +
         `you can bind the array to each input's checked attribute. ` +
@@ -213,11 +213,33 @@ export class App {
       id: 'form-checkbox-array-objects',
       type: 'link',
       indent: 1,
-      title: 'Checkbox - Array of objects',
+      title: 'Checkbox + object array',
       desc: `Numbers aren't the only type of value you can store in a "selected items" array. ` +
         `The binding system supports all types, including objects. ` +
         `Here's an example that adds and removes "product" objects from a "selectedProducts" array using the checkbox data-binding.`,
       link: 'examples/form.checkbox-array-objects.html',
+    },
+    {
+      id: 'form-checkbox-array-objects-matcher',
+      type: 'link',
+      indent: 1,
+      title: 'Checkbox + objects array + matcher',
+      desc: `You may run into situations where the object your input element's model is bound to ` +
+        `does not have reference equality to any of the objects in your checked array. ` +
+        `The objects might match by id, but they may not be the same object instance. ` +
+        `To support this scenario you can override Aurelia's default "matcher" ` +
+        `which is a equality comparison function that looks like this: (a, b) => a === b. ` +
+        `You can substitute a function of your choosing that has the right logic to compare your objects.`,
+      link: 'examples/form.checkbox-array-objects-matcher.html',
+    },
+    {
+      id: 'form-checkbox-array-strings',
+      type: 'link',
+      indent: 1,
+      title: 'Checkbox + string array',
+      desc: `An example that adds and removes strings from a selectedProducts array using the checkbox data-binding. ` +
+        `In this is, standard checkbox value attribute is used.`,
+      link: 'examples/form.checkbox-array-objects-matcher.html',
     },
     // conditional rendering
     {
@@ -275,8 +297,4 @@ export class App {
   isHeading(example: IExample | IExampleHeading): example is IExampleHeading {
     return example.type === 'heading';
   }
-}
-
-class Footer {
-  
 }

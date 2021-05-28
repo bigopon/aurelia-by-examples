@@ -1,0 +1,37 @@
+<h4>Products</h4>
+<label>
+  <input type="checkbox" model.bind="{ id: 0, name: 'Motherboard' }"
+          matcher.bind="productMatcher"
+          checked.bind="selectedProducts">
+  Motherboard
+</label>
+<label>
+  <input type="checkbox" model.bind="{ id: 1, name: 'CPU' }"
+          matcher.bind="productMatcher"
+          checked.bind="selectedProducts">
+  CPU
+</label>
+<label>
+  <input type="checkbox" model.bind="{ id: 2, name: 'Memory' }"
+          matcher.bind="productMatcher"
+          checked.bind="selectedProducts">
+  Memory
+</label>
+<br>
+
+Selected products:
+<ul>
+  <li repeat.for="product of selectedProducts">${product.id} - ${product.name}</li>
+</ul>
+
+<script>
+export class App {
+  selectedProducts = [
+    { id: 1, name: 'CPU' },
+    { id: 2, name: 'Memory' }
+  ];
+
+  productMatcher = (a, b) => a.id === b.id;
+}
+</script>
+<style>h4 { margin: 0}</style>
