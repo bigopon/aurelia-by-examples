@@ -12,7 +12,7 @@ let ExampleViewer = class ExampleViewer {
     }
     get shouldRender() {
         const { example } = this;
-        return this.forceLoad || example.type === 'inline' || example.type === 'link' && !example.lazy;
+        return this.forceLoad || example.lazy !== true;
     }
 };
 __decorate([

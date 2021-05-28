@@ -5,10 +5,14 @@ import { html } from "./html.js";
 let App = class App {
     constructor() {
         this.examples = [
+            // hello world section
             {
                 id: 'basic',
                 type: 'heading',
-                title: 'Hello world',
+                title: 'Aurelia examples',
+                desc: 'Aurelia is a frontend JavaScript framework that is simple, powerful and unobtrusive.\n' +
+                    'It stays out of your way with a plain binding & observation system and an expressive & extensible templating.\n' +
+                    'Let\'s dive into Aurelia via hundred of examples.',
             },
             {
                 id: 'hello-world',
@@ -22,28 +26,82 @@ let App = class App {
                     styles: []
                 }
             },
+            // handling form
+            {
+                id: 'form-handling',
+                type: 'heading',
+                title: 'Form handling',
+                desc: 'It is not uncommon that at some point, your application will contain some form elements that ' +
+                    'provide the ability to allow user input. Whether they be select dropdowns, text inputs or buttons, ' +
+                    'Aurelia makes working with forms intuitive.',
+            },
+            {
+                id: 'text-input',
+                type: 'inline',
+                indent: 1,
+                title: 'input text',
+                desc: 'A common element seen in forms is text <input>. Aurelia supports this via "value.bind"',
+                code: {
+                    script: 'export class App {\n  message = "Hello world!";\n}',
+                    template: '<input value.bind="message" /><br>\n${message}',
+                    styles: [],
+                }
+            },
+            {
+                id: 'text-input',
+                type: 'inline',
+                indent: 1,
+                title: 'input number',
+                desc: 'Two way binding with a number <input/>, as string',
+                code: {
+                    script: 'export class App {\n  count = 0;\n}',
+                    template: '<input type="number" value.bind="count" /><br>\ntype: ${typeof count} -- value: ${count}',
+                    styles: [],
+                }
+            },
+            {
+                id: 'text-input',
+                type: 'inline',
+                indent: 1,
+                title: 'input number + valueAsNumber',
+                desc: 'Two way binding with number <input/>, via "valueAsNumber" property, to reduce boiler plate converting string to number',
+                code: {
+                    script: 'export class App {\n  a = 0;\n  b = 0;\n}',
+                    template: [
+                        '<b>Plus calculator</b>',
+                        'a: <input type="number" value-as-number.bind="a"/>\ntype: ${typeof a} -- value: ${a}',
+                        'b: <input type="number" value-as-number.bind="b"/>\ntype: ${typeof b} -- value: ${b}',
+                        '${a} + ${b} = ${a + b}'
+                    ].join('<br>\n'),
+                    styles: [],
+                }
+            },
+            // conditional rendering
             {
                 id: 'conditional-rendering',
-                title: 'Conditional rendering',
                 type: 'heading',
+                title: 'Conditional rendering',
+                desc: 'Change what is rendered or shown based on conditions in your code.',
             },
             {
                 id: 'conditional-show-hide',
-                title: 'With show/hide',
                 type: 'link',
+                title: 'With show/hide',
                 desc: 'An example of conditional rendering syntaxes in Aurelia with show/hide. ' +
                     'Using this when it is desirable to hide/show an element without removing it from the document.',
                 link: 'examples/conditional.show-hide.html',
                 indent: 1,
+                lazy: true,
             },
             {
                 id: 'conditional-if-else',
-                title: 'With if/else',
                 type: 'link',
+                title: 'With if/else',
                 desc: 'Examples of conditional rendering syntaxes in Aurelia with if/else.' +
                     'Using this when it is desirable to remove the elements when the condition is false/falsy',
                 link: 'examples/conditional.if-else.html',
                 indent: 1,
+                lazy: true,
             },
             {
                 id: 'conditional-switch',
@@ -53,6 +111,7 @@ let App = class App {
                     'Using this when it is desirable to have the semantic of switch syntax',
                 link: 'examples/conditional.switch.html',
                 indent: 1,
+                lazy: true,
             },
             {
                 id: 'conditional-promise',
@@ -63,7 +122,7 @@ let App = class App {
                 link: 'examples/conditional.promise.html',
                 indent: 1,
                 lazy: true,
-            }
+            },
         ];
     }
     isHeading(example) {
@@ -88,8 +147,11 @@ App = __decorate([
   </ul>
   <main style="flex-grow: 1; min-width: 0;">
     <template repeat.for="example of examples">
-      <h2 if.bind="isHeading(example)" id.bind="example.id">\${example.title}</h2>
-      <section else id.bind="example.id" style="width: 100%;">
+      <section if.bind="isHeading(example)" class="section-heading" id.bind="example.id">
+        <h2>\${example.title}</h2>
+        <p>\${example.desc}</p>
+      </section>
+      <section else id.bind="example.id">
         <example-viewer example.bind="example"></example-viewer>
       </section>
     </template>
