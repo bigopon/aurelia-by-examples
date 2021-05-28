@@ -8,14 +8,20 @@ export interface IInlineExample {
   id: string;
   title: string;
   type: 'inline',
+  desc?: string;
   code: IComponentCode;
 }
 
-export interface ILazyExample {
+export interface ILinkExample {
   id: string;
   title: string;
   type: 'link';
+  desc?: string;
   link: string;
 }
 
-export type IExample = IInlineExample | ILazyExample;
+export interface ILoadedLinkExample extends ILinkExample {
+  code: IComponentCode;
+}
+
+export type IExample = IInlineExample | ILinkExample;

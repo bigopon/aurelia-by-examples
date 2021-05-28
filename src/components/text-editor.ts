@@ -22,9 +22,6 @@ export class TextEditor {
       value: this.value,
       mode: this.lang === 'js' ? 'javascript' : 'text/html',
       lineNumbers: true,
-      // @ts-ignore
-      matchBrackets: true,
-      continueComments: "Enter",
       extraKeys: { "Ctrl-Q": "toggleComment" },
     });
     view.on('change', (editor, changeEVent) => {
