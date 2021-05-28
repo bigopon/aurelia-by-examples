@@ -225,6 +225,12 @@ export class App {
     isHeading(example) {
         return example.type === 'heading';
     }
+    attached() {
+        setTimeout(() => {
+            const target = document.querySelector(':target');
+            target?.scrollIntoView();
+        });
+    }
 };
 App = __decorate([
     customElement({

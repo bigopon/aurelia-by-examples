@@ -304,4 +304,11 @@ export class App {
   isHeading(example: IExample | IExampleHeading): example is IExampleHeading {
     return example.type === 'heading';
   }
+
+  attached() {
+    setTimeout(() => {
+      const target = document.querySelector(':target');
+      target?.scrollIntoView();
+    });
+  }
 }
