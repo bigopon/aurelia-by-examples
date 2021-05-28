@@ -92,7 +92,12 @@ class ExampleLoader {
         const script = Math.max(scriptStartIdx, scriptEndIdx, -1) > -1
             ? code.substring(scriptStartIdx + 8, scriptEndIdx).trimStart()
             : 'export class App {}';
-        const template = code.substring(0, scriptStartIdx).trim();
+        const styleStartIndex = code.lastIndexOf('<style>');
+        const template = scriptStartIdx > -1
+            ? code.substring(0, scriptStartIdx).trim()
+            : styleStartIndex > -1
+                ? code.substring(0, styleStartIndex)
+                : code;
         const styleCode = code.substr(scriptEndIdx + 9);
         const styles = [];
         const styleParser = document.createElement('div');

@@ -96,7 +96,7 @@ function addBootScript(script: IParsedScript): IParsedScript {
 function ensureCustomElement(lines: string[], template: string) {
   let className: string | undefined;
   for (const l of lines) {
-    const match = l.match(/^\s*export\s+class\s+([a-zA-Z_$][a-zA-Z\d_$]*)\s*{\s*$/);
+    const match = l.match(/^\s*export\s+class\s+([a-zA-Z_$][a-zA-Z\d_$]*)\s*{/);
     if (match) {
       className = match[1];
       break;
