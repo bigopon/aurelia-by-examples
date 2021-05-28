@@ -10,7 +10,11 @@ body {
   --bg-white: #fff;
   --bg-grey-xlight: #f4f4f4;
   --bg-grey-light: #dedede;
+  --bg-grey: #aaa;
   --bg-purple: #6d50a2;
+  --bg-pink: #ed2b88;
+  --bg-au-gradient: linear-gradient(135deg, #6d50a2 0%, #ed2b88 100%);
+  --bg-au-reversed: linear-gradient(135deg, #ed2b88 0%, #6d50a2 100%);
 }
 .side-nav {
   --nav-border: #aaa;
@@ -31,9 +35,16 @@ body {
   .side-nav li.heading a { font-weight: 600; }
   .side-nav li a { display: block; line-height: 44px; font-weight: 400; color: inherit; }
 
+header { display: flex; align-items: center; height: 3rem; padding: 0 0.75rem; background: var(--bg-grey-xlight); }
+  header img { height: 2.25rem; stroke: var(--bg-white); }
+  header span { padding: 0 0.5rem; font-size: 1.5rem; color: var(--bg-purple); text-shadow: 0 1px var(--bg-ed2b88); }
+
 main { padding: 0 8px; }
-main h2 { margin: 0 0 1rem; }
-main h3 { margin: 0 0 calc(1rem / 2); }
+  main h2 { margin: 0 0 1rem; padding: 0.75rem; border-radius: 0.25rem; background: var(--bg-au-gradient); color: var(--bg-white); text-shadow: 0px 0px 4px rgb(0 0 0 / 70%); }
+  main h3 { margin: 0 0 calc(1rem / 2); }
+  main section { padding: 0.75rem; background-color: var(--bg-grey-xlight); border-radius: 1rem; }
+  main section + main section { margin-top: 2.5rem; }
+  main section:not(:last-child) { margin-bottom: 1rem; }
 
 footer { display: flex; justify-content: center; margin-top: 3rem; background-color: var(--bg-purple); color: var(--bg-white); }
   footer > div { margin: 0 2rem; }

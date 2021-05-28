@@ -1,7 +1,7 @@
 import { customElement } from "@aurelia/runtime-html";
 import { ExampleViewer } from "./components/example-viewer.js";
 import { html } from "./html.js";
-import type { IExample } from "./interfaces";
+import type { IExample } from "./interfaces.js";
 
 interface IExampleHeading {
   id: string;
@@ -15,7 +15,8 @@ type AureliaExample = (IExample | IExampleHeading) & { indent?: number };
   name: 'app',
   template: html`
 <header>
-
+  <a href="#/"><img id="logo" src="./images/aulogo.svg" /></a>
+  <span>by examples</span>
 </header>
 <div style="display: flex;">
   <ul class="side-nav" style="flex-shrink: 0; align-self: flex-start;">

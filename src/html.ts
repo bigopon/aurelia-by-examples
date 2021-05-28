@@ -1,5 +1,3 @@
-type TaggedTemplateLiteral<T extends any[] = any[]> = (strings: TemplateStringsArray, ...values: T) => string;
-
 type TemplateValue<T> =
   | string
   | { [P in keyof T]: T[P] extends Function ? never : P }[keyof T] | ((val: T) => unknown);

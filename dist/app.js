@@ -75,7 +75,8 @@ App = __decorate([
         name: 'app',
         template: html `
 <header>
-
+  <a href="#/"><img id="logo" src="./images/aulogo.svg" /></a>
+  <span>by examples</span>
 </header>
 <div style="display: flex;">
   <ul class="side-nav" style="flex-shrink: 0; align-self: flex-start;">

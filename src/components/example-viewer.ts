@@ -1,7 +1,7 @@
 import { DI } from "@aurelia/kernel";
 import { bindable, customElement, ValueConverter } from "@aurelia/runtime-html";
 import { html } from "../html.js";
-import type { IComponentCode, IExample, ILinkExample, ILoadedLinkExample } from "../interfaces";
+import type { IComponentCode, IExample, ILinkExample, ILoadedLinkExample } from "../interfaces.js";
 import { InlineComponentEditor } from "./component-editor.js";
 import { ResultViewer } from "./result-viewer.js";
 
