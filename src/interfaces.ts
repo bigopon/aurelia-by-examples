@@ -17,6 +17,8 @@ export interface ILinkExample {
   title: string;
   type: 'link';
   desc?: string;
+  /* indicate whether this example shouldn't be loaded eagerly */
+  lazy?: boolean;
   link: string;
 }
 

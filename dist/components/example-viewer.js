@@ -8,6 +8,11 @@ const IExampleLoader = DI.createInterface('IExampleLoader', x => x.singleton(Exa
 let ExampleViewer = class ExampleViewer {
     constructor() {
         this.title = '';
+        this.forceLoad = false;
+    }
+    get shouldRender() {
+        const { example } = this;
+        return this.forceLoad || example.type === 'inline' || example.type === 'link' && !example.lazy;
     }
 };
 __decorate([
@@ -25,11 +30,13 @@ ExampleViewer = __decorate([
       show.bind="${v => v.example.title}">\${${v => v.example.title}}</h3>
     <p
       show.bind="${v => v.example.desc}">$\{${v => v.example.desc}}</p>
-    <template promise.bind="example | resolve">
+    <button if.bind="!shouldRender && !forceLoad" click.trigger="forceLoad = true">Load example</button>
+    <template if.bind="shouldRender" promise.bind="example | resolve">
       <template then.from-view="$data">
         <inline-editor code.bind="$data.code.script" template.bind="$data.code.template" style="height: 300px;"></inline-editor>
         <result-viewer code.bind="$data.code.script" template.bind="$data.code.template"></result-viewer>
       </template>
+      <span catch.from-view="$err">There's an error loading the example \${example.id}. Maybe try reloading.</span>
     </template>
   `,
         dependencies: [
