@@ -1,0 +1,21 @@
+<let i.bind="0"></let>
+<div promise.bind="fetchAdvice(i)">
+  <span pending>Fetching advice...</span>
+  <span then.from-view="data">
+    Advice id: ${data.slip.id}<br>
+    ${data.slip.advice}
+    <button click.trigger="i = i+1">try again</button>
+  </span>
+  <span catch.from-view="err">
+    Cannot get an addvice, error: ${err}
+    <button click.trigger="i = i+1">try again</button>
+  </span>
+</div>
+<script>
+export class App {
+  fetchAdvice() {
+    return fetch("https://api.adviceslip.com/advice")
+      .then(r => r.ok ? r.json() : (() => { throw new Error('Unable to fetch NASA APOD data') }))
+  }
+}
+</script>

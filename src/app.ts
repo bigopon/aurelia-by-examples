@@ -1,68 +1,106 @@
 import { customElement } from "@aurelia/runtime-html";
-import { InlineComponentEditor } from "./components/component-editor.js";
 import { ExampleViewer } from "./components/example-viewer.js";
-import { ResultViewer } from "./components/result-viewer.js";
 import { html } from "./html.js";
-import type { IComponentCode, IExample } from "./interfaces";
+import type { IExample } from "./interfaces";
+
+interface IExampleHeading {
+  id: string;
+  title: string;
+  type: 'heading';
+}
+
+type AureliaExample = (IExample | IExampleHeading) & { indent?: number };
 
 @customElement({
   name: 'app',
   template: html`
 <div style="display: flex;">
-  <ul style="position: sticky; top: 0; flex: 1 0 auto; min-width: 300px; max-width: 300px; align-self: flex-start;">
+  <ul class="side-nav" style="flex-shrink: 0; align-self: flex-start;">
     <li repeat.for="example of examples"
-      active.class="example === selectedExample"><a href="#\${example.id}">\${example.title}</a></li>
+      class="nav-item"
+      heading.class="isHeading(example)"
+      active.class="example === selectedExample">
+      <a href="#\${example.id}" style="padding-left: calc(20px + \${(example.indent || 0) * 20}px);">\${example.title}</a></li>
   </ul>
-  <div style="flex: 1 0 auto;">
-    <section repeat.for="example of examples">
-      <example-viewer example.bind="example"></example-viewer>
-    </section>
-  </div>
+  <main style="flex-grow: 1; min-width: 0;">
+    <template repeat.for="example of examples">
+      <h2 if.bind="isHeading(example)" id.bind="example.id">\${example.title}</h2>
+      <section else id.bind="example.id" style="width: 100%;">
+        <example-viewer example.bind="example"></example-viewer>
+      </section>
+    </template>
+  </main>
 </div>
   `,
-  dependencies: [
-    ExampleViewer,
-    InlineComponentEditor,
-    ResultViewer,
-  ],
+  dependencies: [ExampleViewer],
 })
 export class App {
-  examples: IExample[] = [
+  examples: AureliaExample[] = [
     {
-      id: 'first',
+      id: 'basic',
+      type: 'heading',
       title: 'Hello world',
+    },
+    {
+      id: 'hello-world',
       type: 'inline',
+      title: 'Hello world',
       desc: 'A basic example of Aurelia template. Hello world!',
+      indent: 1,
       code: {
-        script: [
-          'export class App {',
-          '  message = "Hello world";',
-          '}'
-        ].join('\n'),
-        template: [
-          '<input value.bind=message>',
-          '<h1>${message}</h1>'
-        ].join('\n'),
+        script: 'export class App {\n  message = "Hello world!";\n}',
+        template: '<h1>${message}</h1>',
         styles: []
       }
     },
     {
+      id: 'conditional-rendering',
+      title: 'Conditional rendering',
+      type: 'heading',
+    },
+    {
+      id: 'conditional-show-hide',
+      title: 'With show/hide',
+      type: 'link',
+      desc:
+        'An example of conditional rendering syntaxes in Aurelia with show/hide. ' +
+        'Using this when it is desirable to hide/show an element without removing it from the document.',
+      link: 'examples/conditional.show-hide.html',
+      indent: 1,
+    },
+    {
       id: 'conditional-if-else',
-      title: 'Conditional rendering using if/else',
+      title: 'With if/else',
       type: 'link',
       desc:
         'Examples of conditional rendering syntaxes in Aurelia with if/else.' +
         'Using this when it is desirable to remove the elements when the condition is false/falsy',
-      link: 'examples/condition.if-else.html',
+      link: 'examples/conditional.if-else.html',
+      indent: 1,
     },
     {
       id: 'conditional-switch',
-      title: 'Conditional rendering using switch',
+      title: 'With switch',
       type: 'link',
       desc:
         'Examples of conditional rendering syntaxes in Aurelia with switch/case/default.' +
         'Using this when it is desirable to have the semantic of switch syntax',
-      link: 'examples/condition.switch.html',
+      link: 'examples/conditional.switch.html',
+      indent: 1,
+    },
+    {
+      id: 'conditional-promise',
+      title: 'With promise',
+      type: 'link',
+      desc: 
+        'Examples of conditional rendering syntaxes in Aurelia with promise/pending/then/catch.' +
+        'Using this when it is desirable to have the semantic of Promise in JavaScript, without intermediate view model code',
+      link: 'examples/conditional.promise.html',
+      indent: 1,
     }
   ];
+
+  isHeading(example: IExample | IExampleHeading): example is IExampleHeading {
+    return example.type === 'heading';
+  }
 }

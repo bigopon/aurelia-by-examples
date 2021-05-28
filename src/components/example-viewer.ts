@@ -10,7 +10,7 @@ const IExampleLoader = DI.createInterface<ExampleLoader>('IExampleLoader', x => 
 @customElement({
   name: 'example-viewer',
   template:
-  html<ExampleViewer>`<template style="display: flex; flex-direction: column">
+  html<ExampleViewer>`<template style="display: block;">
     <h3
       id.bind=${v => v.example.id}
       show.bind="${v => v.example.title}">\${${v => v.example.title}}</h3>
@@ -113,7 +113,7 @@ class ExampleLoader {
     }
 
     if (!script) {
-      script = 'export class __AnonymousComponent__ { }';
+      script = 'export class App {\n}';
     }
 
     return {

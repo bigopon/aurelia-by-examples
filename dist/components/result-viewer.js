@@ -61,7 +61,7 @@ function generateHtml(code, template) {
     return `<html><head>` +
         `<script type="importmap">${createImportMap(pkgs)}</script>` +
         `<script type="module">${script.lines.join('\n')}</script>` +
-        '<style>html, body { margin: 0 } </style>' +
+        '<style>html,body {margin: 0; padding-top: 4px;}html {font-family: Helvetica, sans-serif;}</style>' +
         `</head><body>` +
         `</body></html>`;
 }
