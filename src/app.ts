@@ -62,7 +62,7 @@ const template = html`
     <h4>Help</h4>
     <ul>
       <li><a href="https://discourse.aurelia.io/">Discourse</a></li>
-      <li><a href="https://gitter.im/aurelia/Discuss">Gitter</a></li>
+      <li><a href="https://discord.gg/sAeee2C">Discord</a></li>
       <li><a href="https://stackoverflow.com/search?q=aurelia">Stack Overflow</a></li>
     </ul>
   </div>
