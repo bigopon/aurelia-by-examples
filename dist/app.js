@@ -89,7 +89,7 @@ export class App {
             {
                 id: 'form-text',
                 type: 'heading',
-                title: 'Form text input handling',
+                title: 'Form text input',
                 desc: 'It is not uncommon that at some point, your application will contain some form elements that ' +
                     'provide the ability to allow user input. Whether they be select dropdowns, text inputs or buttons, ' +
                     'Aurelia makes working with forms intuitive.',
@@ -289,6 +289,98 @@ export class App {
                 title: 'Radios + strings',
                 desc: 'Aurelia also knows how to deal with standard value attribute of radio input. An example is as follow',
                 link: 'examples/form.radio-strings.html',
+                lazy: true,
+                indent: 1,
+            },
+            {
+                id: 'form-selects',
+                type: 'heading',
+                title: 'Form selects',
+                desc: `A <select> element can serve as a single-select or multiple-select "picker" depending on whether the multiple attribute is present. The binding system supports both use cases. The samples below demonstrate a variety scenarios, all use a common series of steps to configure the select element:
+
+1. Add a <select> element to the template and decide whether the multiple attribute should be applied.
+2. Bind the select element's value attribute to a property. In "multiple" mode, the property should be an array. In singular mode it can be any type.
+3. Define the select element's <option> elements. You can use the repeat or add each option element manually.
+4. Specify each option's value via the model property:
+   <option model.bind="product.id">\${product.name}</option>
+   You can use the standard value attribute instead of model, just remember- it will coerce anything it's assigned to a string.`,
+            },
+            {
+                id: 'form-select-number',
+                type: 'link',
+                title: 'Select + numbers',
+                desc: 'Binding a number from select options with the view model is done via value.bind on the <select>, and model.bind on the <option>',
+                link: 'examples/form.select-number.html',
+                lazy: true,
+                indent: 1,
+            },
+            {
+                id: 'form-select-object',
+                type: 'link',
+                title: 'Select + objects',
+                desc: 'Binding an object from select options with the view model is done via value.bind on the <select>, and model.bind on the <option>',
+                link: 'examples/form.select-object.html',
+                lazy: true,
+                indent: 1,
+            },
+            {
+                id: 'form-select-object-matcher',
+                type: 'link',
+                title: 'Select + objects + matcher',
+                desc: 'You may run into situations where the objects in your view and view model may look the same, ' +
+                    'but are different objects. To support this scenario you can override Aurelia\'s default "matcher", ' +
+                    'which looks like this:\n(a, b) => a === b.',
+                link: 'examples/form.select-object-matcher.html',
+                lazy: true,
+                indent: 1,
+            },
+            {
+                id: 'form-select-boolean',
+                type: 'link',
+                title: 'Select + booleans',
+                desc: 'Binding a boolean value from select options with the view model is done via value.bind on the <select>, and model.bind on the <option>',
+                link: 'examples/form.select-boolean.html',
+                lazy: true,
+                indent: 1,
+            },
+            {
+                id: 'form-select-string',
+                type: 'link',
+                title: 'Select + strings',
+                desc: 'Unlike other kinds of value above, string works natively with the value property of <option>. Example is as following:',
+                link: 'examples/form.select-string.html',
+                lazy: true,
+                indent: 1,
+            },
+            {
+                id: 'form-select-multiple-numbers',
+                type: 'link',
+                title: 'Select + multiple + numbers',
+                desc: 'Aurelia also knows how to handle multiple attribute on the <select>, as intuitive as the usage without it. ' +
+                    'To bind with a multi select, use an array. ' +
+                    'Following is an example how to bind multi number select:',
+                link: 'examples/form.select-multiple-numbers.html',
+                lazy: true,
+                indent: 1,
+            },
+            {
+                id: 'form-select-multiple-objects',
+                type: 'link',
+                title: 'Select + multiple + objects',
+                desc: 'Aurelia also knows how to handle multiple attribute on the <select>, as intuitive as the usage without it. ' +
+                    'To bind with a multi select, use an array and ensure model.bind is used on the <option> ' +
+                    'Following is an example how to bind multi object select:',
+                link: 'examples/form.select-multiple-objects.html',
+                lazy: true,
+                indent: 1,
+            },
+            {
+                id: 'form-select-multiple-strings',
+                type: 'link',
+                title: 'Select + multiple + strings',
+                desc: 'Multi select binding with strings are simpler than other form, as option value works natively with string.' +
+                    'Following is an example how to bind multi string select:',
+                link: 'examples/form.select-multiple-strings.html',
                 lazy: true,
                 indent: 1,
             },

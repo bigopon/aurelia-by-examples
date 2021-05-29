@@ -1,0 +1,23 @@
+Select products:
+<select multiple value.bind="selectedProducts">
+  <option repeat.for="product of products"
+          model.bind="product">
+    ${product.id} - ${product.name}
+  </option>
+</select>
+<ul>
+  <li>Selected products:</li>
+  <li repeat.for="product of selectedProducts">${product.id} - ${product.name}</li>
+</ul>
+<script>
+export class App {
+  products = [
+    { id: 0, name: 'Motherboard' },
+    { id: 1, name: 'CPU' },
+    { id: 2, name: 'Memory' },
+  ];
+
+  selectedProducts = [];
+}
+</script>
+<style>body{display:flex;}body>div{margin-right:0 20px}ul{margin:0}select{display:block}ul li:first-child{list-style:none;}</style>

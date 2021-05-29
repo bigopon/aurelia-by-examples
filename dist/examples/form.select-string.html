@@ -1,0 +1,16 @@
+Select product:<br>
+<select value.bind="selectedProduct">
+  <option value="">Choose...</option>
+  <option repeat.for="product of products"
+          value.bind="product">
+    ${product}
+  </option>
+</select>
+Selected product: ${selectedProduct}
+<script>
+export class App {
+  products = ['Motherboard', 'CPU', 'Memory'];
+  selectedProduct = '';
+}
+</script>
+<style>select{display:block}</style>

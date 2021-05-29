@@ -1,0 +1,22 @@
+Select product:<br>
+<select value.bind="selectedProduct">
+  <option model.bind="null">Choose...</option>
+  <option repeat.for="product of products"
+          model.bind="product">
+    ${product.id} - ${product.name}
+  </option>
+</select>
+
+Selected product: ${selectedProduct.id} - ${selectedProduct.name}
+<script>
+export class App {
+  products = [
+    { id: 0, name: 'Motherboard' },
+    { id: 1, name: 'CPU' },
+    { id: 2, name: 'Memory' },
+  ];
+
+  selectedProduct = null;
+}
+</script>
+<style>select{display:block}</style>

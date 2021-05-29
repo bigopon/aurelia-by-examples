@@ -1,0 +1,13 @@
+Do you like tacos?:
+<select value.bind="likesTacos">
+  <option model.bind="null">Choose...</option>
+  <option model.bind="true">Yes</option>
+  <option model.bind="false">No</option>
+</select>
+likesTacos: ${likesTacos}
+<script>
+export class App {
+  likesTacos = null;
+}
+</script>
+<style>select{display:block}</style>
