@@ -16,8 +16,9 @@ const IExampleLoader = DI.createInterface<ExampleLoader>('IExampleLoader', x => 
       show.bind="${v => v.example.title}">\${${v => v.example.title}}</h3>
     <p
       show.bind="${v => v.example.desc}">$\{${v => v.example.desc}}</p>
-    <button if.bind="!shouldRender && !forceLoad" click.trigger="forceLoad = true">Load example</button>
+    <button show.bind="!shouldRender" click.trigger="forceLoad = true">Load example</button>
     <template if.bind="shouldRender" promise.bind="example | resolve">
+      <button pending disabled>Loading example...</button>
       <template then.from-view="$data">
         <inline-editor code.bind="$data.code.script" template.bind="$data.code.template" style="height: 300px;"></inline-editor>
         <result-viewer

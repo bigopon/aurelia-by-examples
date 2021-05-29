@@ -1,0 +1,23 @@
+<h4>Do you like cake?</h4>
+<label>
+  <input type="radio" name="group3"
+          model.bind="null" checked.bind="likesCake">
+  Don't Know
+</label>
+<label>
+  <input type="radio" name="group3"
+          model.bind="true" checked.bind="likesCake">
+  Yes
+</label>
+<label>
+  <input type="radio" name="group3"
+          model.bind="false" checked.bind="likesCake">
+  No
+</label>
+<br>
+likesCake = ${likesCake}
+<script>
+export class App {
+  likesCake = null;
+}
+</script>

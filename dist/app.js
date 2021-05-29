@@ -1,9 +1,68 @@
-import { __decorate } from "tslib";
-import { customElement } from "@aurelia/runtime-html";
+import { CustomElement, IPlatform } from "@aurelia/runtime-html";
 import { ExampleViewer } from "./components/example-viewer.js";
 import { html } from "./html.js";
-let App = class App {
-    constructor() {
+const template = html `
+<header>
+  <a href="#/"><img id="logo" src="./images/aulogo.svg" alt="Aurelia logo" /></a>
+  <span>by examples</span>
+  <i style="flex-grow: 1"></i>
+  <a href="https://github.com/bigopon/aurelia-by-examples" target="_blank" rel="noopener"
+    style="justify-self: flex-end; display: flex; align-items: center;"
+  >
+    <svg width="32" height="32" style="margin-right: 0.5rem"><use href="#icon-gh" /></svg>
+    Contribute examples
+  </a>
+</header>
+<div style="display: flex;">
+  <ul class="side-nav" style="flex-shrink: 0; align-self: flex-start;">
+    <li repeat.for="example of examples"
+      class="nav-item"
+      heading.class="isHeading(example)"
+      active.class="example === selectedExample">
+      <a href="#\${example.id}" style="padding-left: calc(20px + \${(example.indent || 0) * 20}px);">\${example.title}</a></li>
+  </ul>
+  <main style="flex-grow: 1; min-width: 0;">
+    <template repeat.for="example of examples">
+      <section if.bind="isHeading(example)" class="section-heading" id.bind="example.id">
+        <h2>\${example.title}</h2>
+        <p>\${example.desc}</p>
+      </section>
+      <section else id.bind="example.id">
+        <example-viewer example.bind="example"></example-viewer>
+      </section>
+    </template>
+  </main>
+</div>
+<footer>
+  <div>
+    <h4>Resources</h4>
+    <ul>
+      <li><a href="docs/overview/what-is-aurelia">About</a></li>
+      <li><a href="blog">Blog</a></li>
+      <li><a href="http://eepurl.com/ces50j">Newsletter</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Help</h4>
+    <ul>
+      <li><a href="https://discourse.aurelia.io/">Discourse</a></li>
+      <li><a href="https://gitter.im/aurelia/Discuss">Gitter</a></li>
+      <li><a href="https://stackoverflow.com/search?q=aurelia">Stack Overflow</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Community</h4>
+    <ul>
+      <li><a href="https://github.com/aurelia">GitHub</a></li>
+      <li><a href="https://twitter.com/aureliaeffect">Twitter</a></li>
+      <li><a href="https://github.com/orgs/aurelia/people">Team</a></li>
+    </ul>
+  </div>
+</footer>
+`;
+export class App {
+    constructor(p) {
+        this.p = p;
         this.examples = [
             // hello world section
             {
@@ -118,7 +177,7 @@ export class App {
             {
                 id: 'form-checkboxes',
                 type: 'heading',
-                title: 'Form checkboxes handling',
+                title: 'Form checkboxes',
                 desc: 'Aurelia supports two-way binding a variety of data-types to checkbox input elements..',
             },
             {
@@ -173,6 +232,66 @@ export class App {
                     `In this is, standard checkbox value attribute is used.`,
                 link: 'examples/form.checkbox-array-objects-matcher.html',
             },
+            {
+                id: 'form-radios',
+                type: 'heading',
+                title: 'Form radios',
+                desc: `A group of radio inputs is a type of "single select" interface. Aurelia supports two-way binding any type of property to a group of radio inputs. The examples below illustrate binding number, object, string and boolean properties to sets of radio inputs. In each of the examples there's a common set of steps:
+
+1. Group the radios via the \`name\` property. Radio buttons that have the same value for the name attribute are in the same "radio button group"; only one radio button in a group can be selected at a time.
+2. Define each radio's value using the \`model\` property.
+3. Two-way bind each radio's \`checked\` attribute to a "selected item" property on the view-model.`
+            },
+            {
+                id: 'form-radios-numbers',
+                type: 'link',
+                title: 'Radios + numbers',
+                desc: 'In this example each radio input will be assigned a number value via the model property. ' +
+                    'Selecting a radio will cause its model value to be assigned to the "selectedProductId" property.',
+                link: 'examples/form.radio-numbers.html',
+                lazy: true,
+                indent: 1,
+            },
+            {
+                id: 'form-radios-objects',
+                type: 'link',
+                title: 'Radios + objects',
+                desc: 'The binding system supports binding all types to radios, including objects. ' +
+                    'Here\'s an example that binds a group of radios to a selectedProduct object property.',
+                link: 'examples/form.radio-objects.html',
+                lazy: true,
+                indent: 1,
+            },
+            {
+                id: 'form-radios-objects-matcher',
+                type: 'link',
+                title: 'Radios + objects + matcher',
+                desc: 'You may run into situations where the objects in your view and view model may look the same, ' +
+                    'but are different objects. To support this scenario you can override Aurelia\'s default "matcher", ' +
+                    'which looks like this:\n(a, b) => a === b.',
+                link: 'examples/form.radio-objects-matcher.html',
+                lazy: true,
+                indent: 1,
+            },
+            {
+                id: 'form-radios-booleans',
+                type: 'link',
+                title: 'Radios + booleans',
+                desc: 'In this example each radio input is assigned one of three literal values: null, true and false. ' +
+                    'Selecting one of the radios will assign its value to the likesCake property.',
+                link: 'examples/form.radio-booleans.html',
+                lazy: true,
+                indent: 1,
+            },
+            {
+                id: 'form-radios-strings',
+                type: 'link',
+                title: 'Radios + strings',
+                desc: 'Aurelia also knows how to deal with standard value attribute of radio input. An example is as follow',
+                link: 'examples/form.radio-strings.html',
+                lazy: true,
+                indent: 1,
+            },
             // conditional rendering
             {
                 id: 'conditional-rendering',
@@ -222,79 +341,18 @@ export class App {
             },
         ];
     }
+    static get inject() { return [IPlatform]; }
+    attached() {
+        this.p.domWriteQueue.queueTask(() => {
+            document.querySelector(':target')?.scrollIntoView();
+        });
+    }
     isHeading(example) {
         return example.type === 'heading';
     }
-    attached() {
-        setTimeout(() => {
-            const target = document.querySelector(':target');
-            target?.scrollIntoView();
-        });
-    }
-};
-App = __decorate([
-    customElement({
-        name: 'app',
-        template: html `
-<header>
-  <a href="#/"><img id="logo" src="./images/aulogo.svg" alt="Aurelia logo" /></a>
-  <span>by examples</span>
-  <i style="flex-grow: 1"></i>
-  <a href="https://github.com/bigopon/aurelia-by-examples" target="_blank" rel="noopener"
-    style="justify-self: flex-end; display: flex; align-items: center;"
-  >
-    <svg width="32" height="32" style="margin-right: 0.5rem"><use href="#icon-gh" /></svg>
-    Contribute examples
-  </a>
-</header>
-<div style="display: flex;">
-  <ul class="side-nav" style="flex-shrink: 0; align-self: flex-start;">
-    <li repeat.for="example of examples"
-      class="nav-item"
-      heading.class="isHeading(example)"
-      active.class="example === selectedExample">
-      <a href="#\${example.id}" style="padding-left: calc(20px + \${(example.indent || 0) * 20}px);">\${example.title}</a></li>
-  </ul>
-  <main style="flex-grow: 1; min-width: 0;">
-    <template repeat.for="example of examples">
-      <section if.bind="isHeading(example)" class="section-heading" id.bind="example.id">
-        <h2>\${example.title}</h2>
-        <p>\${example.desc}</p>
-      </section>
-      <section else id.bind="example.id">
-        <example-viewer example.bind="example"></example-viewer>
-      </section>
-    </template>
-  </main>
-</div>
-<footer>
-  <div>
-    <h4>Resources</h4>
-    <ul>
-      <li><a href="docs/overview/what-is-aurelia">About</a></li>
-      <li><a href="blog">Blog</a></li>
-      <li><a href="http://eepurl.com/ces50j">Newsletter</a></li>
-    </ul>
-  </div>
-  <div>
-    <h4>Help</h4>
-    <ul>
-      <li><a href="https://discourse.aurelia.io/">Discourse</a></li>
-      <li><a href="https://gitter.im/aurelia/Discuss">Gitter</a></li>
-      <li><a href="https://stackoverflow.com/search?q=aurelia">Stack Overflow</a></li>
-    </ul>
-  </div>
-  <div>
-    <h4>Community</h4>
-    <ul>
-      <li><a href="https://github.com/aurelia">GitHub</a></li>
-      <li><a href="https://twitter.com/aureliaeffect">Twitter</a></li>
-      <li><a href="https://github.com/orgs/aurelia/people">Team</a></li>
-    </ul>
-  </div>
-</footer>
-  `,
-        dependencies: [ExampleViewer],
-    })
-], App);
-export { App };
+}
+CustomElement.define({
+    name: 'app',
+    template,
+    dependencies: [ExampleViewer],
+}, App);

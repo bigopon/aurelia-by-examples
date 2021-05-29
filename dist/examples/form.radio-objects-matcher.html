@@ -1,0 +1,31 @@
+<h4>Products</h4>
+<label>
+  <input type="radio" name="group3"
+          model.bind="{ id: 0, name: 'Motherboard' }"
+          matcher.bind="productMatcher"
+          checked.bind="selectedProduct">
+  Motherboard
+</label>
+<label>
+  <input type="radio" name="group3"
+          model.bind="{ id: 1, name: 'CPU' }"
+          matcher.bind="productMatcher"
+          checked.bind="selectedProduct">
+  CPU
+</label>
+<label>
+  <input type="radio" name="group3"
+          model.bind="{ id: 2, name: 'Memory' }"
+          matcher.bind="productMatcher"
+          checked.bind="selectedProduct">
+  Memory
+</label>
+<br>
+Selected product: ${selectedProduct.id} - ${selectedProduct.name}
+<script>
+export class App {
+  selectedProduct = { id: 1, name: 'CPU' };
+
+  productMatcher = (a, b) => a.id === b.id;
+}
+</script>

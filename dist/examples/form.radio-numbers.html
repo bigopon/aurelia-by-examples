@@ -1,0 +1,20 @@
+<h4>Products</h4>
+<label repeat.for="product of products">
+  <input type="radio" name="group1"
+          model.bind="product.id" checked.bind="selectedProductId">
+  ${product.id} - ${product.name}
+</label>
+<br>
+Selected product ID: ${selectedProductId}
+<script>
+export class App {
+  products = [
+    { id: 0, name: 'Motherboard' },
+    { id: 1, name: 'CPU' },
+    { id: 2, name: 'Memory' },
+  ];
+
+  selectedProductId = null;
+}
+</script>
+<style>h4{margin: 0}</style>
