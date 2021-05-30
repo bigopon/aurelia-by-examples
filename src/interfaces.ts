@@ -11,6 +11,7 @@ export interface IInlineExample {
   desc?: string;
   lazy?: boolean;
   code: IComponentCode;
+  settings?: IExampleSettings;
 }
 
 export interface ILinkExample {
@@ -20,6 +21,7 @@ export interface ILinkExample {
   desc?: string;
   lazy?: boolean;
   link: string;
+  settings?: IExampleSettings;
 }
 
 export interface ILoadedLinkExample extends ILinkExample {
@@ -27,3 +29,10 @@ export interface ILoadedLinkExample extends ILinkExample {
 }
 
 export type IExample = IInlineExample | ILinkExample;
+
+export interface IExampleSettings {
+  /* specific height for the text editor  */
+  height?: string;
+  /* specific height for the result viewer */
+  resultHeight?: string;
+}

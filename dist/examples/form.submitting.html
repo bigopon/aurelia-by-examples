@@ -1,0 +1,23 @@
+<form if.bind="!submitted" submit.trigger="submitted = true">
+  Use <code>type="submit"</code> like this<br>
+  First name: <input value.bind="firstname" />
+  <button type="submit">Submit first name</button>
+</form>
+
+<form if.bind="!submitted1" submit.trigger="submitted1 = true">
+  Without <code>type="submit"</code> like this<br>
+  First name: <input value.bind="firstname" />
+  <button>Submit first name</button>
+</form>
+<hr>
+<form if.bind="!submitted3">
+  Avoid <code>click.trigger</code> to submit like this if possible<br>
+  First name: <input value.bind="firstname" />
+  <button click.trigger="submitted3 = true">Submit first name</button>
+</form>
+<style>
+form{display: inline-block;margin-bottom:16px;padding: 16px;border:2px solid green;}
+form:last-child{border-color: red;}
+form input {display:block;}
+code{font-weight:600;}
+</style>

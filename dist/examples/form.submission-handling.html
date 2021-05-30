@@ -1,0 +1,13 @@
+<form submit.trigger="submitMyForm()" if.bind="!submitted">
+  First name: <input value.bind="firstname" />
+  <button type="submit" disabled.bind="!firstname">Submit first name</button>
+</form>
+${message}
+<script>
+export class MyApp {
+  submitMyForm() {
+    this.submitted = true;
+    this.message = `First name "${this.firstname}" submitted.`;
+  }
+}
+</script>

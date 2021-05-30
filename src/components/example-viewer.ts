@@ -25,7 +25,8 @@ const IExampleLoader = DI.createInterface<ExampleLoader>('IExampleLoader', x => 
           title.bind="$data.title"
           code.bind="$data.code.script"
           template.bind="$data.code.template"
-          styles.bind="$data.code.styles"></result-viewer>
+          styles.bind="$data.code.styles"
+          height.style="$data.settings.resultHeight"></result-viewer>
       </template>
       <span catch.from-view="$err">There's an error loading the example \${example.id}. Maybe try reloading.</span>
     </template>

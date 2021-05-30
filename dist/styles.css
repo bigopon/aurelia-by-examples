@@ -30,7 +30,10 @@ body {
   .side-nav li.heading a { font-weight: 600; }
   .side-nav li a { display: block; line-height: 44px; font-weight: 400; color: inherit; }
 
-header { display: flex; align-items: center; height: 3rem; padding: 0 0.75rem; background: var(--bg-grey-xlight); }
+header { position: sticky; top: 0; display: flex; align-items: center; height: 3rem; padding: 0 0.75rem; background: var(--bg-grey-xlight);
+  box-shadow: var(--sd-basic);
+  z-index: 100;
+}
   header img { height: 2.25rem; stroke: var(--bg-white); }
   header span { padding: 0 0.5rem; font-size: 1.5rem; color: var(--bg-purple); text-shadow: 0 1px var(--bg-pink); }
 

@@ -2,15 +2,16 @@ import { CustomElement, IPlatform } from "@aurelia/runtime-html";
 import { ExampleViewer } from "./components/example-viewer.js";
 import { html } from "./html.js";
 const template = html `
+<div id="top__"></div>
 <header>
-  <a href="#/"><img id="logo" src="./images/aulogo.svg" alt="Aurelia logo" /></a>
+  <a href="#top__"><img id="logo" src="./images/aulogo.svg" alt="Aurelia logo" /></a>
   <span>by examples</span>
   <i style="flex-grow: 1"></i>
   <a href="https://github.com/bigopon/aurelia-by-examples" target="_blank" rel="noopener"
-    style="justify-self: flex-end; display: flex; align-items: center;"
+    style="justify-self: flex-end; display: flex; align-items: center; padding: 0.25rem;"
   >
     <svg width="32" height="32" style="margin-right: 0.5rem"><use href="#icon-gh" /></svg>
-    Contribute examples
+    Contribute
   </a>
 </header>
 <div style="display: flex;">
@@ -68,7 +69,7 @@ export class App {
             {
                 id: 'basic',
                 type: 'heading',
-                title: 'Aurelia examples',
+                title: 'Aurelia by examples',
                 desc: 'Aurelia is a frontend JavaScript framework that is simple, powerful and unobtrusive.\n' +
                     'It stays out of your way with a plain binding & observation system and an intuitive, expressive & extensible templating system.\n' +
                     'Let\'s dive into Aurelia via hundred of examples.',
@@ -85,6 +86,19 @@ export class App {
                     styles: []
                 }
             },
+            {
+                id: 'templating-syntax-text',
+                type: 'inline',
+                title: 'Displaying text',
+                desc: 'Using Aurelia\'s interpolation syntax (a dollar sign followed by enclosed curly braces) ${} to display text in your views.\n' +
+                    'By default, Aurelia is also taught to use textcontent.bind or textcontent="${property}" to display text:',
+                code: {
+                    script: 'export class App {\n  message = "Hello world!";\n}',
+                    template: '<h1>${message}</h1>\n<p textcontent="${message}"></p>\n<p textcontent.bind="message"></p>',
+                    styles: []
+                },
+                indent: 1,
+            },
             // handling form
             {
                 id: 'form-text',
@@ -97,31 +111,32 @@ export class App {
             {
                 id: 'form-input',
                 type: 'inline',
-                indent: 1,
                 title: 'Input text',
                 desc: 'A common element seen in forms is text <input>. Aurelia supports this via "value.bind"',
                 code: {
                     script: 'export class App {\n  message = "Hello world!";\n}',
                     template: '<input value.bind="message" /><br>\n${message}',
                     styles: [],
-                }
+                },
+                lazy: true,
+                indent: 1,
             },
             {
                 id: 'form-number-input',
                 type: 'inline',
-                indent: 1,
                 title: 'Input number',
                 desc: 'Two way binding with a number <input/>, as string',
                 code: {
                     script: 'export class App {\n  count = 0;\n}',
                     template: '<input type="number" value.bind="count" /><br>\ntype: ${typeof count} -- value: ${count}',
                     styles: [],
-                }
+                },
+                lazy: true,
+                indent: 1,
             },
             {
                 id: 'form-number-input-value-converter',
                 type: 'inline',
-                indent: 1,
                 title: 'Input number + value converter',
                 desc: 'Two way binding with a number <input/>, with the help of "| number" value converter expression to turn string into number',
                 code: {
@@ -141,12 +156,13 @@ export class App {
 }`,
                     template: '<input type="number" value.bind="count | number" /><br>\ntype: ${typeof count} -- value: ${count}',
                     styles: [],
-                }
+                },
+                lazy: true,
+                indent: 1,
             },
             {
                 id: 'form-number-input-value-as-number',
                 type: 'inline',
-                indent: 1,
                 title: 'Input number + valueAsNumber',
                 desc: 'Two way binding with number <input/>, via "valueAsNumber" property, to reduce boiler plate converting string to number',
                 code: {
@@ -158,12 +174,13 @@ export class App {
                         '${a} + ${b} = ${a + b}'
                     ].join('<br>\n'),
                     styles: [],
-                }
+                },
+                lazy: true,
+                indent: 1,
             },
             {
                 id: 'form-textarea',
                 type: 'inline',
-                indent: 1,
                 title: 'Textarea',
                 desc: 'A textarea element is just like any other form element. ' +
                     'It allows you to bind to its value and by default "value.bind" will be two-way binding ' +
@@ -172,7 +189,9 @@ export class App {
                     script: 'export class App {\n  message = "Hello world!";\n}',
                     template: '<textarea value.bind="message"></textarea><br>\n${message}',
                     styles: ['textarea{width: 300px; height: 100px; resize: none;}'],
-                }
+                },
+                lazy: true,
+                indent: 1,
             },
             {
                 id: 'form-checkboxes',
@@ -183,15 +202,15 @@ export class App {
             {
                 id: 'form-checkbox-booleans',
                 type: 'link',
-                indent: 1,
                 title: 'Checkbox + booleans',
                 desc: `Bind a boolean property to an input element's checked attribute using checked.bind="myBooleanProperty"`,
                 link: 'examples/form.checkbox-booleans.html',
+                lazy: true,
+                indent: 1,
             },
             {
                 id: 'form-checkbox-array-numbers',
                 type: 'link',
-                indent: 1,
                 title: 'Checkbox + number array',
                 desc: `A set of checkbox elements is a multiple selection interface. ` +
                     `If you have an array that serves as the "selected items" list, ` +
@@ -199,16 +218,19 @@ export class App {
                     `The binding system will track the input's checked status, adding the input's value to the array ` +
                     `when the input is checked and removing the input's value from the array when the input is unchecked`,
                 link: 'examples/form.checkbox-array-numbers.html',
+                lazy: true,
+                indent: 1,
             },
             {
                 id: 'form-checkbox-array-objects',
                 type: 'link',
-                indent: 1,
                 title: 'Checkbox + object array',
                 desc: `Numbers aren't the only type of value you can store in a "selected items" array. ` +
                     `The binding system supports all types, including objects. ` +
                     `Here's an example that adds and removes "product" objects from a "selectedProducts" array using the checkbox data-binding.`,
                 link: 'examples/form.checkbox-array-objects.html',
+                lazy: true,
+                indent: 1,
             },
             {
                 id: 'form-checkbox-array-objects-matcher',
@@ -222,15 +244,17 @@ export class App {
                     `which is a equality comparison function that looks like this: (a, b) => a === b. ` +
                     `You can substitute a function of your choosing that has the right logic to compare your objects.`,
                 link: 'examples/form.checkbox-array-objects-matcher.html',
+                lazy: true,
             },
             {
                 id: 'form-checkbox-array-strings',
                 type: 'link',
-                indent: 1,
                 title: 'Checkbox + string array',
                 desc: `An example that adds and removes strings from a selectedProducts array using the checkbox data-binding. ` +
                     `In this is, standard checkbox value attribute is used.`,
                 link: 'examples/form.checkbox-array-objects-matcher.html',
+                lazy: true,
+                indent: 1,
             },
             {
                 id: 'form-radios',
@@ -383,6 +407,31 @@ export class App {
                 link: 'examples/form.select-multiple-strings.html',
                 lazy: true,
                 indent: 1,
+            },
+            {
+                id: 'form-submission',
+                type: 'heading',
+                title: 'Form submission',
+                desc: ''
+            },
+            {
+                id: 'form-submitting',
+                type: 'link',
+                title: 'Submitting a form',
+                desc: 'It is recommended to use standard way to submit a form, via a submit control, typically a button without a type, or type="submit"',
+                link: 'examples/form.submitting.html',
+                indent: 1,
+                lazy: true,
+                settings: { resultHeight: '300px' },
+            },
+            {
+                id: 'form-submission-handling',
+                type: 'link',
+                title: 'Submission handling',
+                desc: 'Hook into the submission event of a form using standard submit event',
+                link: 'examples/form.submission-handling.html',
+                indent: 1,
+                lazy: true,
             },
             // conditional rendering
             {
