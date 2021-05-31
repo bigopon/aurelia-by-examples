@@ -2,9 +2,9 @@ import { CustomElement, IPlatform } from "@aurelia/runtime-html";
 import { ExampleViewer } from "./components/example-viewer.js";
 import { html } from "./html.js";
 const template = html `
-<div id="top__"></div>
+<div id="start"></div>
 <header>
-  <a href="#top__"><img id="logo" src="./images/aulogo.svg" alt="Aurelia logo" /></a>
+  <a href="#start"><img id="logo" src="./images/aulogo.svg" alt="Aurelia logo" /></a>
   <span>by examples</span>
   <i style="flex-grow: 1"></i>
   <a href="https://github.com/bigopon/aurelia-by-examples" target="_blank" rel="noopener"
@@ -38,8 +38,8 @@ const template = html `
   <div>
     <h4>Resources</h4>
     <ul>
-      <li><a href="docs/overview/what-is-aurelia">About</a></li>
-      <li><a href="blog">Blog</a></li>
+      <li><a href="https://aurelia.io/docs/overview/what-is-aurelia">About</a></li>
+      <li><a href="https://aurelia.io/blog">Blog</a></li>
       <li><a href="http://eepurl.com/ces50j">Newsletter</a></li>
     </ul>
   </div>
@@ -98,6 +98,36 @@ export class App {
                     styles: []
                 },
                 indent: 1,
+            },
+            {
+                id: 'templating-syntax-html',
+                type: 'inline',
+                title: 'Displaying html',
+                desc: 'use innerhtml.bind for when you want to update element.innerHTML.',
+                indent: 1,
+                code: {
+                    script: 'export class App {\n  message = "<b>Hello world!</b> from <b>Aurelia</b>";\n}',
+                    template: '<div innerhtml.bind="message"></div>',
+                    styles: []
+                }
+            },
+            {
+                id: 'templating-syntax-html-nodes',
+                type: 'inline',
+                title: 'HTML nodes',
+                desc: 'Interpolation syntax can also be used for when you want to use HTML nodes/elements as the value of an interpolation',
+                indent: 1,
+                code: {
+                    script: `export class App {
+  constructor() {
+    const span = document.createElement('span');
+    span.textContent = "Hello world";
+    this.message = span;
+  }
+}`,
+                    template: '<div>${message}</div>',
+                    styles: []
+                }
             },
             // handling form
             {
