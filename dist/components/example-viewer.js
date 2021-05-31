@@ -31,9 +31,9 @@ ExampleViewer = __decorate([
     <p
       show.bind="${v => v.example.desc}">$\{${v => v.example.desc}}</p>
     <button show.bind="!shouldRender" click.trigger="forceLoad = true">Load example</button>
-    <template if.bind="shouldRender" promise.bind="example | resolve">
+    <div if.bind="shouldRender" promise.bind="example | resolve">
       <button pending disabled>Loading example...</button>
-      <template then.from-view="$data">
+      <div then.from-view="$data">
         <inline-editor code.bind="$data.code.script" template.bind="$data.code.template" style="height: 300px;"></inline-editor>
         <result-viewer
           title.bind="$data.title"
@@ -41,9 +41,9 @@ ExampleViewer = __decorate([
           template.bind="$data.code.template"
           styles.bind="$data.code.styles"
           height.style="$data.settings.resultHeight"></result-viewer>
-      </template>
+      </div>
       <span catch.from-view="$err">There's an error loading the example \${example.id}. Maybe try reloading.</span>
-    </template>
+    </div>
   `,
         dependencies: [
             InlineComponentEditor,

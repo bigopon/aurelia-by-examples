@@ -23,15 +23,13 @@ const template = html `
       <a href="#\${example.id}" style="padding-left: calc(20px + \${(example.indent || 0) * 20}px);">\${example.title}</a></li>
   </ul>
   <main style="flex-grow: 1; min-width: 0;">
-    <template repeat.for="example of examples">
-      <section if.bind="isHeading(example)" class="section-heading" id.bind="example.id">
+    <section repeat.for="example of examples" section-heading.class="isHeading(example)" id.bind="example.id">
+      <template if.bind="isHeading(example)">
         <h2>\${example.title}</h2>
         <p>\${example.desc}</p>
-      </section>
-      <section else id.bind="example.id">
-        <example-viewer example.bind="example"></example-viewer>
-      </section>
-    </template>
+      </template>
+      <example-viewer else example.bind="example"></example-viewer>
+    </section>
   </main>
 </div>
 <footer>
@@ -95,7 +93,7 @@ export class App {
                 code: {
                     script: 'export class App {\n  message = "Hello world!";\n}',
                     template: '<h1>${message}</h1>\n<p textcontent="${message}"></p>\n<p textcontent.bind="message"></p>',
-                    styles: []
+                    styles: [],
                 },
                 indent: 1,
             },
@@ -103,31 +101,31 @@ export class App {
                 id: 'templating-syntax-html',
                 type: 'inline',
                 title: 'Displaying html',
-                desc: 'use innerhtml.bind for when you want to update element.innerHTML.',
-                indent: 1,
-                code: {
-                    script: 'export class App {\n  message = "<b>Hello world!</b> from <b>Aurelia</b>";\n}',
-                    template: '<div innerhtml.bind="message"></div>',
-                    styles: []
-                }
-            },
-            {
-                id: 'templating-syntax-html-nodes',
-                type: 'inline',
-                title: 'HTML nodes',
-                desc: 'Interpolation syntax can also be used for when you want to use HTML nodes/elements as the value of an interpolation',
+                desc: 'Use innerhtml.bind for when you want to update element.innerHTML.\n' +
+                    'HTML nodes & elements are also supported, with the caveat that they will be appended as is, which means one value cannot be used in multiple locations.',
                 indent: 1,
                 code: {
                     script: `export class App {
   constructor() {
-    const span = document.createElement('span');
-    span.textContent = "Hello world";
-    this.message = span;
+    this.message = "Hello world!";
+
+    const b = document.createElement('b');
+    b.textContent = this.message;
+    this.messageHtml = b;
   }
 }`,
-                    template: '<div>${message}</div>',
-                    styles: []
+                    template: '<div innerhtml.bind="message"></div>\n<div>${messageHtml}</div>',
+                    styles: [],
                 }
+            },
+            {
+                id: 'templating-syntax-attribute',
+                type: 'link',
+                title: 'Setting attribute',
+                desc: 'By default, "aria-", "data-", and standard svg attributes are always treated as attribute, instead of properties.' +
+                    'Use ".attr" binding command to instruct a binding to always set attribute, instead of property.',
+                link: 'examples/basic.set-attribute.html',
+                indent: 1
             },
             // handling form
             {
