@@ -11,13 +11,14 @@ const IExampleLoader = DI.createInterface<ExampleLoader>('IExampleLoader', x => 
   name: 'example-viewer',
   template:
   html<ExampleViewer>`<template style="display: block;">
+    <let id.bind="0"></let>
     <h3
       id.bind=${v => v.example.id}
       show.bind="${v => v.example.title}">\${${v => v.example.title}}</h3>
     <p
       show.bind="${v => v.example.desc}">$\{${v => v.example.desc}}</p>
     <button show.bind="!shouldRender" click.trigger="forceLoad = true">Load example</button>
-    <div if.bind="shouldRender" promise.bind="example | resolve">
+    <div if.bind="shouldRender" promise.bind="example | resolve :i">
       <button pending disabled>Loading example...</button>
       <div then.from-view="$data">
         <inline-editor code.bind="$data.code.script" template.bind="$data.code.template" style="height: 300px;"></inline-editor>
@@ -28,7 +29,9 @@ const IExampleLoader = DI.createInterface<ExampleLoader>('IExampleLoader', x => 
           styles.bind="$data.code.styles"
           height.style="$data.settings.resultHeight"></result-viewer>
       </div>
-      <span catch.from-view="$err">There's an error loading the example \${example.id}. Maybe try reloading.</span>
+      <span catch.from-view="$err">There's an error loading the example \${example.id}.
+        Maybe try <button click.trigger="i = i + 1">reloading.</button>
+      </span>
     </div>
   `,
   dependencies: [

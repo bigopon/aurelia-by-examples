@@ -1,0 +1,16 @@
+<h1>My Friends</h1>
+<span repeat.for="friendInfo of friends">
+  ${friendInfo[0]} Hello, <b>${friendInfo[1]}!</b> 
+</span>
+<script>
+export class MyApp { 
+  constructor() { 
+    this.friends = new Map([
+      [1, 'Alice'],
+      [2, 'Bob'],
+      [3, 'Carol'],
+      [4, 'Dana']
+    ]);
+  } 
+}
+</script>

@@ -160,6 +160,72 @@ export class App {
       link: 'examples/basic.attribute-style.html',
       indent: 1
     },
+    // collectiong rendering
+    {
+      id: 'rendering-collections',
+      type: 'heading',
+      title: 'Rendering collections',
+      desc:
+        'In most applications, your model is not only composed of objects, but also of various types of collections. ' +
+        'Aurelia provides a robust way to handle collection data through its built-in "repeat" attribute. ' +
+        'Repeaters can be used on any element, including custom elements and template elements too!',
+    },
+    {
+      id: 'rendering-collections-array',
+      type: 'link',
+      title: 'Rendering array',
+      desc: 'Render each item of an array via repeat.for',
+      link: 'examples/collection.array.html',
+      indent: 1,
+      lazy: true,
+    },
+    {
+      id: 'rendering-collections-set',
+      type: 'link',
+      title: 'Rendering Set',
+      desc: 'Render each item of a set via repeat.for',
+      link: 'examples/collection.set.html',
+      indent: 1,
+      lazy: true,
+    },
+    {
+      id: 'rendering-collections-map',
+      type: 'link',
+      title: 'Rendering Map',
+      desc: 'Render each item of a map via repeat.for',
+      link: 'examples/collection.map.html',
+      indent: 1,
+      lazy: true,
+    },
+    {
+      id: 'rendering-collections-range',
+      type: 'link',
+      title: 'Rendering a range',
+      desc: 'Iterate from 0 to a given number to render, via repeat.for',
+      link: 'examples/collection.number.html',
+      indent: 1,
+      lazy: true,
+      settings: {
+        resultHeight: '250px'
+      }
+    },
+    {
+      id: 'rendering-collections-contextual-properties',
+      type: 'link',
+      title: 'Contextual properties',
+      desc:
+`There are contextual properties:
+- $index: (number) the current item index
+- $length: (number) the length/size of the collection
+- $first: (boolean) true if the current item is the first in the collection
+- $last: (boolean) true if the current item is the last in the collection
+- $middle: (boolean) true if the current item is neither first nor last in the collection
+- $even: (boolean) true if the current item index is even
+- $odd: (boolean) true if the current item index is odd`,
+      link: 'examples/collection.array.html',
+      indent: 1,
+      lazy: true,
+    },
     // handling form
     {
       id: 'form-text',

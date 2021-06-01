@@ -1,0 +1,9 @@
+<h1>My Friends</h1>
+<span repeat.for="friend of friends">Hello, <b>${friend}!</b> </span>
+<script>
+export class MyApp { 
+  constructor() { 
+    this.friends = new Set([ 'Alice', 'Bob', 'Carol', 'Dana' ]);
+  } 
+}
+</script>
