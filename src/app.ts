@@ -1,4 +1,4 @@
-import { CustomElement, customElement, IPlatform, valueConverter } from "@aurelia/runtime-html";
+import { CustomElement, IPlatform } from "@aurelia/runtime-html";
 import { ExampleViewer } from "./components/example-viewer.js";
 import { html } from "./html.js";
 import type { IExample } from "./interfaces.js";
@@ -74,6 +74,7 @@ const template = html`
     </ul>
   </div>
 </footer>
+<a id="to_top" href="#start" show.bind="scrolled">^ Top</a>
 `
 
 export class App {
@@ -118,7 +119,6 @@ export class App {
       title: 'Displaying html',
       desc: 'Use innerhtml.bind for when you want to update element.innerHTML.\n' +
         'HTML nodes & elements are also supported, with the caveat that they will be appended as is, which means one value cannot be used in multiple locations.',
-      indent: 1,
       code: {
         script:
 `export class App {
@@ -132,15 +132,31 @@ export class App {
 }`,
         template: '<div innerhtml.bind="message"></div>\n<div>${messageHtml}</div>',
         styles: [],
-      }
+      },
+      indent: 1,
     },
     {
       id: 'templating-syntax-attribute',
       type: 'link',
       title: 'Setting attribute',
-      desc: 'By default, "aria-", "data-", and standard svg attributes are always treated as attribute, instead of properties.' +
-        'Use ".attr" binding command to instruct a binding to always set attribute, instead of property.',
-      link: 'examples/basic.set-attribute.html',
+      desc: 'By default, "aria-", "data-", "class", "styles" and standard svg attributes are treated as attribute, instead of properties.',
+      link: 'examples/basic.attribute.html',
+      indent: 1,
+    },
+    {
+      id: 'templating-syntax-attribute-class',
+      type: 'link',
+      title: 'Setting classes',
+      desc: 'Interpolation and ".class" binding command can be used to set a class on an element',
+      link: 'examples/basic.attribute-class.html',
+      indent: 1,
+    },
+    {
+      id: 'templating-syntax-attribute-style',
+      type: 'link',
+      title: 'Setting styles',
+      desc: 'Interpolation and ".style" binding command can be used to set one or many styles on an element',
+      link: 'examples/basic.attribute-style.html',
       indent: 1
     },
     // handling form
@@ -536,14 +552,19 @@ export class App {
     },
   ];
 
-  static get inject() { return [IPlatform] }
+  static get inject() { return [IPlatform]; }
+  
+  scrolled = false;
 
   constructor(private p: IPlatform) {}
 
   attached() {
+    document.body.addEventListener('scroll', (e) => {
+      this.scrolled = document.body.scrollTop > 500;
+    });
     this.p.domWriteQueue.queueTask(() => {
       document.querySelector(':target')?.scrollIntoView();
-    });
+    }, { delay: 100 });
   }
 
   isHeading(example: IExample | IExampleHeading): example is IExampleHeading {

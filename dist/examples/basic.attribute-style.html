@@ -1,0 +1,11 @@
+<div style="background: ${color}">Interpolation</div>
+<div background.style="color2">background.style="color2"</div>
+<div style.bind="{ color: 'blue', textShadow: '1px solid red' }">style.bind object literal</div>
+<div css="background: ${color}">css attribute + interpolation (avoid IDE error)</div>
+<script>
+export class App {
+  color = "lightgreen"
+  color2 = "pink"
+}
+</script>
+<style>div{margin-bottom: 8px;}</style>

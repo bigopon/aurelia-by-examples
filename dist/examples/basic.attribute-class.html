@@ -1,0 +1,9 @@
+<div class="${isActive ? 'active' : ''}">class="$ {isActive ? 'active' : ''}"</div>
+<div class-name.bind="isActive ? 'active' : ''">class-name.bind="isActive ? 'active' : ''</div>
+<div active.class="isActive">active.class="isActive"</div>
+<script>
+export class App {
+  isActive = true;
+}
+</script>
+<style>.active{border:1px solid green;}.active+.active{margin-top: 5px;}</style>

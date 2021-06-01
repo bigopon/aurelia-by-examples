@@ -30,7 +30,7 @@ body {
   .side-nav li.heading a { font-weight: 600; }
   .side-nav li a { display: block; line-height: 44px; font-weight: 400; color: inherit; }
 
-header { position: sticky; top: 0; display: flex; align-items: center; height: 3rem; padding: 0 0.75rem; background: var(--bg-grey-xlight);
+header { display: flex; align-items: center; height: 3rem; padding: 0 0.75rem; background: var(--bg-grey-xlight);
   box-shadow: var(--sd-basic);
   z-index: 100;
 }
@@ -40,6 +40,7 @@ header { position: sticky; top: 0; display: flex; align-items: center; height: 3
 main { padding: 0 8px; }
   main section { padding: 0.75rem; background-color: var(--bg-grey-xlight); border-radius: 1rem; }
   main section.section-heading { border-radius: 0.25rem; background: var(--bg-au-gradient); color: var(--bg-white); text-shadow: 0px 0px 4px rgb(0 0 0 / 70%); box-shadow: var(--sd-basic); }
+  main section:not(.section-heading):target { box-shadow: 0 0 1px 1px var(--bg-purple); }
     main section p { margin: 0 0 0.5rem; white-space: pre-wrap; line-height: 1.45; }
   main h2 { margin: 0 0 1rem; font-size: 2.25rem; }
   main h3 { margin: 0 0 calc(1rem / 2); }
@@ -49,3 +50,5 @@ main { padding: 0 8px; }
 footer { display: flex; justify-content: center; margin-top: 3rem; background-color: var(--bg-purple); color: var(--bg-white); }
   footer > div { margin: 0 2rem; }
   footer a { line-height: 1.75rem;; color: var(--bg-white); }
+
+#to_top { position: fixed; bottom: 2rem; right: 2rem; padding: 0.75rem; background: var(--bg-au-gradient); color: var(--bg-white); z-index: 101; }
