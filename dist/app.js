@@ -204,7 +204,7 @@ export class App {
 - $middle: (boolean) true if the current item is neither first nor last in the collection
 - $even: (boolean) true if the current item index is even
 - $odd: (boolean) true if the current item index is odd`,
-                link: 'examples/collection.array.html',
+                link: 'examples/collection.contextual-properties.html',
                 indent: 1,
                 lazy: true,
             },

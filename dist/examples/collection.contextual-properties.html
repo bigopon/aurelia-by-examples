@@ -1,0 +1,10 @@
+<h1>My Friends</h1>
+<p repeat.for="friend of friends">Hello, ${friend} index: ${$index}, length: ${$length}, even: ${$even}, odd: ${$odd}, first: ${$first}, last ${$last}, middle: ${$middle}!</p>
+<script>
+export class MyApp { 
+  constructor() { 
+    this.friends = [ 'Alice', 'Bob', 'Carol', 'Dana' ];
+  } 
+}
+</script>
+<style>p{margin: 0 0 4px;}h1{margin-bottom: 4px;}</style>
