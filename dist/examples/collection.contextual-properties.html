@@ -1,5 +1,13 @@
 <h1>My Friends</h1>
-<p repeat.for="friend of friends">Hello, ${friend} index: ${$index}, length: ${$length}, even: ${$even}, odd: ${$odd}, first: ${$first}, last ${$last}, middle: ${$middle}!</p>
+<p repeat.for="friend of friends">Hello, ${friend}!
+  <b>index</b>: ${$index},
+  <b>length</b>: ${$length},
+  <b>even</b>: ${$even},
+  <b>odd</b>: ${$odd},
+  <b>first</b>: ${$first},
+  <b>last</b>: ${$last},
+  <b>middle</b>: ${$middle}
+</p>
 <script>
 export class MyApp { 
   constructor() { 
