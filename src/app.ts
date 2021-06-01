@@ -23,11 +23,12 @@ const template = html`
   <a href="#start"><img id="logo" src="./images/aulogo.svg" alt="Aurelia logo" /></a>
   <span>by examples</span>
   <i style="flex-grow: 1"></i>
+  <a href="https://docs.aurelia.io" target="_blank" rel="noopener" style="justify-self: flex-end">Documentation</a>
   <a href="https://github.com/bigopon/aurelia-by-examples" target="_blank" rel="noopener"
     style="justify-self: flex-end; display: flex; align-items: center; padding: 0.25rem;"
   >
-    <svg width="32" height="32" style="margin-right: 0.5rem"><use href="#icon-gh" /></svg>
     Contribute
+    <svg width="32" height="32" style="margin-right: 0.5rem"><use href="#icon-gh" /></svg>
   </a>
 </header>
 <div style="display: flex;">

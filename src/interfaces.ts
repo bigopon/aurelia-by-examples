@@ -4,6 +4,11 @@ export interface IComponentCode {
   readonly styles: string[];
 }
 
+export interface IComponentFile {
+  name: string;
+  code: IComponentCode;
+}
+
 export interface IInlineExample {
   id: string;
   title: string;
@@ -12,6 +17,7 @@ export interface IInlineExample {
   lazy?: boolean;
   code: IComponentCode;
   settings?: IExampleSettings;
+  files?: IComponentFile[];
 }
 
 export interface ILinkExample {
