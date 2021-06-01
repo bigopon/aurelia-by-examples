@@ -1,0 +1,20 @@
+<my-el view-model.ref="myEl"></my-el>
+logs:
+<p>${logs}</p>
+<script>
+import { CustomElement } from "@aurelia/runtime-html";
+
+export class App {
+  static get dependencies() {
+    return [CustomElement.define({ name: 'my-el' })]
+  }
+  logs = [];
+  binding() {
+    this.logs.push('binding lifecycle: <my-el> view model available? ' + !!this.myEl);
+  }
+  bound() {
+    this.logs.push('\nbound lifecycle: <my-el> view model available? ' + !!this.myEl);
+  }
+}
+</script>
+<style>input{display:block;}p{white-space: pre-wrap}</style>

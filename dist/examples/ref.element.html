@@ -1,0 +1,15 @@
+<input ref="input">
+logs:
+<p>${logs}</p>
+<script>
+export class App {
+  logs = [];
+  binding() {
+    this.logs.push('binding lifecycle: <input> element available? ' + !!this.input);
+  }
+  bound() {
+    this.logs.push('\nbound lifecycle: <input> element available? ' + !!this.input);
+  }
+}
+</script>
+<style>input{display:block;}p{white-space: pre-wrap}</style>

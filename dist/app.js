@@ -642,6 +642,43 @@ export class App {
                 indent: 1,
                 lazy: true,
             },
+            // ref
+            {
+                id: 'retrieving-reference',
+                type: 'heading',
+                title: 'Retrieving references',
+                desc: 'Retrieve the reference to an element, a custom element or custom attribute view model via ref, view-model.ref or (attr-name).ref.',
+            },
+            {
+                id: 'retrieving-reference-element',
+                title: 'Element reference',
+                type: 'link',
+                desc: 'Use "ref" attribute on an element to express the property to assign the element reference to. ' +
+                    'The value will be available after "binding" lifecycle, and before "bound" lifecycle',
+                link: 'examples/ref.element.html',
+                indent: 1,
+                lazy: true,
+            },
+            {
+                id: 'retrieving-reference-view-model',
+                title: 'Custom element VM reference',
+                type: 'link',
+                desc: 'Use "view-model.ref" on a custom element to express the property to assign the element view model reference to. ' +
+                    'The value will be available after "binding" lifecycle, and before "bound" lifecycle',
+                link: 'examples/ref.custom-element.html',
+                indent: 1,
+                lazy: true,
+            },
+            {
+                id: 'retrieving-reference-view-model',
+                title: 'Custom attribute VM reference',
+                type: 'link',
+                desc: 'Use "xxxx.ref", where xxxx is the name of the attribute, on a custom element to express the property to assign a custom attribute view model reference to. ' +
+                    'The value will be available after "binding" lifecycle, and before "bound" lifecycle',
+                link: 'examples/ref.custom-attribute.html',
+                indent: 1,
+                lazy: true,
+            },
         ];
         this.scrolled = false;
     }

@@ -1,0 +1,20 @@
+<div my-attr my-attr.ref="attrVm"></div>
+logs:
+<p>${logs}</p>
+<script>
+import { CustomAttribute } from "@aurelia/runtime-html";
+
+export class App {
+  static get dependencies() {
+    return [CustomAttribute.define({ name: 'my-attr' }, class MyAttr {})]
+  }
+  logs = [];
+  binding() {
+    this.logs.push('binding lifecycle: [my-attr] view model available? ' + !!this.attrVm);
+  }
+  bound() {
+    this.logs.push('\nbound lifecycle: [my-attr] view model available? ' + !!this.attrVm);
+  }
+}
+</script>
+<style>input{display:block;}p{white-space: pre-wrap}</style>
