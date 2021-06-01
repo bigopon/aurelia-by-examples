@@ -1,0 +1,26 @@
+<p repeat.for="greeting of friends | keys">
+  ${greeting}, ${friends[greeting].name}!
+</p>
+<script>
+import { ValueConverter } from '@aurelia/runtime-html';
+export class MyApp {
+  static get dependencies() {
+    return [KeysValueConverter]
+  }
+  constructor() {
+    this.friends = {
+      'Hello': { name : 'Alice' },
+      'Hola': { name : 'Bob' },
+      'Ni Hao': { name : 'Carol' },
+      'Molo': { name : 'Dana' }
+    };
+  }
+}
+
+class KeysValueConverter {
+  toView(obj) {
+    return Reflect.ownKeys(obj);
+  }
+}
+ValueConverter.define('keys', KeysValueConverter);
+</script>

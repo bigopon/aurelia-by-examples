@@ -1,0 +1,17 @@
+<h1>My Friends</h1>
+<p repeat.for="friend of friends">
+  Hello <b>${friend}</b>, how should I call you?
+  <label repeat.for="nickname of nicknames">
+    <input type="radio" name="${friend}-address" />
+    ${$parent.$index}.${$index}. ${nickname} ${friend}
+  </label>
+</p>
+<script>
+export class MyApp { 
+  constructor() {
+    this.friends = ['Alice', 'Bob', 'Carol', 'Dana' ];
+    this.nicknames = ['Zero', 'Phantasm', 'Bould', 'Quad'];
+  }
+}
+</script>
+<style>p{margin: 0 0 4px;}h1{margin-bottom: 4px;}</style>

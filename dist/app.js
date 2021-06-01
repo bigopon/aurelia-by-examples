@@ -193,10 +193,19 @@ export class App {
                 }
             },
             {
+                id: 'rendering-collections-objects-keys',
+                type: 'link',
+                title: 'Object key/value pairs as collections',
+                desc: 'Objects are not iterable, though if piped through a value converter, it\'s possible to use repeat.for',
+                link: 'examples/collection.object.html',
+                indent: 1,
+                lazy: true,
+            },
+            {
                 id: 'rendering-collections-contextual-properties',
                 type: 'link',
                 title: 'Contextual properties',
-                desc: `There are contextual properties:
+                desc: `There are contextual properties inside a repeat for:
 - $index: (number) the current item index
 - $length: (number) the length/size of the collection
 - $first: (boolean) true if the current item is the first in the collection
@@ -205,6 +214,15 @@ export class App {
 - $even: (boolean) true if the current item index is even
 - $odd: (boolean) true if the current item index is odd`,
                 link: 'examples/collection.contextual-properties.html',
+                indent: 1,
+                lazy: true,
+            },
+            {
+                id: 'rendering-collection-nested',
+                type: 'link',
+                title: 'Nested collection rendering',
+                desc: 'Aurelia supports nested collection rendering intuitively. Parent scope of a repeat scope can be accessed via "$parent".',
+                link: 'examples/collection.nested.html',
                 indent: 1,
                 lazy: true,
             },
