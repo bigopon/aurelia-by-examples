@@ -1,0 +1,15 @@
+Try click: <button type="button" click.trigger="lastAction = 'click.trigger'">click.trigger</button><br>
+Try click: <button type="button" click.delegate="lastAction ='click.delegate'">click.delegate</button><br>
+Try click: <button type="button" click.capture="lastAction ='click.capture'">click.capture</button><br>
+
+Try input:
+<input type="text" id="input1"
+  focus.trigger="lastAction = 'focus.trigger on #input1'"
+  blur.trigger="lastAction = 'blur.trigger on #input1'"><br>
+Try input:
+<input type="text" id="input2"
+  focus.trigger="lastAction = 'focus.trigger on #input2'"
+  blur.trigger="lastAction = 'blur.trigger on #input2'"
+  input.delegate="lastAction = 'input.delegate on #input2 with value: ' + $event.target.value">
+<hr>
+Last action: ${lastAction}

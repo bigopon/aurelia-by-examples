@@ -1,0 +1,19 @@
+With & self:
+<div class="red" click.trigger="lastAction = 'clicked on red' & self">
+  <div class="green" click.trigger="lastAction = 'clicked on green' & self">
+    <span click.trigger="lastAction = 'click on span' & self">Hello world</span>
+  </div>
+</div>
+Without & self:
+<div class="red" click.trigger="lastAction = lastAction + ' clicked on red'">
+  <div class="green" click.trigger="lastAction = lastAction + ' ckicked on green'">
+    <span click.trigger="lastAction = 'clicked on span'">Hello world</span>
+  </div>
+</div>
+Last action: ${lastAction}
+<style>
+div {max-width: 300px;}
+.red { padding: 10px; background-color: pink;}
+.green {padding:16px; background-color: lightgreen;}
+span {width:100px;background: orangered;}
+</style>

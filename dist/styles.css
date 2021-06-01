@@ -39,7 +39,7 @@ header { display: flex; align-items: center; height: 3rem; padding: 0 0.75rem; b
   header a:not(:first-of-type) { display: flex; align-items: center; height: 2.5rem; margin-left: 0.5rem; padding: 0 0.5rem; border: 2px solid var(--bg-pink); border-radius: 0.25rem; }
   header a:not(:first-of-type):hover { border-color: var(--bg-purple); }
 
-main { padding: 0 8px; }
+main { max-width: 1536px; padding: 0 8px; margin: auto; }
   main section { padding: 0.75rem; background-color: var(--bg-grey-xlight); border-radius: 1rem; }
   main section.section-heading { border-radius: 0.25rem; background: var(--bg-au-gradient); color: var(--bg-white); text-shadow: 0px 0px 4px rgb(0 0 0 / 70%); box-shadow: var(--sd-basic); }
   main section:not(.section-heading):target { box-shadow: 0 0 0.5rem 0.125rem var(--bg-purple); }

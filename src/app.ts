@@ -212,7 +212,7 @@ export class App {
     {
       id: 'rendering-collections-objects-keys',
       type: 'link',
-      title: 'Object key/value pairs as collections',
+      title: 'Rendering object key/value pairs',
       desc: 'Objects are not iterable, though if piped through a value converter, it\'s possible to use repeat.for',
       link: 'examples/collection.object.html',
       indent: 1,
@@ -243,6 +243,43 @@ export class App {
       link: 'examples/collection.nested.html',
       indent: 1,
       lazy: true,
+    },
+    {
+      id: 'handling-event',
+      type: 'heading',
+      title: 'Handling events',
+      desc:
+        'Aurelia makes it easy for you to handle standard/custom DOM event.',
+    },
+    {
+      id: 'handling-event-basic',
+      type: 'link',
+      title: 'Basic of event handling',
+      desc:
+`Aurelia's binding system supports binding to standard and custom DOM events. A DOM event binding will execute a JavaScript expression whenever the specified DOM event occurs. Event binding declarations have three parts and take the form event.command="expression".
+
+- event:  This is the name of a DOM event, without the "on" prefix, just as you would pass to the native addEventListener() API. e.g. "click"
+- command: One of the following event binging commands:
+    - trigger: Attaches an event handler directly to the element. When the event fires, the expression will be invoked.
+    - capture: Attaches a single event handler to the element in capturing phase.
+    - delegate: Attaches a single event handler to the document (or nearest shadow DOM boundary) which handles all events of the specified type in bubbling phase, properly dispatching them back to their original targets for invocation of the associated expression.
+- expression: A JavaScript expression. Use the special $event property to access the DOM event in your binding expression.`,
+      link: 'examples/event.general.html',
+      indent: 1,
+      lazy: true,
+    },
+    {
+      id: 'handling-event-self',
+      type: 'link',
+      title: 'Self binding behavior',
+      desc: 'Sometimes it is desirable to fire an event if the origin of the event is the element the event listener is attached to. '
+        + 'Aurelia supports this via "Self" binding behavior, syntax: "& self"',
+      link: 'examples/event.self.html',
+      indent: 1,
+      lazy: true,
+      settings: {
+        resultHeight: '300px'
+      }
     },
     // handling form
     {
