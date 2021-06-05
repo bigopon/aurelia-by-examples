@@ -713,7 +713,7 @@ export class App {
                 indent: 1,
                 lazy: true,
                 settings: {
-                    resultHeight: '300px',
+                    resultHeight: '350px',
                     globals: {
                         scripts: ['https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.0/pikaday.min.js'],
                         styles: ['https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.0/css/pikaday.css'],
