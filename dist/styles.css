@@ -35,9 +35,9 @@ body > header { display: flex; align-items: center; height: 3rem; padding: 0 0.7
   z-index: 100;
 }
   body > header img { height: 2.25rem; stroke: var(--bg-white); }
-  header > header span { padding: 0 0.5rem; font-size: 1.5rem; color: var(--bg-purple); text-shadow: 0 1px var(--bg-pink); }
-  header > header a:not(:first-of-type) { display: flex; align-items: center; height: 2.5rem; margin-left: 0.5rem; padding: 0 0.5rem; border: 2px solid var(--bg-pink); border-radius: 0.25rem; }
-  header > header a:not(:first-of-type):hover { border-color: var(--bg-purple); }
+  body > header span { padding: 0 0.5rem; font-size: 1.5rem; color: var(--bg-purple); text-shadow: 0 1px var(--bg-pink); }
+  body > header a:not(:first-of-type) { display: flex; align-items: center; height: 2.5rem; margin-left: 0.5rem; padding: 0 0.5rem; border: 2px solid var(--bg-pink); border-radius: 0.25rem; }
+  body > header a:not(:first-of-type):hover { border-color: var(--bg-purple); }
 
 main { max-width: 1536px; padding: 0 8px; margin: auto; }
   main section { padding: 0.75rem; background-color: var(--bg-grey-xlight); border-radius: 1rem; }
