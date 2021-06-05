@@ -281,6 +281,57 @@ export class App {
         resultHeight: '300px'
       }
     },
+    // conditional rendering
+    {
+      id: 'conditional-rendering',
+      type: 'heading',
+      title: 'Conditional rendering',
+      desc: 'Change what is rendered or shown based on conditions in your code.',
+    },
+    {
+      id: 'conditional-show-hide',
+      type: 'link',
+      title: 'With show/hide',
+      desc:
+        'An example of conditional rendering syntaxes in Aurelia with show/hide. ' +
+        'Using this when it is desirable to hide/show an element without removing it from the document.',
+      link: 'examples/conditional.show-hide.html',
+      indent: 1,
+      lazy: true,
+    },
+    {
+      id: 'conditional-if-else',
+      type: 'link',
+      title: 'With if/else',
+      desc:
+        'Examples of conditional rendering syntaxes in Aurelia with if/else.' +
+        'Using this when it is desirable to remove the elements when the condition is false/falsy',
+      link: 'examples/conditional.if-else.html',
+      indent: 1,
+      lazy: true,
+    },
+    {
+      id: 'conditional-switch',
+      title: 'With switch',
+      type: 'link',
+      desc:
+        'Examples of conditional rendering syntaxes in Aurelia with switch/case/default.' +
+        'Using this when it is desirable to have the semantic of switch syntax',
+      link: 'examples/conditional.switch.html',
+      indent: 1,
+      lazy: true,
+    },
+    {
+      id: 'conditional-promise',
+      title: 'With promise',
+      type: 'link',
+      desc: 
+        'Examples of conditional rendering syntaxes in Aurelia with promise/pending/then/catch.' +
+        'Using this when it is desirable to have the semantic of Promise in JavaScript, without intermediate view model code',
+      link: 'examples/conditional.promise.html',
+      indent: 1,
+      lazy: true,
+    },
     // handling form
     {
       id: 'form-text',
@@ -621,57 +672,6 @@ export class App {
       indent: 1,
       lazy: true,
     },
-    // conditional rendering
-    {
-      id: 'conditional-rendering',
-      type: 'heading',
-      title: 'Conditional rendering',
-      desc: 'Change what is rendered or shown based on conditions in your code.',
-    },
-    {
-      id: 'conditional-show-hide',
-      type: 'link',
-      title: 'With show/hide',
-      desc:
-        'An example of conditional rendering syntaxes in Aurelia with show/hide. ' +
-        'Using this when it is desirable to hide/show an element without removing it from the document.',
-      link: 'examples/conditional.show-hide.html',
-      indent: 1,
-      lazy: true,
-    },
-    {
-      id: 'conditional-if-else',
-      type: 'link',
-      title: 'With if/else',
-      desc:
-        'Examples of conditional rendering syntaxes in Aurelia with if/else.' +
-        'Using this when it is desirable to remove the elements when the condition is false/falsy',
-      link: 'examples/conditional.if-else.html',
-      indent: 1,
-      lazy: true,
-    },
-    {
-      id: 'conditional-switch',
-      title: 'With switch',
-      type: 'link',
-      desc:
-        'Examples of conditional rendering syntaxes in Aurelia with switch/case/default.' +
-        'Using this when it is desirable to have the semantic of switch syntax',
-      link: 'examples/conditional.switch.html',
-      indent: 1,
-      lazy: true,
-    },
-    {
-      id: 'conditional-promise',
-      title: 'With promise',
-      type: 'link',
-      desc: 
-        'Examples of conditional rendering syntaxes in Aurelia with promise/pending/then/catch.' +
-        'Using this when it is desirable to have the semantic of Promise in JavaScript, without intermediate view model code',
-      link: 'examples/conditional.promise.html',
-      indent: 1,
-      lazy: true,
-    },
     // ref
     {
       id: 'retrieving-reference',
@@ -712,6 +712,7 @@ export class App {
       indent: 1,
       lazy: true,
     },
+    // datepicker/date-picker/date picker
     {
       id: 'date-picker',
       type: 'heading',
