@@ -17,21 +17,33 @@ export class TextEditor {
   host!: HTMLElement;
   editor?: CodeMirror.Editor;
 
+  onChange: (editor: CodeMirror.Editor, change: CodeMirror.EditorChange) => void = (editor, changeEVent) => {
+    this.value = editor.getValue();
+  };
+
+  /* lifecycle */
   bound() {
     const view = this.editor = CodeMirror(this.host, {
       value: this.value,
       mode: this.lang === 'js' ? 'javascript' : 'text/html',
       lineNumbers: true,
-      extraKeys: { "Ctrl-Q": "toggleComment" },
     });
-    view.on('change', (editor, changeEVent) => {
-      this.value = editor.getValue();
-    });
+    view.on('change', this.onChange);
+  }
+
+  /* lifecycle */
+  unbinding() {
+    this.editor?.off('change', this.onChange);
   }
 
   valueChanged(v: string) {
     if (this.editor?.getValue() !== v) {
       this.editor?.setValue(v);
     }
+  }
+
+  focus() {
+    this.editor?.refresh();
+    this.editor?.focus();
   }
 }

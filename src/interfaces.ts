@@ -41,4 +41,26 @@ export interface IExampleSettings {
   height?: string;
   /* specific height for the result viewer */
   resultHeight?: string;
+  /* extra scripts/styles */
+  globals?: {
+    scripts?: string[];
+    styles?: string[];
+  }
+}
+
+export interface IAdvancedExample {
+  id: string;
+  title: string;
+  type: 'inline-2',
+  desc?: string;
+  lazy?: boolean;
+  settings?: IExampleSettings;
+  files?: IComponentFile[];
+}
+
+export interface IExampleApp {
+  id: string;
+  title: string;
+  desc?: string;
+  files: { name: string; link: string; }[]
 }

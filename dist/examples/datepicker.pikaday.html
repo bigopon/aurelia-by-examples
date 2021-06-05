@@ -1,0 +1,52 @@
+<div>
+  Popup calendar example
+  <date-picker value.bind="selectedDate1"></date-picker>
+  <b>Selected date</b>: ${selectedDate1.toJSON()}
+</div>
+<div>
+  Inline calendar example
+  <date-picker value.bind="selectedDate2" inline></date-picker>
+  <b>Selected date</b>: ${selectedDate2.toJSON()}
+</div>
+<script>
+import { CustomElement, BindingMode } from '@aurelia/runtime-html';
+
+export class App {
+  static dependencies = [{
+    register(container) {
+      return container.register(DatePicker);
+    }
+  }]
+
+  selectedDate1 = new Date()
+  selectedDate2 = new Date();
+}
+
+
+const DatePicker = CustomElement.define({
+  name: 'date-picker',
+  template:
+`<template style="display: block">
+<input ref="input">
+<div ref="calendarCt" style="display:inline-block;"></div>`,
+  bindables: {
+    value: { property: 'value', attribute: 'value', mode: BindingMode.twoWay },
+    inline: { set: v => v === '' || v && (v !== 'false' && v !== false && v != null) }
+  }
+}, class DatePicker {
+  bound() {
+    this.datepickerInstance = new Pikaday({
+      field: this.input,
+      container: this.inline ? this.calendarCt : undefined,
+      bound: !this.inline,
+      onSelect: v => this.value = v
+    })
+  }
+
+  unbinding() {
+    this.datepickerInstance.destroy()
+  }
+})
+
+</script>
+<style>body{display:flex}body> div{width: 270px;padding: 4px; border: 1px solid blueviolet}date-picker{display:block}input{display:block}</style>

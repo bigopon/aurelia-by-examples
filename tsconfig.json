@@ -3,6 +3,7 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "lib": ["ES2015", "ES2019.Array", "dom", "ES2019.String", "ES2020.String"],
+    "module": "es2020",
     "moduleResolution": "node",
     "strict": true,
     "suppressImplicitAnyIndexErrors": true,

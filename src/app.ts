@@ -1,7 +1,7 @@
 import { CustomElement, IPlatform } from "@aurelia/runtime-html";
 import { ExampleViewer } from "./components/example-viewer.js";
 import { html } from "./html.js";
-import type { IExample } from "./interfaces.js";
+import type { IExample, IExampleApp } from "./interfaces.js";
 // import * as $marked from 'marked';
 
 // const marked = ($marked as any).default as typeof $marked;
@@ -17,7 +17,7 @@ type AureliaExample = (IExample | IExampleHeading) & {
   indent?: number;
 };
 
-const template = html`
+const template = html<App>`
 <div id="start"></div>
 <header>
   <a href="#start"><img id="logo" src="./images/aulogo.svg" alt="Aurelia logo" /></a>
@@ -712,6 +712,46 @@ export class App {
       indent: 1,
       lazy: true,
     },
+    {
+      id: 'date-picker',
+      type: 'heading',
+      title: 'Date picker',
+      desc: 'A common UI component seen in many applications. There are many ways to build/handle such requirements',
+    },
+    {
+      id: 'date-picker',
+      type: 'link',
+      title: 'Native date picker',
+      desc: 'An exmaple of how to bind HTML native datepicker with Aurelia',
+      link: 'examples/datepicker.native.html',
+      indent: 1,
+      lazy: true,
+    },
+    {
+      id: 'date-picker-converter',
+      type: 'link',
+      title: 'Native date picker + converter',
+      desc: 'It is sometimes desirable to retrieve a date object out of a dateinput. An exmaple of how to bind HTML native datepicker with Aurelia, with a value converter',
+      link: 'examples/datepicker.native-value-converter.html',
+      indent: 1,
+      lazy: true,
+    },
+    {
+      id: 'date-picker',
+      type: 'link',
+      title: 'Pikaday',
+      desc: 'A simple example using a thirdparty datepicker component: Pikaday',
+      link: 'examples/datepicker.pikaday.html',
+      indent: 1,
+      lazy: true,
+      settings: {
+        resultHeight: '300px',
+        globals: {
+          scripts: ['https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.0/pikaday.min.js'],
+          styles: ['https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.0/css/pikaday.css'],
+        }
+      }
+    }
   ];
 
   static get inject() { return [IPlatform]; }

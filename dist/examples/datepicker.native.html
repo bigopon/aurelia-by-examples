@@ -1,0 +1,15 @@
+<input type=date value.bind="selectedDate" />
+Selected date is: ${selectedDate}
+<script>
+export class App {
+  selectedDate = toIsoDate(new Date());
+}
+
+function toIsoDate(v) {
+  const d = new Date(v);
+  const m = d.getMonth() + 1;
+  const date = d.getDate();
+  return `${d.getFullYear()}-${m > 10 ? m : '0' + m}-${date > 10 ? date : '0' + date}`;
+}
+</script>
+<style>input{display:block}</style>

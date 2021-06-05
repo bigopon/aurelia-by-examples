@@ -1,0 +1,23 @@
+<input type=date value.bind="selectedDate | isoDate" />
+Selected date is: ${selectedDate}
+<script>
+import {ValueConverter} from '@aurelia/runtime';
+
+export class App {
+  static dependencies = [
+    ValueConverter.define('isoDate', class {
+      fromView(v) { return new Date(v) }
+      toView(v) { return toIsoDate(v) }
+    })
+  ];
+  selectedDate = new Date();
+}
+
+function toIsoDate(v) {
+  const d = new Date(v);
+  const m = d.getMonth() + 1;
+  const date = d.getDate();
+  return `${d.getFullYear()}-${m > 10 ? m : '0' + m}-${date > 10 ? date : '0' + date}`;
+}
+</script>
+<style>input{display:block}</style>
