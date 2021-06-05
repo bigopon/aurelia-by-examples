@@ -738,7 +738,7 @@ export class App {
       lazy: true,
     },
     {
-      id: 'date-picker',
+      id: 'date-picker-pikaday',
       type: 'link',
       title: 'Pikaday',
       desc: 'A simple example using a thirdparty datepicker component: Pikaday',
@@ -750,6 +750,22 @@ export class App {
         globals: {
           scripts: ['https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.0/pikaday.min.js'],
           styles: ['https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.0/css/pikaday.css'],
+        }
+      }
+    },
+    {
+      id: 'date-picker-flatpickr',
+      type: 'link',
+      title: 'Flatpickr',
+      desc: 'A simple example using a thirdparty datepicker component: Flatpickr',
+      link: 'examples/datepicker.flatpickr.html',
+      indent: 1,
+      lazy: true,
+      settings: {
+        resultHeight: '450px',
+        globals: {
+          scripts: ['https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js'],
+          styles: ['https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css'],
         }
       }
     }

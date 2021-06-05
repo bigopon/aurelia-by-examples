@@ -1,4 +1,4 @@
-<p>Documentation: <a href="https://pikaday.com/" target="_blank">https://pikaday.com/</a></p>
+<p>Documentation: <a href="https://flatpickr.js.org/" target="_blank">https://flatpickr.js.org/</a></p>
 <div>
   Popup calendar example
   <date-picker value.bind="selectedDate1"></date-picker>
@@ -7,7 +7,7 @@
 <div>
   Inline calendar example
   <date-picker value.bind="selectedDate2" inline></date-picker>
-  <b>Selected date</b>: ${selectedDate2.toJSON()}
+  <p><b>Selected date</b>: ${selectedDate2.toJSON()}</p>
 </div>
 <script>
 import { CustomElement, BindingMode } from '@aurelia/runtime-html';
@@ -28,19 +28,18 @@ const DatePicker = CustomElement.define({
   name: 'date-picker',
   template:
 `<template style="display: block">
-<input ref="input">
-<div ref="calendarCt" style="display:inline-block;"></div>`,
+<input ref="input">`,
   bindables: {
     value: { property: 'value', attribute: 'value', mode: BindingMode.twoWay },
     inline: { set: v => v === '' || v && (v !== 'false' && v !== false && v != null) }
   }
 }, class DatePicker {
   bound() {
-    this.datepickerInstance = new Pikaday({
-      field: this.input,
-      container: this.inline ? this.calendarCt : undefined,
-      bound: !this.inline,
-      onSelect: v => this.value = v
+    this.datepickerInstance = flatpickr(this.input, {
+      inline: this.inline,
+      onChange: selectedDates => {
+        this.value = selectedDates[0]
+      }
     })
   }
 
@@ -51,7 +50,8 @@ const DatePicker = CustomElement.define({
 
 </script>
 <style>
-body> div{display:inline-block; vertical-align: top; width: 270px;padding: 4px; border: 1px solid blueviolet}
+body> div{display:inline-block; vertical-align: top; padding: 8px; border: 1px solid blueviolet}
 date-picker{display:block}
 input{display:block}
+p {margin: 4px 0;}
 </style>
