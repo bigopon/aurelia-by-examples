@@ -31,6 +31,13 @@ const template = html `
       </template>
       <example-viewer else example.bind="example"></example-viewer>
     </section>
+    <section class="section-heading" id="section-heading-advanced-intro">
+      <h2>Advanced examples</h2>
+      <p>Above are the basic examples of what Aurelia could do, and how Aurelia could help you handle common scenarios met in an application.
+        The examples below will delve into more advanced examples to help you combine various concepts & features to create more sophisticated application,
+        while still manageable and enjoyable 😃.
+      </p>
+    </section>
   </main>
 </div>
 <footer>
