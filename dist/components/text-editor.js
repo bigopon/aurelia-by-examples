@@ -1,5 +1,4 @@
 import { __decorate } from "tslib";
-/// <reference types="codemirror" />
 import { customElement, bindable, BindingMode } from "@aurelia/runtime-html";
 let TextEditor = class TextEditor {
     constructor() {

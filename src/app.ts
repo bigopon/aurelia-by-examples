@@ -775,7 +775,27 @@ export class App {
           styles: ['https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css'],
         }
       }
-    }
+    },
+    // let
+    {
+      id: 'let',
+      type: 'heading',
+      title: 'Html Computed value',
+      desc: 'Aurelia provides a way to declare computed value in HTML with <let/> element, ' +
+        'to enhance compactness & expressiveness of templates.',
+    },
+    {
+      id: 'let-usage-basic',
+      type: 'link',
+      title: 'Let usage basic',
+      desc: 'A simple way to declare view-only computed value',
+      link: 'examples/let.basic.html',
+      indent: 1,
+      lazy: true,
+      settings: {
+        resultHeight: '300px',
+      }
+    },
   ];
 
   static get inject() { return [IPlatform]; }

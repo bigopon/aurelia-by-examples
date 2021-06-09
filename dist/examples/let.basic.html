@@ -1,0 +1,33 @@
+<let
+  full-name="${firstName} ${lastName}"
+  color.bind="level === 'white' || level === 'yellow' ? '#000' : '#fff'"></let>
+<div>
+  <fieldset>
+    <legend>Name</legend>
+    First name:
+    <input value.bind="firstName">
+    Last name:
+    <input value.bind="lastName">
+  </fieldset>
+  <fieldset>
+    <legend>Level</legend>
+    <label><input type="radio" name="level" value="red" checked.bind="level">Red</label>
+    <label><input type="radio" name="level" value="orange" checked.bind="level">Orange</label>
+    <label><input type="radio" name="level" value="yellow" checked.bind="level">Yellow</label>
+    <label><input type="radio" name="level" value="silver" checked.bind="level">Silver</label>
+    <label><input type="radio" name="level" value="white" checked.bind="level">White</label>
+  </fieldset>
+</div>
+<pre>
+  Full name is: "${fullName}"
+  level: ${level}
+</pre>
+Badge:
+<span style.bind="{ background: level || 'lightgreen', color: color }">${fullName}</span>
+<script>
+export class App {
+  firstName = "Dej";
+  lastName = "jan";
+}
+</script>
+<style>input:not([type=radio]){display:block}</style>

@@ -1,4 +1,3 @@
-/// <reference types="codemirror" />
 import { customElement, bindable, BindingMode } from "@aurelia/runtime-html";
 
 declare global {
