@@ -24,7 +24,7 @@ body {
   background-color: var(--bg-grey-xlight);
   box-shadow: 2px -2px 2px 0 rgb(0 0 0 / 14%);
   position:fixed;
-  height:95%;
+  height:calc(100% - 3em);
   overflow:auto;
 }
 .side-nav li { border-bottom: 1px solid var(--nav-border); }
