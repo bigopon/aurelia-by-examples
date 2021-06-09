@@ -1,5 +1,6 @@
 <let
   full-name="${firstName} ${lastName}"
+  background.bind="level || 'darkgreen'"
   color.bind="level === 'white' || level === 'yellow' ? '#000' : '#fff'"></let>
 <div>
   <fieldset>
@@ -23,11 +24,13 @@
   level: ${level}
 </pre>
 Badge:
-<span style.bind="{ background: level || 'lightgreen', color: color }">${fullName}</span>
+<span
+  style.bind="{ background, color }"
+  style="padding: 4px; border: 2px solid #6d50a2; border-radius: 4px;">${fullName}</span>
 <script>
 export class App {
-  firstName = "Dej";
-  lastName = "jan";
+  firstName = "Arthur";
+  lastName = "Grey";
 }
 </script>
 <style>input:not([type=radio]){display:block}</style>
