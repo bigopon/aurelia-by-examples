@@ -37,7 +37,7 @@ const template = html<App>`
       class="nav-item"
       heading.class="isHeading(example)"
       active.class="example === selectedExample">
-      <a href="#\${example.id}" style="padding-left: calc(20px + \${(example.indent || 0) * 20}px);">\${example.title}</a></li>
+      <a href="#\${example.id}" css="padding-left: calc(20px + \${(example.indent || 0) * 20}px);">\${example.title}</a></li>
   </ul>
   <main style="flex-grow: 1; min-width: 0;">
     <section repeat.for="example of examples" section-heading.class="isHeading(example)" id.bind="example.id">
@@ -780,16 +780,28 @@ export class App {
     {
       id: 'let',
       type: 'heading',
-      title: 'Html Computed value',
+      title: 'Declarative computed with <let/>',
       desc: 'Aurelia provides a way to declare computed value in HTML with <let/> element, ' +
         'to enhance compactness & expressiveness of templates.',
     },
     {
-      id: 'let-usage-basic',
+      id: 'let-basic',
       type: 'link',
-      title: 'Let usage basic',
+      title: 'Let basic',
       desc: 'A simple way to declare view-only computed value',
       link: 'examples/let.basic.html',
+      indent: 1,
+      lazy: true,
+      settings: {
+        resultHeight: '300px',
+      }
+    },
+    {
+      id: 'let-to-binding-context',
+      type: 'link',
+      title: 'Let on binding context',
+      desc: 'A way to declare computed value in the binding context from the view',
+      link: 'examples/let.binding-context.html',
       indent: 1,
       lazy: true,
       settings: {

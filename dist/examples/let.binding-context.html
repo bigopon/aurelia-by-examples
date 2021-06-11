@@ -1,0 +1,22 @@
+<let first-name.bind="'Arthur'" last-name.bind="'Grey'"></let>
+<let full-name="${firstName} ${lastName}" to-binding-context></let>
+
+<fieldset>
+  <legend>Name</legend>
+  First name:
+  <input value.bind="firstName">
+  Last name:
+  <input value.bind="lastName">
+</fieldset>
+
+<div repeat.for="log of logs">${log}</div>
+<script>
+export class App {
+
+  logs = [];
+
+  set fullName(v) {
+    this.logs.push(`FullName set with value: "${v}"`);
+  }
+}
+</script>
