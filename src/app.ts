@@ -31,15 +31,15 @@ const template = html<App>`
     <svg width="32" height="32" style="margin-right: 0.5rem"><use href="#icon-gh" /></svg>
   </a>
 </header>
-<div style="display: flex;">
-  <ul class="side-nav" style="flex-shrink: 0; align-self: flex-start;">
+<main>
+  <ul class="side-nav" style="flex-shrink: 0; overflow: auto">
     <li repeat.for="example of examples"
       class="nav-item"
       heading.class="isHeading(example)"
       active.class="example === selectedExample">
       <a href="#\${example.id}" css="padding-left: calc(20px + \${(example.indent || 0) * 20}px);">\${example.title}</a></li>
   </ul>
-  <main style="flex-grow: 1; min-width: 0;">
+  <div class="examples">
     <section repeat.for="example of examples" section-heading.class="isHeading(example)" id.bind="example.id">
       <template if.bind="isHeading(example)">
         <h2>\${example.title}</h2>
@@ -54,34 +54,34 @@ const template = html<App>`
         while still manageable and enjoyable 😃.
       </p>
     </section>
-  </main>
-</div>
-<footer>
-  <div>
-    <h4>Resources</h4>
-    <ul>
-      <li><a href="https://aurelia.io/docs/overview/what-is-aurelia">About</a></li>
-      <li><a href="https://aurelia.io/blog">Blog</a></li>
-      <li><a href="http://eepurl.com/ces50j">Newsletter</a></li>
-    </ul>
+    <footer>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://aurelia.io/docs/overview/what-is-aurelia">About</a></li>
+          <li><a href="https://aurelia.io/blog">Blog</a></li>
+          <li><a href="http://eepurl.com/ces50j">Newsletter</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="https://discourse.aurelia.io/">Discourse</a></li>
+          <li><a href="https://discord.gg/sAeee2C">Discord</a></li>
+          <li><a href="https://stackoverflow.com/search?q=aurelia">Stack Overflow</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Community</h4>
+        <ul>
+          <li><a href="https://github.com/aurelia">GitHub</a></li>
+          <li><a href="https://twitter.com/aureliaeffect">Twitter</a></li>
+          <li><a href="https://github.com/orgs/aurelia/people">Team</a></li>
+        </ul>
+      </div>
+    </footer>
   </div>
-  <div>
-    <h4>Help</h4>
-    <ul>
-      <li><a href="https://discourse.aurelia.io/">Discourse</a></li>
-      <li><a href="https://discord.gg/sAeee2C">Discord</a></li>
-      <li><a href="https://stackoverflow.com/search?q=aurelia">Stack Overflow</a></li>
-    </ul>
-  </div>
-  <div>
-    <h4>Community</h4>
-    <ul>
-      <li><a href="https://github.com/aurelia">GitHub</a></li>
-      <li><a href="https://twitter.com/aureliaeffect">Twitter</a></li>
-      <li><a href="https://github.com/orgs/aurelia/people">Team</a></li>
-    </ul>
-  </div>
-</footer>
+</main>
 <a id="to_top" href="#start" show.bind="scrolled">^ Top</a>
 `
 

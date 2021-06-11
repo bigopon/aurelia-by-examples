@@ -7,6 +7,7 @@ html, body { margin: 0; width: 100%; height: 100%; }
 html { overflow: hidden; font-size: 16px; line-height: 1.15; }
 body {
   overflow: auto;
+  --h-header: 3rem;
   --bg-white: #fff;
   --bg-grey-xlight: #f4f4f4;
   --bg-grey-light: #dedede;
@@ -19,13 +20,9 @@ body {
 }
 .side-nav {
   --nav-border: #aaa;
-  --nav-h-font-w: 600;
   width: 300px;
   background-color: var(--bg-grey-xlight);
   box-shadow: 2px -2px 2px 0 rgb(0 0 0 / 14%);
-  position:fixed;
-  height:calc(100% - 3em);
-  overflow:auto;
 }
 .side-nav li { border-bottom: 1px solid var(--nav-border); }
 .side-nav li.heading { box-shadow: var(--sd-basic); }
@@ -33,7 +30,11 @@ body {
   .side-nav li.heading a { font-weight: 600; }
   .side-nav li a { display: block; line-height: 44px; font-weight: 400; color: inherit; }
 
-body > header { display: flex; align-items: center; height: 3rem; padding: 0 0.75rem; background: var(--bg-grey-xlight);
+body > header { position: relative;
+  display: flex; align-items: center;
+  height: var(--h-header);
+  padding: 0 0.75rem;
+  background: var(--bg-grey-xlight);
   box-shadow: var(--sd-basic);
   z-index: 100;
 }
@@ -42,19 +43,21 @@ body > header { display: flex; align-items: center; height: 3rem; padding: 0 0.7
   body > header a:not(:first-of-type) { display: flex; align-items: center; height: 2.5rem; margin-left: 0.5rem; padding: 0 0.5rem; border: 2px solid var(--bg-pink); border-radius: 0.25rem; }
   body > header a:not(:first-of-type):hover { border-color: var(--bg-purple); }
 
-main { max-width: 1536px; padding: 0 8px; margin: auto; margin-left:300px;}
-  main section { padding: 0.75rem; background-color: var(--bg-grey-xlight); border-radius: 1rem; }
-  main section.section-heading { border-radius: 0.25rem; background: var(--bg-au-gradient); color: var(--bg-white); text-shadow: 0px 0px 4px rgb(0 0 0 / 70%); box-shadow: var(--sd-basic); }
-  main section:not(.section-heading):target { box-shadow: 0 0 0.5rem 0.125rem var(--bg-purple); }
-    main section p { margin: 0 0 0.5rem; white-space: pre-wrap; line-height: 1.45; }
-  main h2 { margin: 0 0 1rem; font-size: 2.25rem; }
-  main h3 { margin: 0 0 calc(1rem / 2); }
-  main section + main section { margin-top: 2.5rem; }
-  main section:not(:last-child) { margin-bottom: 1rem; }
+main { display: flex; align-items: stretch; height: calc(100% - var(--h-header)); }
+  .examples > section { padding: 0.75rem; background-color: var(--bg-grey-xlight); border-radius: 1rem; }
+  .examples > section.section-heading { border-radius: 0.25rem; background: var(--bg-au-gradient); color: var(--bg-white); text-shadow: 0px 0px 4px rgb(0 0 0 / 70%); box-shadow: var(--sd-basic); }
+  .examples > section:not(.section-heading):target { box-shadow: 0 0 0.5rem 0.125rem var(--bg-purple); }
+  .examples > section p { margin: 0 0 0.5rem; white-space: pre-wrap; line-height: 1.45; }
+  .examples > section + .examples > section { margin-top: 2.5rem; }
+  .examples > section:not(:last-child) { margin-bottom: 1rem; }
+  .examples h2 { margin: 0 0 1rem; font-size: 2.25rem; }
+  .examples h3 { margin: 0 0 calc(1rem / 2); }
 
-body > footer { display: flex; justify-content: center; margin-top: 3rem; background-color: var(--bg-purple); color: var(--bg-white); }
-  body > footer > div { margin: 0 2rem; }
-  body > footer a { line-height: 1.75rem;; color: var(--bg-white); }
+.examples { max-width: 1536px; height: 100%; padding: 0 0 0 8px; margin: auto; overflow: auto; }
+
+.examples > footer { display: flex; justify-content: center; margin-top: 3rem; background-color: var(--bg-purple); color: var(--bg-white); }
+  .examples > footer > div { margin: 0 2rem; }
+  .examples > footer a { line-height: 1.75rem;; color: var(--bg-white); }
 
 #to_top { position: fixed; bottom: 2rem; right: 2rem; padding: 0.75rem; background: var(--bg-au-gradient); color: var(--bg-white); z-index: 101;
   border-radius: 0.5rem;
