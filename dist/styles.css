@@ -44,7 +44,7 @@ body > header { position: relative;
   body > header a:not(:first-of-type):hover { border-color: var(--bg-purple); }
 
 main { display: flex; align-items: stretch; height: calc(100% - var(--h-header)); }
-  .examples > section { padding: 0.75rem; background-color: var(--bg-grey-xlight); border-radius: 1rem; }
+  .examples > section { max-width: 1536px; margin: auto; padding: 0.75rem; background-color: var(--bg-grey-xlight); border-radius: 1rem; }
   .examples > section.section-heading { border-radius: 0.25rem; background: var(--bg-au-gradient); color: var(--bg-white); text-shadow: 0px 0px 4px rgb(0 0 0 / 70%); box-shadow: var(--sd-basic); }
   .examples > section:not(.section-heading):target { box-shadow: 0 0 0.5rem 0.125rem var(--bg-purple); }
   .examples > section p { margin: 0 0 0.5rem; white-space: pre-wrap; line-height: 1.45; }
@@ -53,7 +53,7 @@ main { display: flex; align-items: stretch; height: calc(100% - var(--h-header))
   .examples h2 { margin: 0 0 1rem; font-size: 2.25rem; }
   .examples h3 { margin: 0 0 calc(1rem / 2); }
 
-.examples { max-width: 1536px; height: 100%; padding: 0 0 0 8px; margin: auto; overflow: auto; }
+.examples { flex-grow: 1; height: 100%; padding: 0 0 0 8px; margin: auto; overflow: auto; }
 
 .examples > footer { display: flex; justify-content: center; margin-top: 3rem; background-color: var(--bg-purple); color: var(--bg-white); }
   .examples > footer > div { margin: 0 2rem; }
