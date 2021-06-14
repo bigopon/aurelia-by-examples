@@ -795,6 +795,18 @@ export class App {
                     resultHeight: '360px',
                 }
             },
+            {
+                id: 'portal-dynamic-target',
+                type: 'link',
+                title: 'Portal + CSS selector',
+                desc: 'Using target binding on the portal attribute, moving elements to different destination using CSS selector is a breeze.',
+                link: 'examples/portal.dynamic-target-id.html',
+                indent: 1,
+                lazy: true,
+                settings: {
+                    resultHeight: '360px',
+                }
+            },
         ];
         this.scrolled = false;
     }
