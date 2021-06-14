@@ -775,6 +775,37 @@ export class App {
         }
       }
     },
+    // scroll position/scrolling
+    {
+      id: 'scroll',
+      type: 'heading',
+      title: 'Scroll position binding',
+      desc: 'A common need in application is scroll position tracking. Aurelia supports this via 2 ways: event and direct binding.',
+    },
+    {
+      id: 'scroll-event',
+      type: 'link',
+      title: 'Scroll tracking via event',
+      desc: 'An plain way to track scroll position of a scroller is via "scroll" event.',
+      link: 'examples/scroll.event.html',
+      indent: 1,
+      lazy: true,
+      settings: {
+        resultHeight: '300px',
+      }
+    },
+    {
+      id: 'scroll-binding',
+      type: 'link',
+      title: 'Scroll tracking via binding',
+      desc: 'Aurelia is taught to handle scroll binding, supporting two way binding with scroll position with intuitiveness.',
+      link: 'examples/scroll.binding.html',
+      indent: 1,
+      lazy: true,
+      settings: {
+        resultHeight: '300px',
+      }
+    },
     // let
     {
       id: 'let',
@@ -864,7 +895,11 @@ export class App {
       this.scrolled = document.body.scrollTop > 500;
     });
     this.p.domWriteQueue.queueTask(() => {
-      document.querySelector(':target')?.scrollIntoView();
+      const target = document.querySelector(':target');
+      if (target) {
+        target.scrollIntoView();
+        document.querySelector(`[href="#${target.id}"]`)?.scrollIntoView();
+      }
     }, { delay: 100 });
   }
 

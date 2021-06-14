@@ -1,0 +1,27 @@
+<div class="box">
+  Scroll top: <input type="number" value-as-number.bind="scrollTop" /> px
+  <div class="scroller" scroll.trigger="scrollTop = $event.target.scrollTop">
+    <div repeat.for="i of 40" background.style="getBackground(i)">${i}</div>
+  </div>
+</div>
+<div class="box">
+  Scroll left: <input type="number" value-as-number.bind="scrollLeft" /> px
+  <div class="scroller-h" scroll.trigger="scrollLeft = $event.target.scrollLeft">
+    <div repeat.for="i of 40" background.style="getBackground(i)">${i}</div>
+  </div>
+</div>
+<script>
+export class App {
+  getBackground(i) {
+    const v = 255 - i * 4;
+    return `rgb(${v}, ${v}, ${v})`;
+  }
+}
+</script>
+<style>
+.box{display: inline-block; vertical-align: top;border: 1px solid #000;}
+.scroller{width:280px; height: 250px; overflow: auto;}
+  .scroller > * { height: 50px;}
+.scroller-h{width: 300px; height: 250px; overflow: auto hidden; white-space: nowrap;}
+  .scroller-h > * {display:inline-block;width: 50px; height: 300px;}
+</style>
