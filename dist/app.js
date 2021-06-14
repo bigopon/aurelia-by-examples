@@ -807,11 +807,11 @@ export class App {
                 }
             },
             {
-                id: 'portal-dynamic-el-reference',
+                id: 'portal-dynamic-reference',
                 type: 'link',
                 title: 'Portal + element reference',
                 desc: 'Portal also supports element reference as target, beside CSS selectors, making it flexible in many scenarios.',
-                link: 'examples/portal.dynamic-target-reference.html',
+                link: 'examples/portal.dynamic-reference.html',
                 indent: 1,
                 lazy: true,
                 settings: {
