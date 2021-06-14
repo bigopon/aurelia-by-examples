@@ -90,7 +90,7 @@ export class App {
     {
       id: 'basic',
       type: 'heading',
-      title: 'Aurelia by examples',
+      title: 'Introduction',
       desc: 'Aurelia is a frontend JavaScript framework that is simple, powerful and unobtrusive.\n' +
         'It stays out of your way with a plain binding & observation system and an intuitive, expressive & extensible templating system.\n' +
         'Let\'s dive into Aurelia via hundred of examples.',
