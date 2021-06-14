@@ -825,7 +825,7 @@ export class App {
       indent: 1,
       lazy: true,
       settings: {
-        resultHeight: '300px',
+        resultHeight: '360px',
       }
     },
   ];
