@@ -1,0 +1,30 @@
+<let
+  target.bind="bed"
+  img-src="${baseSrc}/images/dogs/dog-${target.getAttribute('data-img')}.jpeg"
+  trees.bind="[]"></let>
+<button repeat.for="i of 3" click.trigger="target = trees[i]">Mark tree ${i + 1}</button>
+<button click.trigger="target = food">Feed the dogo</button>
+<button click.trigger="target = water">Thirsty!</button>
+<button click.trigger="target = bed">Sleep</button>
+<hr>
+<div repeat.for="i of 3" class="box" ref="trees[i]" data-img="marking">
+  ${i}
+</div>
+<div>
+  <div ref="food" class="box" data-img="eating">🥩🥩</div>
+  <div ref="water" class="box" data-img="drinking">🥤🥤</div>
+  <div ref="bed" class="box" data-img="sleeping">💤💤</div>
+</div>
+<hr>
+<img portal.bind="target" src.bind="imgSrc" width="92" height="92">
+<script>
+export class App {
+  // for image to load properly
+  baseSrc = parent.location.origin;
+}
+</script>
+<style>
+*{box-sizing: border-box;}
+.box{position:relative; display: inline-flex; width:100px;height:100px;border: 1px solid #000; justify-content: center;align-items: center;}
+.box img {position: absolute; top: 4px; background-color: orange}
+</style>

@@ -1,4 +1,4 @@
-<let img-src="${baseSrc}/images/cat-${target === '#bed' ? 'sleep' : '1'}.jpeg"></let>
+<let img-src="${baseSrc}/images/cats/cat-${target === '#bed' ? 'sleep' : '1'}.jpeg"></let>
 <button repeat.for="i of 3" click.trigger="target = `#box-${i}`">Jump to box ${i + 1}</button>
 <button click.trigger="target = '#food'">Feed the meow</button>
 <button click.trigger="target = '#water'">Thirsty!</button>

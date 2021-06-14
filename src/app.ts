@@ -828,11 +828,23 @@ export class App {
       }
     },
     {
-      id: 'portal-dynamic-target',
+      id: 'portal-dynamic-css-selector',
       type: 'link',
       title: 'Portal + CSS selector',
       desc: 'Using target binding on the portal attribute, moving elements to different destination using CSS selector is a breeze.',
       link: 'examples/portal.dynamic-target-id.html',
+      indent: 1,
+      lazy: true,
+      settings: {
+        resultHeight: '360px',
+      }
+    },
+    {
+      id: 'portal-dynamic-el-reference',
+      type: 'link',
+      title: 'Portal + element reference',
+      desc: 'Portal also supports element reference as target, beside CSS selectors, making it flexible in many scenarios.',
+      link: 'examples/portal.dynamic-target-reference.html',
       indent: 1,
       lazy: true,
       settings: {
