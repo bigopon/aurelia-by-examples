@@ -1,7 +1,7 @@
 <let
   target.bind="bed"
-  img-src="${baseSrc}/images/dogs/dog-${target.getAttribute('data-img')}.jpeg"
-  trees.bind="[]"></let>
+  trees.bind="[]"
+  img-src="${baseSrc}/images/dogs/dog-${target.getAttribute('data-img')}.jpeg"></let>
 <button repeat.for="i of 3" click.trigger="target = trees[i]">Mark tree ${i + 1}</button>
 <button click.trigger="target = food">Feed the dogo</button>
 <button click.trigger="target = water">Thirsty!</button>
