@@ -1,10 +1,28 @@
-<button repeat.for="i of 3" click.trigger="target = `#box-${i}`">Move the cat to box ${i + 1}</button>
+<let img-src="${baseSrc}/images/cat-${target === '#bed' ? 'sleep' : '1'}.jpeg"></let>
+<button repeat.for="i of 3" click.trigger="target = `#box-${i}`">Jump to box ${i + 1}</button>
+<button click.trigger="target = '#food'">Feed the meow</button>
+<button click.trigger="target = '#water'">Thirsty!</button>
+<button click.trigger="target = '#bed'">Sleep</button>
+<hr>
 <div repeat.for="i of 3" class="box" id="box-${i}">
   ${i}
 </div>
-<img portal.bind="target" src="/images/cat-1.jpeg" width="42" height="42">
+<div>
+  <div id="food" class="box">🥩🥩</div>
+  <div id="water" class="box">🥤🥤</div>
+  <div id="bed" class="box">💤💤</div>
+</div>
+<hr>
+<img portal.bind="target" src.bind="imgSrc" width="92" height="92">
+<script>
+export class App {
+  target = '#bed';
+  // for image to load properly
+  baseSrc = parent.location.origin;
+}
+</script>
 <style>
 *{box-sizing: border-box;}
-.box{position:relative; display: inline-block; width:50px;height:50px;border: 1px solid #000; display: flex;justify-content: center;align-items: center;}
+.box{position:relative; display: inline-flex; width:100px;height:100px;border: 1px solid #000; justify-content: center;align-items: center;}
 .box img {position: absolute; top: 4px; background-color: orange}
 </style>
