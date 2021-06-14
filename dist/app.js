@@ -775,6 +775,26 @@ export class App {
                     resultHeight: '300px',
                 }
             },
+            // portal
+            {
+                id: 'portal',
+                type: 'heading',
+                title: 'Portalling elements',
+                desc: 'There are situations that some elements of a custom element should be rendered at a different location ' +
+                    ' within the document, usually at the bottom of a document body. Aurelia supports this intuitively with [portal] custom attribute.'
+            },
+            {
+                id: 'portal-basic',
+                type: 'link',
+                title: 'Portal basic',
+                desc: 'Move an element to under the document body, while maintaining the binding context',
+                link: 'examples/portal.basic.html',
+                indent: 1,
+                lazy: true,
+                settings: {
+                    resultHeight: '300px',
+                }
+            },
         ];
         this.scrolled = false;
     }
