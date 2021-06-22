@@ -6,6 +6,7 @@ import { InlineComponentEditor } from "./component-editor.js";
 let ExampleViewer = class ExampleViewer {
     constructor() {
         this.title = '';
+        this.layout = 'h';
         this.forceLoad = false;
     }
     get shouldRender() {
@@ -19,6 +20,9 @@ __decorate([
 __decorate([
     bindable
 ], ExampleViewer.prototype, "example", void 0);
+__decorate([
+    bindable
+], ExampleViewer.prototype, "layout", void 0);
 ExampleViewer = __decorate([
     customElement({
         name: 'example-viewer',
@@ -33,7 +37,7 @@ ExampleViewer = __decorate([
     <div if.bind="shouldRender" promise.bind="example | resolve :i">
       <button pending disabled>Loading example...</button>
       <div then.from-view="$data">
-        <inline-editor code.bind="$data.code.script" template.bind="$data.code.template" style="height: 300px;"></inline-editor>
+        <inline-editor code.bind="$data.code.script" template.bind="$data.code.template" style="min-height: 250px;" layout.bind="layout"></inline-editor>
         <result-viewer
           title.bind="$data.title"
           code.bind="$data.code.script"

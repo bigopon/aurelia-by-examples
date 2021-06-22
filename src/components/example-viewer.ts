@@ -19,7 +19,7 @@ import type { IComponentCode, IExample, IExampleSettings, ILinkExample, ILoadedL
     <div if.bind="shouldRender" promise.bind="example | resolve :i">
       <button pending disabled>Loading example...</button>
       <div then.from-view="$data">
-        <inline-editor code.bind="$data.code.script" template.bind="$data.code.template" style="height: 300px;"></inline-editor>
+        <inline-editor code.bind="$data.code.script" template.bind="$data.code.template" style="min-height: 250px;" layout.bind="layout"></inline-editor>
         <result-viewer
           title.bind="$data.title"
           code.bind="$data.code.script"
@@ -43,6 +43,8 @@ export class ExampleViewer {
   @bindable title: string = '';
 
   @bindable example!: IExample;
+
+  @bindable layout: 'v' | 'h' = 'h';
 
   forceLoad = false;
 

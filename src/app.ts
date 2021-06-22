@@ -61,7 +61,7 @@ const template = html<App>`
         <h2>\${example.title}</h2>
         <p>\${example.desc}</p>
       </template>
-      <example-viewer else example.bind="example"></example-viewer>
+      <example-viewer else example.bind="example" layout.bind="isMobile ? 'v' : 'h'"></example-viewer>
     </section>
     <section class="section-heading" id="section-heading-advanced-intro">
       <h2>Advanced examples</h2>

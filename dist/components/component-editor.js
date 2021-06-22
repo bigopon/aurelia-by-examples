@@ -6,6 +6,7 @@ let InlineComponentEditor = class InlineComponentEditor {
     constructor() {
         this.code = '';
         this.template = '';
+        this.layout = 'h';
     }
 };
 __decorate([
@@ -14,13 +15,23 @@ __decorate([
 __decorate([
     bindable({ mode: BindingMode.twoWay })
 ], InlineComponentEditor.prototype, "template", void 0);
+__decorate([
+    bindable({
+        set: v => v === 'v' || v === 'h' ? v : (() => { throw new Error('Invalid layout value'); })()
+    })
+], InlineComponentEditor.prototype, "layout", void 0);
 InlineComponentEditor = __decorate([
     customElement({
         name: 'inline-editor',
-        template: html `<template style="display: flex;">
-      <text-editor lang="html" value.bind="${e => e.template}" style="width: 48%; outline: 1px solid grey;"></text-editor>
-      <div style="margin: 0 calc(2% - 4px); width: 4px; background: black"></div>
-      <text-editor value.bind="${e => e.code}" style="width: 48%; outline: 1px solid grey;"></text-editor>
+        template: html `<template style="display: flex;" css="flex-direction: $\{${c => c.layout === 'v' ? 'column' : 'row'}}">
+      <text-editor lang="html" value.bind="${e => e.template}" style="outline: 1px solid grey;"
+        width.style="layout === 'h' ? '48%' : '100%'"></text-editor>
+      <div style="background: black"
+        css="height: \${layout === 'v' ? '2px' : ''};
+          margin: \${layout === 'v' ? '4px 0' : 'calc(2% - 4px)'};
+          width: \${layout === 'v' ? '100%' : '4px'}"></div>
+      <text-editor value.bind="${e => e.code}" style="outline: 1px solid grey;"
+        width.style="layout === 'h' ? '48%' : '100%'"></text-editor>
     </template>`,
         dependencies: [TextEditor]
     })
