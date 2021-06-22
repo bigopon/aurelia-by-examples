@@ -949,7 +949,7 @@ CustomElement.define({
 @customElement({
   name: 'side-nav',
   template:
-`<template class="side-nav" style="position: fixed; top: var(--h-header); left: 0; height: calc(100vh - var(--h-header)); z-index: 99">
+`<template class="side-nav" style="position: fixed; top: var(--h-header); left: 0; height: calc(100vh - var(--h-header)); z-index: 99; overflow: auto">
 <ul class="side-nav" style="flex-shrink: 0; overflow: auto">
   <li repeat.for="example of examples"
     class="nav-item"
