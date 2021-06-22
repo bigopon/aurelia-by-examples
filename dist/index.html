@@ -8,11 +8,25 @@
   <title>Aurelia by examples</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1/codemirror.min.css"/>
   <link rel="stylesheet" href="./styles.css"/>
-  <link data-react-helmet="true" rel="icon" href="https://gblobscdn.gitbook.com/spaces%2F-LndnvRP1t7WKpUte87y%2Favatar.png?alt=media"/>
+  <link rel="icon" href="images/au.svg"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1/mode/javascript/javascript.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1/mode/xml/xml.min.js"></script>
   <script type="importmap">
+    {
+      "imports": {
+        "@aurelia/kernel": "https://unpkg.com/@aurelia/kernel@dev/dist/bundle/index.js",
+        "@aurelia/runtime": "https://unpkg.com/@aurelia/runtime@dev/dist/bundle/index.js",
+        "@aurelia/runtime-html": "https://unpkg.com/@aurelia/runtime-html@dev/dist/bundle/index.js",
+        "@aurelia/platform": "https://unpkg.com/@aurelia/platform@dev/dist/bundle/index.js",
+        "@aurelia/platform-browser": "https://unpkg.com/@aurelia/platform-browser@dev/dist/bundle/index.js",
+        "@aurelia/metadata": "https://unpkg.com/@aurelia/metadata@dev/dist/bundle/index.js",
+        "tslib": "https://unpkg.com/tslib@2.2.0/tslib.es6.js",
+        "codemirror": "https://unpkg.com/codemirror@5.61.1/lib/codemirror.js"
+      }
+    }
+  </script>
+  <script type="importmap1">
     {
       "imports": {
         "@aurelia/kernel": "https://unpkg.com/@aurelia/kernel@2.1.0-dev.202106010240/dist/bundle/index.js",
@@ -23,7 +37,6 @@
         "@aurelia/metadata": "https://unpkg.com/@aurelia/metadata@2.1.0-dev.202106010240/dist/bundle/index.js",
         "tslib": "https://unpkg.com/tslib@2.2.0/tslib.es6.js",
         "codemirror": "https://unpkg.com/codemirror@5.61.1/lib/codemirror.js",
-        "marked": "https://unpkg.com/marked@2.0.6/lib/marked.esm.js"
       }
     }
   </script>

@@ -1,22 +1,38 @@
-import { CustomElement, IPlatform } from "@aurelia/runtime-html";
+import { __decorate } from "tslib";
+import { bindable, customElement, CustomElement, IPlatform } from "@aurelia/runtime-html";
 import { ExampleViewer } from "./components/example-viewer.js";
 import { html } from "./html.js";
 const template = html `
 <div id="start"></div>
 <header>
-  <a href="#start"><img id="logo" src="./images/aulogo.svg" alt="Aurelia logo" /></a>
+  <template if.bind="isMobile">
+    <button click.trigger="showMenu = !showMenu">🍔</button>
+    <a href="#start"><img id="logo" src="./images/au.svg" alt="Aurelia logo" ></a>
+  </template>
+  <a else href="#start"><img id="logo" src="./images/aulogo.svg" alt="Aurelia logo" /></a>
   <span>by examples</span>
   <i style="flex-grow: 1"></i>
-  <a href="https://docs.aurelia.io" target="_blank" rel="noopener" style="justify-self: flex-end">Documentation</a>
+  <a href="https://docs.aurelia.io" target="_blank" rel="noopener" style="justify-self: flex-end">\${isMobile ? 'Doc' : 'Documentation'}</a>
   <a href="https://github.com/bigopon/aurelia-by-examples" target="_blank" rel="noopener"
     style="justify-self: flex-end; display: flex; align-items: center; padding: 0.25rem;"
   >
-    Contribute
+    \${isMobile ? '' : 'Contribute'}
     <svg width="32" height="32" style="margin-right: 0.5rem"><use href="#icon-gh" /></svg>
   </a>
 </header>
 <main>
-  <ul class="side-nav" style="flex-shrink: 0; overflow: auto">
+  <template if.bind="isMobile">
+    <template if.bind="showMenu">
+      <side-nav examples.bind="examples"></side-nav>
+      <div
+        portal
+        if.bind="showMenu"
+        click.trigger="showMenu = false"
+        style="position: fixed;
+          top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.1); z-index: 98;"></div>
+    </template>
+  </template>
+  <ul else class="side-nav" style="flex-shrink: 0; overflow: auto">
     <li repeat.for="example of examples"
       class="nav-item"
       heading.class="isHeading(example)"
@@ -851,9 +867,18 @@ export class App {
             },
         ];
         this.scrolled = false;
+        this.isMobile = false;
+        this.handleScreenChange = () => {
+            this.isMobile = window.innerWidth <= 768;
+        };
     }
     static get inject() { return [IPlatform]; }
+    binding() {
+        this.handleScreenChange();
+    }
     attached() {
+        window.addEventListener('resize', this.handleScreenChange);
+        window.addEventListener('orientationchange', this.handleScreenChange);
         document.body.addEventListener('scroll', (e) => {
             this.scrolled = document.body.scrollTop > 500;
         });
@@ -872,5 +897,51 @@ export class App {
 CustomElement.define({
     name: 'app',
     template,
-    dependencies: [ExampleViewer],
+    dependencies: [{
+            register(c) {
+                c.register(ExampleViewer);
+                c.register(SideNav);
+            }
+        }],
 }, App);
+let SideNav = class SideNav {
+    constructor(e) {
+        this.e = e;
+    }
+    attaching() {
+        return this.e.animate([
+            { transform: 'translateX(-300px)' },
+            { transform: 'translateX(0)' },
+        ], {
+            duration: 175
+        }).finished;
+    }
+    detaching() {
+        return this.e.animate([
+            { transform: 'translateX(0)' },
+            { transform: 'translateX(-300px)' },
+        ], {
+            duration: 175
+        }).finished;
+    }
+    isHeading(example) {
+        return example.type === 'heading';
+    }
+};
+SideNav.inject = [Element];
+__decorate([
+    bindable
+], SideNav.prototype, "examples", void 0);
+SideNav = __decorate([
+    customElement({
+        name: 'side-nav',
+        template: `<template class="side-nav" style="position: fixed; top: var(--h-header); left: 0; height: calc(100vh - var(--h-header)); z-index: 99">
+<ul class="side-nav" style="flex-shrink: 0; overflow: auto">
+  <li repeat.for="example of examples"
+    class="nav-item"
+    heading.class="isHeading(example)"
+    active.class="example === selectedExample">
+    <a href="#\${example.id}" css="padding-left: calc(20px + \${(example.indent || 0) * 20}px);">\${example.title}</a></li>
+</ul>`
+    })
+], SideNav);
