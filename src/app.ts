@@ -967,18 +967,21 @@ class SideNav {
   attaching() {
     return this.e.animate([
       { transform: 'translateX(-300px)' },
+      { transform: 'translateX(-60px)', offset: 0.2 },
+      { transform: 'translateX(10px)', offset: 0.98 },
       { transform: 'translateX(0)' },
     ], {
-      duration: 175
+      duration: 100
     }).finished;
   }
 
   detaching() {
     return this.e.animate([
       { transform: 'translateX(0)' },
+      { transform: 'translateX(-100px)', offset: 0.2 },
       { transform: 'translateX(-300px)' },
     ], {
-      duration: 175
+      duration: 100
     }).finished;
   }
 
