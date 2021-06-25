@@ -791,6 +791,31 @@ export class App {
         }
       }
     },
+    // focus
+    {
+      id: 'focus',
+      type: 'heading',
+      title: 'Focus binding',
+      desc: 'Controlling and getting notified when an element receives focus is a common task in many applications. Aurelia helps application manage this with ease.',
+    },
+    {
+      id: 'focus-event',
+      type: 'link',
+      title: 'Focus tracking via event',
+      desc: 'An plain way to track scroll position of a scroller is via "focus" event.',
+      link: 'examples/focus.event.html',
+      indent: 1,
+      lazy: true,
+    },
+    {
+      id: 'focus-binding',
+      type: 'link',
+      title: 'Focus tracking via binding',
+      desc: 'Aurelia also provides two way binding for focus tracking, use "focus.bind" to achieve this',
+      link: 'examples/focus.binding.html',
+      indent: 1,
+      lazy: true,
+    },
     // scroll position/scrolling
     {
       id: 'scroll',

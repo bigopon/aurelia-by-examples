@@ -1,0 +1,13 @@
+<div repeat.for="i of 6" focus.bind="$parent[i]" tabindex="0">
+  Box ${i}
+</div>
+<hr>
+<button repeat.for="i of 6" click.trigger="$parent[i] = true">Focus ${i}</button>
+<hr>
+<span repeat.for="i of 6">${$parent[i] ? '1' : 0}</span>
+<style>
+div{display: inline-block; vertical-align: top; width:50px;height:50px; border: 1px solid #000;}
+div:focus{background-color: darkorchid;}
+button:focus{background-color: darkseagreen;}
+span{display:inline-block;background:dodgerblue;padding: 2px;margin-right: 4px;}
+</style>
