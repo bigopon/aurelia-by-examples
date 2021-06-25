@@ -799,9 +799,9 @@ export class App {
     },
     // focus
     {
-      id: 'focus',
+      id: 'focus-blur',
       type: 'heading',
-      title: 'Focus binding',
+      title: 'Focus/Blur binding',
       desc: 'Controlling and getting notified when an element receives focus is a common task in many applications. Aurelia helps application manage this with ease.',
     },
     {
@@ -831,6 +831,28 @@ export class App {
       indent: 1,
       lazy: true,
     },
+    {
+      id: 'blur-event',
+      type: 'link',
+      title: 'Blur tracking via event',
+      desc: 'Sometimes it is desirable to know whether an element has lost focus, a plain way to do this is via "blur" event with "blur.trigger"',
+      link: 'examples/blur.event.html',
+      indent: 1,
+      lazy: true,
+    },
+    // todo: this is somehow broken now
+    // {
+    //   id: 'blur-binding',
+    //   type: 'link',
+    //   title: 'Blur tracking via binding',
+    //   desc: 'Blur tracking can get complicated in the web, ' +
+    //     'when there are a tree of elements that should be consider together, especially when it contains focusable element ' +
+    //     'like <input>, <select> etc...' + '\nAurelia helps you manage this with ease with "blur.bind". ' +
+    //     '"blur.bind" will assign a false value to the bound property whenever the focus has been truely lost from an element.',
+    //   link: 'examples/blur.binding.html',
+    //   indent: 1,
+    //   lazy: true,
+    // },
     // scroll position/scrolling
     {
       id: 'scroll',
@@ -856,6 +878,35 @@ export class App {
       title: 'Scroll tracking via binding',
       desc: 'Aurelia is taught to handle scroll binding, supporting two way binding with scroll position with intuitiveness.',
       link: 'examples/scroll.binding.html',
+      indent: 1,
+      lazy: true,
+      settings: {
+        resultHeight: '300px',
+      }
+    },
+    // with
+    {
+      id: 'with',
+      type: 'heading',
+      title: 'Dynamic binding scope',
+      desc: 'Excessive boilerplate could comes up when binding with long property paths. Aurelia helps manage this easier with "with", like JavaScript "with" syntax',
+    },
+    {
+      id: 'with-static',
+      type: 'link',
+      title: 'With + static scope',
+      desc: 'A simple way to have different scope for bindings inside a view',
+      link: 'examples/with.static-scope.html',
+      indent: 1,
+      lazy: true,
+    },
+    {
+      id: 'with-dynamic',
+      type: 'link',
+      title: 'With + dynamic scope',
+      desc: 'Most of the time, applications will need to switch between different objects as scope for bindings of a part of the template. '
+        + '"with" supports the the dynamic assignment of scope to help handle this with ease.',
+      link: 'examples/with.dynamic-scope.html',
       indent: 1,
       lazy: true,
       settings: {

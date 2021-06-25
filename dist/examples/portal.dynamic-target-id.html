@@ -1,4 +1,6 @@
-<let img-src="${baseSrc}/images/cats/cat-${target === '#bed' ? 'sleep' : '1'}.jpeg"></let>
+<let
+  target="#bed"
+  img-src="${baseSrc}/images/cats/cat-${target === '#bed' ? 'sleep' : '1'}.jpeg"></let>
 <button repeat.for="i of 3" click.trigger="target = `#box-${i}`">Jump to box ${i + 1}</button>
 <button click.trigger="target = '#food'">Feed the meow</button>
 <button click.trigger="target = '#water'">Thirsty!</button>
@@ -16,9 +18,6 @@
 <img portal.bind="target" src.bind="imgSrc" width="92" height="92">
 <script>
 export class App {
-  target = '#bed';
-  // for image to load properly
-  baseSrc = parent.location.origin;
 }
 </script>
 <style>

@@ -1,0 +1,17 @@
+Application name: ${name}
+<div with.bind="contact">
+  Contact name: <input value.bind="name">
+  Contact address: <input value.bind="address">
+</div>
+Name: ${contact.name}<br>
+Contact: ${contact.address}
+<script>
+export class App {
+  name = 'Contact editor';
+  contact = {
+    name: 'Your name...',
+    address: 'Your address...'
+  }
+}
+</script>
+<style>input{display:block;}</style>

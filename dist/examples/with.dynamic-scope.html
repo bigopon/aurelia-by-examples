@@ -1,0 +1,60 @@
+Application name: ${name}<hr>
+<aside>
+  <ul>
+    <li repeat.for="contact of contacts" click.trigger="selected = contact">${contact.name}</li>
+  </ul>
+</aside>
+<main with.bind="selected">
+  Name: <input value.bind="name">
+  DOB: <input type="date" value.bind="dob">
+  Address: <input value.bind="address">
+  Country: <select value.bind="country">
+    <option>US</option>
+    <option>UK</option>
+    <option>AUS</option>
+  </select>
+  Gender:
+    <input type="radio" value="M" checked.bind="gender">Male
+    <input type="radio" value="F" checked.bind="gender"> Female
+</main>
+<hr>
+All: ${json}
+<script>
+export class App {
+  name = 'Contact editor';
+  contacts = [{
+    name: 'Claire Hickle',
+    dob: '1999-10-15',
+    address: '322 Rowe Dale',
+    country: 'US',
+    gender: 'F'
+  }, {
+    name: 'Shakira Harvey',
+    dob: '1991-2-10',
+    address: '1941 Weimann Estates',
+    country: 'UK',
+    gender: 'F'
+  }, {
+    name: 'Saige Berge',
+    dob: '1983-6-30',
+    address: '40976 Layne Land',
+    country: 'US',
+    gender: 'M',
+  }, {
+    name: 'Jed Bartoletti',
+    dob: '1979-10-23',
+    address: 'Paramount, WI 86631',
+    country: 'AUS',
+    gender: 'M',
+  }]
+  selected = this.contacts[0];
+
+  get json() {
+    return JSON.stringify(this.contacts);
+  }
+}
+</script>
+<style>aside{display:inline-block;vertical-align: top; width: 150px;}
+  main{display:inline-block; vertical-align: top;}
+  input:not([type="radio"]){display:block}
+</style>

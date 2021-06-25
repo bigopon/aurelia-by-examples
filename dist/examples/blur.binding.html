@@ -1,0 +1,29 @@
+Clicking anywhere inside the form (lightgreen area) won't trigger a blur,
+as it's within the boundary where "blur.bind" is declared.
+<form focus.capture="isBlur = true" blur.bind="isBlur">
+  Name: <input value.bind="message">
+
+  <button type="button">Do nothing</button>
+</form>
+${setterCallCount}
+<script>
+
+export class App {
+
+  message = 'Hello world';
+
+  _isBlur = false;
+  setterCallCount = 0;
+
+  get isBlur() {
+    return this._isBlur;
+  }
+  set isBlur(v) {
+    if (!v) {
+      this.setterCallCount++;
+    }
+    this._isBlur = v;
+  }
+}
+</script>
+<style>form{background-color: lightgreen;}input{display:block}</style>

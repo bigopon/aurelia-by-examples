@@ -192,6 +192,7 @@ function generateHtml(code, template, styles, globals = {}) {
     const pkgs = lines.map(l => getImportedPackage(l)).filter(Boolean);
     const script = lines.length > 0 ? addBootScript(ensureCustomElement(lines, template)) : { lines: [], mainClass: '' };
     return (`<html><head>
+  <base href="${location.origin}">
   ${globals.scripts?.map(s => `<script src="${s}"></script>`).join('\n') ?? ''}
   ${globals.styles?.map(s => `<link rel="stylesheet" href="${s}" />`).join('\n') ?? ''}
   <script type="importmap">${createImportMap(pkgs)}</script>
