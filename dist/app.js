@@ -783,6 +783,15 @@ export class App {
                 indent: 1,
                 lazy: true,
             },
+            {
+                id: 'focus-input',
+                type: 'link',
+                title: 'Focus binding with input',
+                desc: 'An example of a common task: binding the focus of an <input> with a property',
+                link: 'examples/focus.input.html',
+                indent: 1,
+                lazy: true,
+            },
             // scroll position/scrolling
             {
                 id: 'scroll',
