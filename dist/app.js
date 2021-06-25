@@ -1,5 +1,5 @@
 import { __decorate } from "tslib";
-import { bindable, customElement, CustomElement, IPlatform } from "@aurelia/runtime-html";
+import { customAttribute, CustomElement, IPlatform } from "@aurelia/runtime-html";
 import { ExampleViewer } from "./components/example-viewer.js";
 import { html } from "./html.js";
 const template = html `
@@ -23,7 +23,13 @@ const template = html `
 <main>
   <template if.bind="isMobile">
     <template if.bind="showMenu">
-      <side-nav examples.bind="examples"></side-nav>
+      <ul class="side-nav" slide style="position: fixed; top: var(--h-header); left: 0; height: calc(100vh - var(--h-header)); z-index: 99; overflow: auto">
+        <li repeat.for="example of examples"
+          class="nav-item"
+          heading.class="isHeading(example)"
+          active.class="example === selectedExample">
+          <a href="#\${example.id}" css="padding-left: calc(20px + \${(example.indent || 0) * 20}px);">\${example.title}</a></li>
+      </ul>
       <div
         portal
         if.bind="showMenu"
@@ -934,11 +940,11 @@ CustomElement.define({
     dependencies: [{
             register(c) {
                 c.register(ExampleViewer);
-                c.register(SideNav);
+                c.register(Slide);
             }
         }],
 }, App);
-let SideNav = class SideNav {
+let Slide = class Slide {
     constructor(e) {
         this.e = e;
     }
@@ -961,24 +967,8 @@ let SideNav = class SideNav {
             duration: 100
         }).finished;
     }
-    isHeading(example) {
-        return example.type === 'heading';
-    }
 };
-SideNav.inject = [Element];
-__decorate([
-    bindable
-], SideNav.prototype, "examples", void 0);
-SideNav = __decorate([
-    customElement({
-        name: 'side-nav',
-        template: `<template class="side-nav" style="position: fixed; top: var(--h-header); left: 0; height: calc(100vh - var(--h-header)); z-index: 99; overflow: auto">
-<ul class="side-nav" style="flex-shrink: 0; overflow: auto">
-  <li repeat.for="example of examples"
-    class="nav-item"
-    heading.class="isHeading(example)"
-    active.class="example === selectedExample">
-    <a href="#\${example.id}" css="padding-left: calc(20px + \${(example.indent || 0) * 20}px);">\${example.title}</a></li>
-</ul>`
-    })
-], SideNav);
+Slide.inject = [Element];
+Slide = __decorate([
+    customAttribute('slide')
+], Slide);

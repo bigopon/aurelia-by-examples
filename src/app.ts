@@ -1,5 +1,5 @@
 import { IContainer } from "@aurelia/kernel";
-import { bindable, customElement, CustomElement, IPlatform } from "@aurelia/runtime-html";
+import { bindable, customAttribute, customElement, CustomElement, IPlatform } from "@aurelia/runtime-html";
 import { ExampleViewer } from "./components/example-viewer.js";
 import { html } from "./html.js";
 import type { IExample } from "./interfaces.js";
@@ -39,7 +39,13 @@ const template = html<App>`
 <main>
   <template if.bind="isMobile">
     <template if.bind="showMenu">
-      <side-nav examples.bind="examples"></side-nav>
+      <ul class="side-nav" slide style="position: fixed; top: var(--h-header); left: 0; height: calc(100vh - var(--h-header)); z-index: 99; overflow: auto">
+        <li repeat.for="example of examples"
+          class="nav-item"
+          heading.class="isHeading(example)"
+          active.class="example === selectedExample">
+          <a href="#\${example.id}" css="padding-left: calc(20px + \${(example.indent || 0) * 20}px);">\${example.title}</a></li>
+      </ul>
       <div
         portal
         if.bind="showMenu"
@@ -975,26 +981,14 @@ CustomElement.define({
   dependencies: [{
     register(c: IContainer) {
       c.register(ExampleViewer);
-      c.register(SideNav);
+      c.register(Slide);
     }
   }],
 }, App);
 
-@customElement({
-  name: 'side-nav',
-  template:
-`<template class="side-nav" style="position: fixed; top: var(--h-header); left: 0; height: calc(100vh - var(--h-header)); z-index: 99; overflow: auto">
-<ul class="side-nav" style="flex-shrink: 0; overflow: auto">
-  <li repeat.for="example of examples"
-    class="nav-item"
-    heading.class="isHeading(example)"
-    active.class="example === selectedExample">
-    <a href="#\${example.id}" css="padding-left: calc(20px + \${(example.indent || 0) * 20}px);">\${example.title}</a></li>
-</ul>`
-})
-class SideNav {
-  @bindable
-  examples!: AureliaExample[];
+@customAttribute('slide')
+class Slide {
+
   static inject = [Element];
   constructor(private e: HTMLElement) {}
 
@@ -1019,7 +1013,4 @@ class SideNav {
     }).finished;
   }
 
-  isHeading(example: AureliaExample) {
-    return example.type === 'heading';
-  }
 }
