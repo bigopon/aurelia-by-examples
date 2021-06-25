@@ -1,24 +1,23 @@
 Application name: ${name}<hr>
 <aside>
-  <ul>
-    <li repeat.for="contact of contacts" click.trigger="selected = contact">${contact.name}</li>
-  </ul>
+  <div repeat.for="contact of contacts" click.trigger="selected = contact" class="contact">
+    <button>${$index} ${contact.name}
+  </div>
 </aside>
 <main with.bind="selected">
-  Name: <input value.bind="name">
-  DOB: <input type="date" value.bind="dob">
-  Address: <input value.bind="address">
-  Country: <select value.bind="country">
+  <label>Name:</label> <input value.bind="name"><br>
+  <label>DOB:</label> <input type="date" value.bind="dob"><br>
+  <label>Address:</label> <input value.bind="address"><br>
+  <label>Country:</label> <select value.bind="country">
     <option>US</option>
     <option>UK</option>
     <option>AUS</option>
-  </select>
-  Gender:
-    <input type="radio" value="M" checked.bind="gender">Male
-    <input type="radio" value="F" checked.bind="gender"> Female
+  </select><br>
+  <label>Gender:</label>
+    <label class="radio-ct"><input type="radio" value="M" checked.bind="gender">Male</label>
+    <label class="radio-ct"><input type="radio" value="F" checked.bind="gender"> Female</label>
 </main>
-<hr>
-All: ${json}
+<textarea value="${json}" disabled></textarea>
 <script>
 export class App {
   name = 'Contact editor';
@@ -30,13 +29,13 @@ export class App {
     gender: 'F'
   }, {
     name: 'Shakira Harvey',
-    dob: '1991-2-10',
+    dob: '1991-02-10',
     address: '1941 Weimann Estates',
     country: 'UK',
     gender: 'F'
   }, {
     name: 'Saige Berge',
-    dob: '1983-6-30',
+    dob: '1983-06-30',
     address: '40976 Layne Land',
     country: 'US',
     gender: 'M',
@@ -50,11 +49,14 @@ export class App {
   selected = this.contacts[0];
 
   get json() {
-    return JSON.stringify(this.contacts);
+    return JSON.stringify(this.contacts, void 0, 2);
   }
 }
 </script>
-<style>aside{display:inline-block;vertical-align: top; width: 150px;}
+<style>aside{display:inline-block;vertical-align: top; width: 170px;}
+  label:not(.radio-ct){display:inline-block; vertical-align: top; width: 70px;}
   main{display:inline-block; vertical-align: top;}
-  input:not([type="radio"]){display:block}
+  textarea{display:inline-block;vertical-align:top;width: calc(100% - 440px);max-width: 600px;height: 250px; resize: vertical;}
+  button{display:block}
+  .contact{padding: 3px;}.contact:hover {background-color: lightgreen;}
 </style>
