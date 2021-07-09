@@ -243,12 +243,12 @@ function createImportMap(packages: string[]) {
         all[pkg] = `https://unpkg.com/${isAureliaPkg(pkg) ? `${pkg}@dev`: pkg}`;
         return all;
       }, {}), {
-        "@aurelia/kernel": "https://unpkg.com/@aurelia/kernel@dev/dist/esm/index.js",
-        "@aurelia/runtime": "https://unpkg.com/@aurelia/runtime@dev/dist/esm/index.js",
-        "@aurelia/runtime-html": "https://unpkg.com/@aurelia/runtime-html@dev/dist/esm/index.js",
-        "@aurelia/platform": "https://unpkg.com/@aurelia/platform@dev/dist/esm/index.js",
-        "@aurelia/platform-browser": "https://unpkg.com/@aurelia/platform-browser@dev/dist/esm/index.js",
-        "@aurelia/metadata": "https://unpkg.com/@aurelia/metadata@dev/dist/esm/index.js",
+        "@aurelia/kernel": "https://unpkg.com/@aurelia/kernel@dev/dist/esm/index.prod.js",
+        "@aurelia/runtime": "https://unpkg.com/@aurelia/runtime@dev/dist/esm/index.prod.js",
+        "@aurelia/runtime-html": "https://unpkg.com/@aurelia/runtime-html@dev/dist/esm/index.prod.js",
+        "@aurelia/platform": "https://unpkg.com/@aurelia/platform@dev/dist/esm/index.prod.js",
+        "@aurelia/platform-browser": "https://unpkg.com/@aurelia/platform-browser@dev/dist/esm/index.prod.js",
+        "@aurelia/metadata": "https://unpkg.com/@aurelia/metadata@dev/dist/esm/index.prod.js",
       }),
   }, undefined, 2);
 }
