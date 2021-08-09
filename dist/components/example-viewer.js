@@ -174,7 +174,10 @@ __decorate([
 ResultViewer = __decorate([
     customElement({
         name: 'result-viewer',
-        template: `<template style="display: block"><iframe ref=iframe title.bind="title" style="width: 100%; height: 100%; border: 0;">`
+        template: html `<template style="display: block"><iframe
+    ref=iframe
+    title.bind="title"
+    style="width: 100%; height: 100%; border: 0;">`
     })
 ], ResultViewer);
 function generateFile(code, template, styles, globals) {

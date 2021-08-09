@@ -69,6 +69,13 @@ const template = html<App>`
       </template>
       <example-viewer else example.bind="example" layout.bind="isMobile ? 'v' : 'h'"></example-viewer>
     </section>
+    <section repeat.for="example of multiFileExamples" section-heading.class="isHeading(example)" id.bind="example.id">
+      <template itemref.bind="isHeading(example)">
+        <h2>\${example.title}</h2>
+        <p>\${example.desc}</p>
+      </template>
+      <project-example-viewer example.bind="example"></project-example-viewer>
+    </section>
     <section class="section-heading" id="section-heading-advanced-intro">
       <h2>Advanced examples</h2>
       <p>Above are the basic examples of what Aurelia could do, and how Aurelia could help you handle common scenarios met in an application.
@@ -141,6 +148,7 @@ export class App {
         styles: [],
       },
       indent: 1,
+      lazy: true,
     },
     {
       id: 'templating-syntax-html',
@@ -163,6 +171,7 @@ export class App {
         styles: [],
       },
       indent: 1,
+      lazy: true,
     },
     {
       id: 'templating-syntax-attribute',
@@ -171,6 +180,7 @@ export class App {
       desc: 'By default, "aria-", "data-", "class", "styles" and standard svg attributes are treated as attribute, instead of properties.',
       link: 'examples/basic.attribute.html',
       indent: 1,
+      lazy: true,
     },
     {
       id: 'templating-syntax-attribute-class',
@@ -179,6 +189,7 @@ export class App {
       desc: 'Interpolation and ".class" binding command can be used to set a class on an element',
       link: 'examples/basic.attribute-class.html',
       indent: 1,
+      lazy: true,
     },
     {
       id: 'templating-syntax-attribute-style',
@@ -186,7 +197,8 @@ export class App {
       title: 'Setting styles',
       desc: 'Interpolation and ".style" binding command can be used to set one or many styles on an element',
       link: 'examples/basic.attribute-style.html',
-      indent: 1
+      indent: 1,
+      lazy: true,
     },
     // collectiong rendering
     {

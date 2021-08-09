@@ -6,9 +6,9 @@ import { InlineComponentEditor } from "./component-editor.js";
 import type { IComponentCode, IExample, IExampleSettings, ILinkExample, ILoadedLinkExample } from "../interfaces.js";
 
 @customElement({
-  name: 'example-viewer',
+  name: 'project-example-viewer',
   template:
-  html<ExampleViewer>`<template style="display: block;">
+  html<ProjectExampleViewer>`<template style="display: block;">
     <let i.bind="0"></let>
     <h3
       id.bind=${v => v.example.id}
@@ -39,7 +39,7 @@ import type { IComponentCode, IExample, IExampleSettings, ILinkExample, ILoadedL
     }
   }]
 })
-export class ExampleViewer {
+export class ProjectExampleViewer {
   @bindable title: string = '';
 
   @bindable example!: IExample;
@@ -262,4 +262,34 @@ function isAureliaPkg(pkg: string) {
 
 function getImportedPackage(line: string): string | null {
   return line.match(/^\s*import\s+(?:.*?)\s+from\s+['"](.*)['"]\s*;?\s*$/)?.[1] ?? null;
+}
+
+@customElement({
+  name: 'project-files',
+  template: html`
+  
+  `
+})
+class ProjectFiles {
+  // files: Record<string, string>;
+
+  binding() {
+
+  }
+
+  normalize(files: Record<string, string>): INormalizedFile[] {
+    const normalized: INormalizedFile[] = [];
+    for (const path in files) {
+
+    }
+    return normalized;
+  }
+}
+
+interface INormalizedFile {
+  level: number;
+  isDir: boolean;
+  path: string;
+  text: string;
+  children: INormalizedFile[];
 }

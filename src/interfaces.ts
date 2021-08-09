@@ -48,14 +48,19 @@ export interface IExampleSettings {
   }
 }
 
-export interface IAdvancedExample {
+export interface IProjectFile {
+  path: string;
+  text: string;
+}
+
+export interface IProjectExample {
   id: string;
   title: string;
-  type: 'inline-2',
+  type: 'project',
   desc?: string;
   lazy?: boolean;
   settings?: IExampleSettings;
-  files?: IComponentFile[];
+  files?: Record</* path */string, /* text */ string>;
 }
 
 export interface IExampleApp {
