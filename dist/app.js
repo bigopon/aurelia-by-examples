@@ -1,6 +1,7 @@
 import { __decorate } from "tslib";
 import { customAttribute, CustomElement, IPlatform } from "@aurelia/runtime-html";
 import { ExampleViewer } from "./components/example-viewer.js";
+import { ProjectExampleViewer } from './components/project-example-viewer.js';
 import { html } from "./html.js";
 const template = html `
 <div id="start"></div>
@@ -1004,6 +1005,7 @@ CustomElement.define({
             register(c) {
                 c.register(ExampleViewer);
                 c.register(Slide);
+                c.register(ProjectExampleViewer);
             }
         }],
 }, App);

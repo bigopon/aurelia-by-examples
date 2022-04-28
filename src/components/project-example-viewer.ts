@@ -150,7 +150,7 @@ class ResultViewer {
     this.iframe.src = file.path;
   }
 
-  private refreshId: number = 0;
+  private refreshId: any = 0;
   propertyChanged() {
     clearTimeout(this.refreshId);
     this.refreshId = setTimeout(() => {
@@ -252,6 +252,7 @@ function createImportMap(packages: string[]) {
         "@aurelia/platform": "https://unpkg.com/@aurelia/platform@dev/dist/esm/index.js",
         "@aurelia/platform-browser": "https://unpkg.com/@aurelia/platform-browser@dev/dist/esm/index.js",
         "@aurelia/metadata": "https://unpkg.com/@aurelia/metadata@dev/dist/esm/index.js",
+        "fs": "https://unpkg.com/virtualfs@2.2.0/dist/index.browser.umd.js",
       }),
   }, undefined, 2);
 }
@@ -274,7 +275,7 @@ class ProjectFiles {
   // files: Record<string, string>;
 
   binding() {
-
+    
   }
 
   normalize(files: Record<string, string>): INormalizedFile[] {
@@ -293,3 +294,17 @@ interface INormalizedFile {
   text: string;
   children: INormalizedFile[];
 }
+
+function loadFs(): Promise<typeof import('fs')> {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/virtualfs@2.2.0/dist/index.browser.umd.js';
+    document.head.appendChild(script);
+    script.onload = function () {
+      script.remove();
+      resolve(window['virtualFS']);
+    };
+    script.onerror = reject;
+  });
+}
+console.log(window['loadFs'] = loadFs);

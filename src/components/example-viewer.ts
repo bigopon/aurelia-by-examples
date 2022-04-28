@@ -150,7 +150,7 @@ class ResultViewer {
     this.iframe.src = file.path;
   }
 
-  private refreshId: number = 0;
+  private refreshId: any = 0;
   propertyChanged() {
     clearTimeout(this.refreshId);
     this.refreshId = setTimeout(() => {
@@ -246,12 +246,12 @@ function createImportMap(packages: string[]) {
         all[pkg] = `https://unpkg.com/${isAureliaPkg(pkg) ? `${pkg}@dev`: pkg}`;
         return all;
       }, {}), {
-        "@aurelia/kernel": "https://unpkg.com/@aurelia/kernel@dev/dist/esm/index.js",
-        "@aurelia/runtime": "https://unpkg.com/@aurelia/runtime@dev/dist/esm/index.js",
-        "@aurelia/runtime-html": "https://unpkg.com/@aurelia/runtime-html@dev/dist/esm/index.js",
-        "@aurelia/platform": "https://unpkg.com/@aurelia/platform@dev/dist/esm/index.js",
-        "@aurelia/platform-browser": "https://unpkg.com/@aurelia/platform-browser@dev/dist/esm/index.js",
-        "@aurelia/metadata": "https://unpkg.com/@aurelia/metadata@dev/dist/esm/index.js",
+        "@aurelia/kernel": "https://unpkg.com/@aurelia/kernel@dev/dist/esm/index.mjs",
+        "@aurelia/runtime": "https://unpkg.com/@aurelia/runtime@dev/dist/esm/index.mjs",
+        "@aurelia/runtime-html": "https://unpkg.com/@aurelia/runtime-html@dev/dist/esm/index.mjs",
+        "@aurelia/platform": "https://unpkg.com/@aurelia/platform@dev/dist/esm/index.mjs",
+        "@aurelia/platform-browser": "https://unpkg.com/@aurelia/platform-browser@dev/dist/esm/index.mjs",
+        "@aurelia/metadata": "https://unpkg.com/@aurelia/metadata@dev/dist/esm/index.mjs",
       }),
   }, undefined, 2);
 }

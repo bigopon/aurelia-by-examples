@@ -1,6 +1,7 @@
 import { IContainer } from "@aurelia/kernel";
 import { bindable, customAttribute, customElement, CustomElement, IPlatform } from "@aurelia/runtime-html";
 import { ExampleViewer } from "./components/example-viewer.js";
+import { ProjectExampleViewer } from './components/project-example-viewer.js';
 import { html } from "./html.js";
 import type { IExample } from "./interfaces.js";
 // import * as $marked from 'marked';
@@ -1045,6 +1046,7 @@ CustomElement.define({
     register(c: IContainer) {
       c.register(ExampleViewer);
       c.register(Slide);
+      c.register(ProjectExampleViewer);
     }
   }],
 }, App);

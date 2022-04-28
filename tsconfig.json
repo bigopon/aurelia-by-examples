@@ -9,7 +9,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "es2020",
     "outDir": "dist",
-    "types": []
+    "types": ["node"]
   },
   "include": ["src"]
 }

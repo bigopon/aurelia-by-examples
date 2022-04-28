@@ -3,7 +3,7 @@ import { camelCase } from "@aurelia/kernel";
 import { bindable, customElement, valueConverter } from "@aurelia/runtime-html";
 import { html } from "../html.js";
 import { InlineComponentEditor } from "./component-editor.js";
-let ExampleViewer = class ExampleViewer {
+let ProjectExampleViewer = class ProjectExampleViewer {
     constructor() {
         this.title = '';
         this.layout = 'h';
@@ -16,16 +16,16 @@ let ExampleViewer = class ExampleViewer {
 };
 __decorate([
     bindable
-], ExampleViewer.prototype, "title", void 0);
+], ProjectExampleViewer.prototype, "title", void 0);
 __decorate([
     bindable
-], ExampleViewer.prototype, "example", void 0);
+], ProjectExampleViewer.prototype, "example", void 0);
 __decorate([
     bindable
-], ExampleViewer.prototype, "layout", void 0);
-ExampleViewer = __decorate([
+], ProjectExampleViewer.prototype, "layout", void 0);
+ProjectExampleViewer = __decorate([
     customElement({
-        name: 'example-viewer',
+        name: 'project-example-viewer',
         template: html `<template style="display: block;">
     <let i.bind="0"></let>
     <h3
@@ -57,8 +57,8 @@ ExampleViewer = __decorate([
                 }
             }]
     })
-], ExampleViewer);
-export { ExampleViewer };
+], ProjectExampleViewer);
+export { ProjectExampleViewer };
 class ExampleLoader {
     constructor() {
         this.cache = Object.create(null);
@@ -247,12 +247,13 @@ function createImportMap(packages) {
             all[pkg] = `https://unpkg.com/${isAureliaPkg(pkg) ? `${pkg}@dev` : pkg}`;
             return all;
         }, {}), {
-            "@aurelia/kernel": "https://unpkg.com/@aurelia/kernel@dev/dist/esm/index.mjs",
-            "@aurelia/runtime": "https://unpkg.com/@aurelia/runtime@dev/dist/esm/index.mjs",
-            "@aurelia/runtime-html": "https://unpkg.com/@aurelia/runtime-html@dev/dist/esm/index.mjs",
-            "@aurelia/platform": "https://unpkg.com/@aurelia/platform@dev/dist/esm/index.mjs",
-            "@aurelia/platform-browser": "https://unpkg.com/@aurelia/platform-browser@dev/dist/esm/index.mjs",
-            "@aurelia/metadata": "https://unpkg.com/@aurelia/metadata@dev/dist/esm/index.mjs",
+            "@aurelia/kernel": "https://unpkg.com/@aurelia/kernel@dev/dist/esm/index.js",
+            "@aurelia/runtime": "https://unpkg.com/@aurelia/runtime@dev/dist/esm/index.js",
+            "@aurelia/runtime-html": "https://unpkg.com/@aurelia/runtime-html@dev/dist/esm/index.js",
+            "@aurelia/platform": "https://unpkg.com/@aurelia/platform@dev/dist/esm/index.js",
+            "@aurelia/platform-browser": "https://unpkg.com/@aurelia/platform-browser@dev/dist/esm/index.js",
+            "@aurelia/metadata": "https://unpkg.com/@aurelia/metadata@dev/dist/esm/index.js",
+            "fs": "https://unpkg.com/virtualfs@2.2.0/dist/index.browser.umd.js",
         }),
     }, undefined, 2);
 }
@@ -262,3 +263,35 @@ function isAureliaPkg(pkg) {
 function getImportedPackage(line) {
     return line.match(/^\s*import\s+(?:.*?)\s+from\s+['"](.*)['"]\s*;?\s*$/)?.[1] ?? null;
 }
+let ProjectFiles = class ProjectFiles {
+    // files: Record<string, string>;
+    binding() {
+    }
+    normalize(files) {
+        const normalized = [];
+        for (const path in files) {
+        }
+        return normalized;
+    }
+};
+ProjectFiles = __decorate([
+    customElement({
+        name: 'project-files',
+        template: html `
+  
+  `
+    })
+], ProjectFiles);
+function loadFs() {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/virtualfs@2.2.0/dist/index.browser.umd.js';
+        document.head.appendChild(script);
+        script.onload = function () {
+            script.remove();
+            resolve(window['virtualFS']);
+        };
+        script.onerror = reject;
+    });
+}
+console.log(window['loadFs'] = loadFs);
