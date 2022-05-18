@@ -1,5 +1,6 @@
-import { DI, Registration, TaskAbortError } from "@aurelia/kernel";
-import { StandardConfiguration as SC, Aurelia, BrowserPlatform, IPlatform, ColonPrefixedBindAttributePattern } from "@aurelia/runtime-html";
+import { DI, Registration } from "@aurelia/kernel";
+import { BrowserPlatform } from '@aurelia/platform-browser';
+import { StandardConfiguration as SC, Aurelia, IPlatform, ColonPrefixedBindAttributePattern } from "@aurelia/runtime-html";
 import { App } from "./app.js";
 
 const PLATFORM = BrowserPlatform.getOrCreate(globalThis);
@@ -15,8 +16,8 @@ new Aurelia(ct)
   })
   .start();
 
-window.addEventListener('unhandledrejection', err => {
-  if (err.reason instanceof TaskAbortError) {
-    err.preventDefault();
-  }
-});
+// window.addEventListener('unhandledrejection', err => {
+//   if (err.reason instanceof TaskAbortError) {
+//     err.preventDefault();
+//   }
+// });

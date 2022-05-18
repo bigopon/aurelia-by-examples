@@ -1,6 +1,7 @@
 import { __decorate } from "tslib";
 import { camelCase } from "@aurelia/kernel";
-import { bindable, customElement, valueConverter } from "@aurelia/runtime-html";
+import { valueConverter } from "@aurelia/runtime";
+import { bindable, customElement } from "@aurelia/runtime-html";
 import { html } from "../html.js";
 import { InlineComponentEditor } from "./component-editor.js";
 let ProjectExampleViewer = class ProjectExampleViewer {
