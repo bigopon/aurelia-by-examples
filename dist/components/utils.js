@@ -1,5 +1,6 @@
 import { __decorate } from "tslib";
-import { bindable, BindingMode, customAttribute, INode } from '@aurelia/runtime-html';
+import { BindingMode } from "@aurelia/runtime";
+import { bindable, customAttribute, INode } from '@aurelia/runtime-html';
 let RectSize = class RectSize {
     constructor(element) {
         this.element = element;

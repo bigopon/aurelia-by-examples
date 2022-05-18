@@ -1,4 +1,5 @@
-import { bindable, BindingMode, customElement } from "@aurelia/runtime-html";
+import { BindingMode } from "@aurelia/runtime";
+import { bindable, customElement } from "@aurelia/runtime-html";
 import { html } from "../html.js";
 import { TextEditor } from "./text-editor.js";
 

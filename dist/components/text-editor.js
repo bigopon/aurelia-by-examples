@@ -1,5 +1,6 @@
 import { __decorate } from "tslib";
-import { customElement, bindable, BindingMode } from "@aurelia/runtime-html";
+import { BindingMode } from "@aurelia/runtime";
+import { customElement, bindable } from "@aurelia/runtime-html";
 let TextEditor = class TextEditor {
     constructor() {
         this.value = '';

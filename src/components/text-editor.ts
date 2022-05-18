@@ -1,4 +1,5 @@
-import { customElement, bindable, BindingMode } from "@aurelia/runtime-html";
+import { BindingMode } from "@aurelia/runtime";
+import { customElement, bindable } from "@aurelia/runtime-html";
 
 declare global {
   const CodeMirror: typeof import('codemirror');

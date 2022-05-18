@@ -1,5 +1,6 @@
 // import { IContainer } from "@aurelia/kernel";
-// import { bindable, BindingMode, customElement, ValueConverter } from "@aurelia/runtime-html";
+// import { BindingMode } from "@aurelia/runtime";
+// import { bindable, customElement, ValueConverter } from "@aurelia/runtime-html";
 // import { html } from "../html.js";
 // import { TextEditor } from "./text-editor.js";
 
