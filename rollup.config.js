@@ -24,7 +24,6 @@ const config = [{
   external: /@aurelia/,
   plugins: [
     typescript(),
-    terser()
   ]
 }]
 
