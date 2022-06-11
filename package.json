@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build:au": "rollup -c",
     "build": "tsc --skipLibCheck",
     "build:watch": "npm run build -- -w"
   },
@@ -20,17 +21,22 @@
   },
   "homepage": "https://github.com/bigopon/aurelia-by-examples#readme",
   "dependencies": {
-    "@aurelia/kernel": "^2.0.0-alpha.29",
-    "@aurelia/metadata": "^2.0.0-alpha.29",
-    "@aurelia/platform": "^2.0.0-alpha.29",
-    "@aurelia/platform-browser": "^2.0.0-alpha.29",
-    "@aurelia/runtime": "^2.0.0-alpha.29",
-    "@aurelia/runtime-html": "^2.0.0-alpha.29"
+    "@aurelia/kernel": "2.0.0-alpha.35",
+    "@aurelia/metadata": "2.0.0-alpha.35",
+    "@aurelia/platform": "2.0.0-alpha.35",
+    "@aurelia/platform-browser": "2.0.0-alpha.35",
+    "@aurelia/runtime": "2.0.0-alpha.35",
+    "@aurelia/runtime-html": "2.0.0-alpha.35"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.3.3",
     "@types/codemirror": "^5.60.0",
     "@types/node": "^16.7.1",
+    "rollup": "^2.75.6",
+    "rollup-plugin-terser": "^7.0.2",
     "tslib": "^2.2.0",
-    "typescript": "^4.2.4"
+    "typescript": "^4.7.3"
   }
 }

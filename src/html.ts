@@ -31,7 +31,7 @@ export function html<TSource = any>(
       html += `${parsed}`;
       continue;
     }
-    html += `${value}`;
+    html += `${value as string}`;
   }
 
   html += strings[strings.length - 1];

@@ -64,7 +64,7 @@ class ExampleLoader {
     if (this.cache[link]) {
       return Promise.resolve(this.cache[link]);
     }
-    if (this.loadingExample[link]) {
+    if (!!this.loadingExample[link]) {
       return this.loadingExample[link];
     }
     return this.loadingExample[link]
