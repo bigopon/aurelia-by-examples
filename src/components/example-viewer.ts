@@ -12,7 +12,7 @@ import type { IComponentCode, IExample, IExampleSettings, ILinkExample, ILoadedL
   html<ExampleViewer>`<template style="display: block;">
     <let i.bind="0"></let>
     <h3
-      id.bind=${v => v.example.id}
+      id.bind="${v => v.example.id}"
       show.bind="${v => v.example.title}">\${${v => v.example.title}}</h3>
     <p
       show.bind="${v => v.example.desc}">$\{${v => v.example.desc}}</p>
