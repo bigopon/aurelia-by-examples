@@ -123,7 +123,7 @@ class ResolveValueConverter {
   template: html`<template style="display: block"><iframe
     ref=iframe
     title.bind="title"
-    style="width: 100%; height: 100%; border: 0;">`
+    style="width: 100%; height: 100%; border: 0; position: relative; z-index: 1">`
 })
 class ResultViewer {
 

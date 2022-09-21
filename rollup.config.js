@@ -20,10 +20,13 @@ const config = [{
   output: {
     file: 'dist/index.js',
     format: 'es',
+    sourcemap: true
   },
   external: /@aurelia/,
   plugins: [
-    typescript(),
+    typescript({
+      sourceMap: true
+    }),
   ]
 }]
 
