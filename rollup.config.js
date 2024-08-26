@@ -6,26 +6,26 @@ import { terser } from 'rollup-plugin-terser';
 /** @type {import('rollup').RollupOptions[]} */
 const config = [{
   input: 'au.build.js',
-  output: {
+  output: [{
     file: 'dist/vendors/au.js',
     format: 'es',
-  },
+  }],
   plugins: [
     nodeResolve(),
     commonjs({ extensions: ['.js', /* '.ts' */] }),
-    terser()
+    // terser()
   ]
 }, {
   input: 'src/index.ts',
-  output: {
+  output: [{
     file: 'dist/index.js',
     format: 'es',
     sourcemap: true
-  },
+  }],
   external: /@aurelia/,
   plugins: [
     typescript({
-      sourceMap: true
+      sourceMap: true,
     }),
   ]
 }]

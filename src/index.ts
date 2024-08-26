@@ -1,12 +1,13 @@
 import { DI, Registration } from "@aurelia/kernel";
 import { BrowserPlatform } from '@aurelia/platform-browser';
-import { StandardConfiguration as SC, Aurelia, IPlatform, ColonPrefixedBindAttributePattern } from "@aurelia/runtime-html";
+import { StandardConfiguration, Aurelia, IPlatform } from "@aurelia/runtime-html";
+import { ColonPrefixedBindAttributePattern } from '@aurelia/template-compiler';
 import { App } from "./app.js";
 
 const PLATFORM = BrowserPlatform.getOrCreate(globalThis);
 const ct = DI.createContainer().register(
   Registration.instance(IPlatform, PLATFORM),
-  SC,
+  StandardConfiguration,
   ColonPrefixedBindAttributePattern,
 );
 new Aurelia(ct)

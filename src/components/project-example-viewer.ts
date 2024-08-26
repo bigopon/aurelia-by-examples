@@ -1,6 +1,5 @@
 import { camelCase, IContainer } from "@aurelia/kernel";
-import { valueConverter } from "@aurelia/runtime";
-import { bindable, customElement } from "@aurelia/runtime-html";
+import { valueConverter, bindable, customElement } from "@aurelia/runtime-html";
 import { html } from "../html.js";
 import { InlineComponentEditor } from "./component-editor.js";
 
@@ -243,7 +242,7 @@ function ensureCustomElement(lines: string[], template: string) {
 function createImportMap(packages: string[]) {
   return JSON.stringify({
     imports: Object.assign(packages
-      .reduce((all, pkg) => {
+      .reduce((all: Record<string, string>, pkg) => {
         all[pkg] = `https://unpkg.com/${isAureliaPkg(pkg) ? `${pkg}@dev`: pkg}`;
         return all;
       }, {}), {
@@ -303,9 +302,9 @@ function loadFs(): Promise<typeof import('fs')> {
     document.head.appendChild(script);
     script.onload = function () {
       script.remove();
-      resolve(window['virtualFS']);
+      resolve((window as any)['virtualFS']);
     };
     script.onerror = reject;
   });
 }
-console.log(window['loadFs'] = loadFs);
+console.log((window as any)['loadFs'] = loadFs);

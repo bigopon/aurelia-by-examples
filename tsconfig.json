@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "lib": ["ES2015", "ES2019.Array", "dom", "ES2019.String", "ES2020.String"],
-    "module": "es2020",
-    "moduleResolution": "node",
+    "importHelpers": false,
+    "lib": ["ES2015", "ES2019.Array", "dom", "ES2019.String", "ES2020.String", "ES2022"],
+    "module": "es2022",
+    "moduleResolution": "Bundler",
     "strict": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "target": "es2020",
+    "target": "es2022",
     "outDir": "dist",
     "types": ["node"]
   },

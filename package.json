@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "start": "concurrently \"npm run build:au\" \"npx http-server dist --quiet --silent\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:au": "rollup -c",
     "build": "tsc --skipLibCheck",
@@ -21,22 +22,26 @@
   },
   "homepage": "https://github.com/bigopon/aurelia-by-examples#readme",
   "dependencies": {
-    "@aurelia/kernel": "2.0.0-alpha.35",
-    "@aurelia/metadata": "2.0.0-alpha.35",
-    "@aurelia/platform": "2.0.0-alpha.35",
-    "@aurelia/platform-browser": "2.0.0-alpha.35",
-    "@aurelia/runtime": "2.0.0-alpha.35",
-    "@aurelia/runtime-html": "2.0.0-alpha.35"
+    "@aurelia/kernel": "2.0.0-beta.21",
+    "@aurelia/metadata": "2.0.0-beta.21",
+    "@aurelia/platform": "2.0.0-beta.21",
+    "@aurelia/platform-browser": "2.0.0-beta.21",
+    "@aurelia/expression-parser": "2.0.0-beta.21",
+    "@aurelia/runtime": "2.0.0-beta.21",
+    "@aurelia/template-compiler": "2.0.0-beta.21",
+    "@aurelia/runtime-html": "2.0.0-beta.21"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^22.0.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.3.3",
-    "@types/codemirror": "^5.60.0",
+    "@rollup/plugin-commonjs": "26.0.1",
+    "@rollup/plugin-node-resolve": "15.2.3",
+    "@rollup/plugin-typescript": "11.1.6",
+    "@rollup/plugin-terser": "0.4.4",
+    "@rollup/browser": "4.21.1",
+    "@types/codemirror": "5.60.15",
     "@types/node": "^16.7.1",
-    "rollup": "^2.75.6",
-    "rollup-plugin-terser": "^7.0.2",
-    "tslib": "^2.2.0",
-    "typescript": "^4.7.3"
+    "rollup": "^4.21.1",
+    "tslib": "2.7.0",
+    "typescript": "5.5.4",
+    "concurrently": "8.2.2"
   }
 }

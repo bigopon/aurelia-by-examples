@@ -1,8 +1,10 @@
-import { BindingMode } from "@aurelia/runtime";
-import { customElement, bindable } from "@aurelia/runtime-html";
+import { BindingMode, customElement, bindable } from "@aurelia/runtime-html";
+import type * as CodeMirror from "codemirror";
 
 declare global {
-  const CodeMirror: typeof import('codemirror');
+  interface Window {
+    CodeMirror: typeof import('codemirror');
+  }
 }
 
 @customElement({
@@ -23,7 +25,7 @@ export class TextEditor {
 
   /* lifecycle */
   bound() {
-    const view = this.editor = CodeMirror(this.host, {
+    const view = this.editor = window.CodeMirror(this.host, {
       value: this.value,
       mode: this.lang === 'js' ? 'javascript' : 'text/html',
       lineNumbers: true,

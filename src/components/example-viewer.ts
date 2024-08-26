@@ -1,6 +1,5 @@
 import { camelCase, IContainer } from "@aurelia/kernel";
-import { valueConverter } from "@aurelia/runtime";
-import { bindable, customElement } from "@aurelia/runtime-html";
+import { valueConverter, bindable, customElement } from "@aurelia/runtime-html";
 import { html } from "../html.js";
 import { InlineComponentEditor } from "./component-editor.js";
 
@@ -243,13 +242,15 @@ function ensureCustomElement(lines: string[], template: string) {
 function createImportMap(packages: string[]) {
   return JSON.stringify({
     imports: Object.assign(packages
-      .reduce((all, pkg) => {
+      .reduce((all: Record<string, string>, pkg) => {
         all[pkg] = `https://unpkg.com/${isAureliaPkg(pkg) ? `${pkg}@dev`: pkg}`;
         return all;
       }, {}), {
         "@aurelia/kernel": "/vendors/au.js",
         "@aurelia/runtime": "/vendors/au.js",
         "@aurelia/runtime-html": "/vendors/au.js",
+        "@aurelia/expression-parser": "/vendors/au.js",
+        "@aurelia/template-compiler": "/vendors/au.js",
         "@aurelia/platform": "/vendors/au.js",
         "@aurelia/platform-browser": "/vendors/au.js",
         "@aurelia/metadata": "/vendors/au.js",

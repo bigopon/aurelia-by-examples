@@ -1,10 +1,8 @@
-import { BindingMode } from "@aurelia/runtime";
-import { bindable, customAttribute, INode } from '@aurelia/runtime-html';
+import { resolve } from '@aurelia/kernel';
+import { BindingMode, bindable, customAttribute, INode } from '@aurelia/runtime-html';
 
 @customAttribute('rect-size')
 export class RectSize {
-
-  public static inject = [INode];
 
   @bindable({ mode: BindingMode.fromView })
   public value!: { width: number; height: number; };
@@ -14,11 +12,7 @@ export class RectSize {
 
   private observer!: ResizeObserver;
 
-  constructor(
-    private readonly element: HTMLElement
-  ) {
-
-  }
+  private readonly element = resolve(INode) as HTMLElement;
 
   public binding(): void {
     let observer = this.observer;
