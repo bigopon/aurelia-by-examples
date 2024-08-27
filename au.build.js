@@ -6,4 +6,6 @@ export * from '@aurelia/runtime-html';
 export * from '@aurelia/expression-parser';
 export * from '@aurelia/template-compiler';
 export * from '@aurelia/runtime';
+export { isObject } from '@aurelia/kernel';
+export { BindingMode, BindingCommand } from '@aurelia/runtime-html';
 export { IPlatform } from '@aurelia/kernel';

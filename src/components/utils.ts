@@ -7,7 +7,8 @@ export class RectSize {
   @bindable({ mode: BindingMode.fromView })
   public value!: { width: number; height: number; };
 
-  @bindable()
+
+  @bindable
   public boxSize!: 'border-box' | 'content-box';
 
   private observer!: ResizeObserver;
